@@ -15,7 +15,7 @@
     <div class="d-flex text-center " style="height: 100vh;">
         {{-- <div class="d-flex text-center text-bg-dark " style="height: 100vh;"> --}}
         <div class="cover-container d-flex w-50 p-3 mx-auto flex-column align-item-center justify-content-center">
-            <div class="h-50 bg-dark p-4 rounded opacity-75">
+            <div class="h-60 bg-dark p-4 rounded opacity-75">
                 <h1>Selamat datang di Sistem Informasi Desa</h1>
                 <p class="lead">Ini adalah website resmi Sistem Informasi Desa yang menyediakan informasi tentang penduduk,
                     kependudukan, pemerintahan, ekonomi, sosial, dan lain-lain di Desa shgdaj.</p>
