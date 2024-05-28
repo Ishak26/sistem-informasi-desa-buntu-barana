@@ -7,34 +7,6 @@
             margin: 0%;
             padding: 0;
         }
-
-        .cards {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-            color: white;
-        }
-
-        .card-title small {
-            position: absolute;
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 8px;
-            margin: 3px;
-
-        }
-
-        .card-list {
-            width: 200px;
-            height: 200px;
-            display: flex;
-            background-color: blue;
-            border-radius: 5px;
-            box-shadow: 20px;
-            margin: 30px;
-            line-height: 25px;
-        }
-
         .body {
             font-size: 25px;
             margin: auto;
@@ -42,60 +14,15 @@
             gap: 30px;
         }
     </style>
+
+{{-- SESSION HANDLING --}}
     @if (session('edit'))
         <script>
             alert('{{ session('edit') }}');
         </script>
     @endif
-    <div class="container">
-        <div class="cards">
-            <div class="card-list shadow">
-                <div class="card-title">
-                    <small>Jumlah Penduduk</small>
-                </div>
-                <div class="body">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20%" height="20%" fill="currentColor"
-                        class="bi bi-people-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-                    </svg>
-                    <p>{{ $penduduk->count() }}</p>
-                    <small class="fs-5">Orang</small>
-                </div>
-            </div>
-            <div class="card-list bg-danger">
-                <div class="card-title">
-                    <small>Jumlah Aparat Desa</small>
-                </div>
-                <div class="body">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20%" height="20%" fill="currentColor"
-                        class="bi bi-people-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-                    </svg>
-                    <p>{{ $pegawai->count() }}</p>
-                    <small class="fs-5">Orang</small>
-                </div>
-            </div>
-            <div class="card-list  bg-warning">
-                <div class="card-title">
-                    <small>laki-laki</small>
-                </div>
-                <div class="body">
-                    <p>{{ $lakilaki->count() }}</p>
-                    <small class="fs-5">Orang</small>
-                </div>
-            </div>
-            <div class="card-list bg-success">
-                <div class="card-title">
-                    <small>Jumlah Postingan Berita</small>
-                </div>
-                <div class="body">
-                    <p>{{ $berita->count() }}</p>
-                    <small class="fs-5">Orang</small>
-                </div>
-            </div>
-        </div>
+  
+    <div class="container mt-3">
 
         {{-- <div class="m-auto">
             <div class="text-center float-start">
@@ -124,7 +51,7 @@
                 <img src="{{ asset('storage/' . $kades->foto) }}" class="img-fluid me-4" width="300" height="350"
                     alt="">
                 <small class="d-block">{{ $kades->nama }}</small>
-                <p>Kepala Desa XYZ</p>
+                <p>Kepala Desa Buntu Barana </p>
             </div>
             <p class="fs-5 fw-semi-bold mb-1">Visi</p>
             <small class="lh-sm text-muted">{{ $kades->visi }}</small>
@@ -137,7 +64,7 @@
                     }
                 @endphp
             </ul>
-            <a href="" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#Formdata">ubah profil</a>
+            <a href="" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#Formdata">Update</a>
         </div>
 
         {{-- modal tambah data --}}

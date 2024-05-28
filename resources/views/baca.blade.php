@@ -20,7 +20,7 @@
         <img class="img-fluid" src="{{ asset('storage/' . $baca->gambar) }}" alt="" width="100%" height="">
         <h3 class="fs-3 text-center my-3"> {{ $baca['judul'] }}</h3>
         <div class="conten">
-            <p class="d-inline"><small class="opacity-75 d-inline">{{ $baca->created_at }} </small> {!! $baca['deskripsi'] !!}
+            <p class="d-inline"><small class="opacity-75 d-inline">{{ date_format($baca->created_at,'d-m-Y') }} - </small> {!! $baca['deskripsi'] !!}
             </p>
         </div>
 

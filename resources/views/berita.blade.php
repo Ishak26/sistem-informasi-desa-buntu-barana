@@ -5,10 +5,10 @@
 @extends('layout.main')
 @section('container')
     <style>
-        body {
+        /* body {
             background-color: #1E293B;
             color: whitesmoke;
-        }
+        } */
     </style>
 
     @if ($berita[0]->gambar)
@@ -22,7 +22,7 @@
     <div class="col-md-6 p-4 text-white  " style="background-color: rgba(0,0,0,.6);">
         <h3 class=" lh-1  ">{{ $berita[0]->judul }}</h3>
         <p class="lead text-muted my-3">{{ str::limit($berita[0]->deskripsi) }}</p>
-        <p class="lead mb-0"><a href="/berita/{{ $berita[0]->slug }}" class=" fw-normal text-decoration-none">Baca
+        <p class="lead mb-0"><a href="/berita/{{ $berita[0]->slug }}" class="text-decoration-none btn btn-sm btn-primary">Baca
                 sekarang</a></p>
     </div>
     </div>
@@ -30,7 +30,7 @@
     <div class="container">
         <div class=" row">
             <div class="col-4 col-sm-4 text-center">
-                <h3 class="fw-semibold">Daftar Berita</h3>
+                <h3 class="fw-semibold">Berita</h3>
             </div>
             <div class="col-sm-4 col-md-4 col-">
                 <form action="/berita" method="get">
@@ -62,10 +62,10 @@
                                         href="/category/{{ $Dberita->category->id }}">{{ $Dberita->category->category }}
                                     </a></strong>
                                 <h5 class="mb-0 fw-normal opacity-75">{{ str::limit($Dberita['judul'], 70, ' . . .') }}</h5>
-                                <small class="mb-1 opacity-75">{{ $Dberita->created_at->diffForHumans() }}</small>
+                                <small class="mb-1 opacity-75">{{ date_format($Dberita->created_at,'d-m-Y') }}</small>
                                 <a href="/berita/{{ $Dberita->slug }}"
-                                    class="position-absolute bottom-0 mb-3 text-decoration-none">Baca
-                                    sekarang..</a>
+                                    class="position-absolute bottom-0 mb-3 text-decoration-none btn btn-sm btn-primary">Baca
+                                    sekarang</a>
                             </div>
                             <div class="col-auto d-lg-block">
                                 @if ($Dberita->gambar)

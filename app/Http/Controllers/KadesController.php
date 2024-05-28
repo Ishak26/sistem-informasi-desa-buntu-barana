@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Kades;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 class KadesController extends Controller
 {
     public function index(){

@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Routing\Controller;
 use App\Models\berita;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use App\Http\Controllers\DataController;
-
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class BeritaController extends Controller
 {
-
+     use AuthorizesRequests;
     public function index()
     {
         $berita = berita::latest();
@@ -47,7 +46,8 @@ class BeritaController extends Controller
     }
 
     public function store()
-    {
+    {   
+        $this->authorize('sekertaris');
         $berita = berita::latest();
         if (request('filter')) {
             $berita->where('judul', 'LIKE', '%' . request('filter') . '%');
@@ -99,6 +99,6 @@ class BeritaController extends Controller
         }
         berita::where('id', $berita->id)->update($validateData);
 
-        return redirect()->action([DataController::class, 'store'])->with('edit', 'Data Berhasil di Update');
+        return redirect()->action([BeritaController::class, 'store'])->with('edit', 'Data Berhasil di Update');
     }
 }

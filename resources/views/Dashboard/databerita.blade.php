@@ -8,7 +8,7 @@
        <script>alert('{{session('hapus')}}');</script>
     @endif
     <div class="container">
-        <h2 class="mt-2 text-center fw-bold">Daftar data berita</h2>
+        <h2 class="mt-2 text-center fw-bold">Data berita</h2>
            <a href="/formberita" class="btn btn-sm  btn-primary float-start">Tambah Berita</a>
         <form action="/databerita" method="get" class=" d-flex">
             <div class="input-group input-group-sm mb-3 w-50 m-auto ">

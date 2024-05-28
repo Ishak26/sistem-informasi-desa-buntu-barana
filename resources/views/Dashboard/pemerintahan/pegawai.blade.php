@@ -35,7 +35,7 @@
                             <td scope="row">{{ $loop->iteration }}</td>
                             <td>{{ $item->nama }}</td>
                             <td>{{ $item->nik }}</td>
-                            <td>{{ $item->Jabatan->jabatan }}</td>
+                            <td>{{ $item->bidang }}</td>
                             <td>+62-{{ $item->hp }}</td>
                             <td>{{ $item->alamat }}</td>
                             <td>{{ $item->tanggallahir }}</td>
@@ -96,16 +96,16 @@
                                             <div class="mb-3
                                                         row">
                                                 <label for="jabatan" class="col-sm-4 col-form-label">Jabatan</label>
-                                                <div class="col-sm-8">
+                                                {{-- <div class="col-sm-8">
                                                     <select class="form-select" id="jabatan" name="id_jabatan">
-                                                        @foreach ($jabatan as $data)
+                                                        @foreach (session(jabatan) as $data)
                                                             <option value="{{$data->id }}"
                                                                 {{( $data->id == $item->id_jabatan)? 'selected' : '' }}>
                                                                 {{ $data->jabatan }}
                                                             </option>
                                                         @endforeach
                                                     </select>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                             <div class="mb-3 row">
                                                 <label for="hp" class="col-sm-4 col-form-label">Nomor
@@ -196,14 +196,14 @@
                             </div>
                             <div class="mb-3 row">
                                 <label for="jabatan" class="col-sm-4 col-form-label">Jabatan</label>
-                                <div class="col-sm-8">
+                                {{-- <div class="col-sm-8">
                                     <select class="form-select" id="jabatan" name="id_jabatan">
                                         <option selected>--Pilih--</option>
                                         @foreach ($jabatan as $data)
                                             <option value="{{ $data->id }}">{{ $data->jabatan }}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="mb-3 row">
                                 <label for="hp" class="col-sm-4 col-form-label">Nomor Hanphone</label>

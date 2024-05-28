@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Penduduk;
@@ -22,6 +21,15 @@ class PendudukController extends Controller
         }
         return view('Dashboard.datapenduduk', [
             "penduduk" => $penduduk->paginate(20)
+        ]);
+    }
+
+    public function bantuan()
+    {
+        $penduduk = Penduduk::paginate(10);
+        $data=$penduduk->where('penghasilan','<=', 200000)->where('jk','laki-laki')->Where('status','kawin');
+        return view('Dashboard.databantuan',[
+            'bantuan'=> $data
         ]);
     }
     public function tambah()
@@ -61,6 +69,7 @@ class PendudukController extends Controller
     public function update(Penduduk $Penduduk, Request $request)
     {
         if ($request->nik == $Penduduk->nik) {
+        
             $validate = $request->validate([
                 "nama" => 'required|max:30',
                 "email" => 'required|email:dns',
@@ -109,4 +118,6 @@ class PendudukController extends Controller
         Penduduk::destroy($Penduduk->id);
         return redirect('dashboard/datapenduduk')->with('hapus', 'DataBerhasil di hapus!!');
     }
+
+    // public function bantuan(Penduduk  )
 }

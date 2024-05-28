@@ -1,1 +1,83 @@
+.bg-bluesky{
+  background-color: #98c5e9;
+}
+.font-color{
+  color: rgb(0,24,56);
+}
+.encode-sans-condensed-thin {
+  font-family: "Encode Sans Condensed", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
 
+.encode-sans-condensed-extralight {
+  font-family: "Encode Sans Condensed", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.encode-sans-condensed-light {
+  font-family: "Encode Sans Condensed", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.encode-sans-condensed-regular {
+  font-family: "Encode Sans Condensed", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.encode-sans-condensed-medium {
+  font-family: "Encode Sans Condensed", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.encode-sans-condensed-semibold {
+  font-family: "Encode Sans Condensed", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.encode-sans-condensed-bold {
+  font-family: "Encode Sans Condensed", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.encode-sans-condensed-extrabold {
+  font-family: "Encode Sans Condensed", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.encode-sans-condensed-black {
+  font-family: "Encode Sans Condensed", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+.header-font{ 
+    font-family: "Encode Sans Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 43px;
+    line-height: 44px;
+    letter-spacing: -1px;
+    margin-bottom: 13px;
+    text-transform: uppercase;
+  }
+.nav-link{
+  font-family: "Encode Sans Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -1px;
+}
+.nav-link:hover{
+  text-decoration: underline;
+}
+.nav-link {
+  color:rgb(0,24,56) ;
+}
+.active{
+  text-decoration: underline;
+}

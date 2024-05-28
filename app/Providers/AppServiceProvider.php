@@ -6,6 +6,9 @@ use App\Models\berita;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use App\Models\Login;
+use App\Models\Program_Kerja;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,8 +27,23 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
+        Gate::define('sekertaris',function(Login $logins) {
+            return $logins->bidang === "SEKERTARIS";
+        });
+        Gate::define('kepaladesa',function(Login $logins) {
+            return $logins->bidang === "KEPALA DESA";
+        });
+        Gate::define('kasikesra',function(Login $logins) {
+            return $logins->bidang === "KASI KESEJATERAAN MASYARAKAT";
+        });
+        Gate::define('kasikemasyarakatan',function(Login $logins) {
+            return $logins->bidang === "KASI KEMASYARAKATAN";
+        });
+        Gate::define('kasipemerintahan',function(Login $logins) {
+            return $logins->bidang === "KASI PEMERINTAHAN";
+        });
         Paginator::useBootstrapFour();
     }
 }

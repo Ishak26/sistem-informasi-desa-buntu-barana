@@ -15,9 +15,17 @@ return new class extends Migration
     {
         Schema::create('logins', function (Blueprint $table) {
             $table->id();
+            $table->string('profil')->nullable();
             $table->string('username');
             $table->string('email');
             $table->string('password');
+            $table->String('nama')->nullable();
+            $table->bigInteger('nik')->unique()->nullable();
+            $table->string('bidang')->nullable();
+            $table->bigInteger('hp')->nullable();
+            $table->String('alamat')->nullable();
+            $table->date('tanggallahir')->nullable();
+            $table->String('jeniskelamin')->nullable();
             $table->timestamps();
         });
     }

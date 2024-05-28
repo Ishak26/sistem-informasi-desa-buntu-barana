@@ -2,11 +2,6 @@
 @section('container')
     {{-- awal container --}}
     <style>
-        body {
-            background-color: #1E293B;
-            color: whitesmoke;
-        }
-
         .bg-hijau {
             background-color: #0E5E6F;
         }
@@ -19,8 +14,8 @@
             background-color: #1E293B;
         }
     </style>
-    <h1 class="text-center">ALBUM</h1>
     <div class="container">
+        <h3 class="fw-bold text-center">Documentasi Desa Buntu Barana</h3>
         <div class="row ">
             @foreach ($Albums as $album)
                 <div class="col-md-4 mb-2 p-3">
@@ -93,5 +88,6 @@
             @endforeach
         </div>
     </div>
+    <script src="js/javascript.js"></script>
 @endsection
 {{-- Akhir section --}}

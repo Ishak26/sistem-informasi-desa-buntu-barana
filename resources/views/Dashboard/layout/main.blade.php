@@ -9,245 +9,239 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleap.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-    <style>
-        * {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-
-        .fs-14 {
-            font-size: 14px;
-        }
-
-        @media(min-width: 768px) {
-
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        .b-example-divider {
-            height: 3rem;
-            background-color: rgba(0, 0, 0, .1);
-            border: solid rgba(0, 0, 0, .15);
-            border-width: 1px 0;
-            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
-
-        .b-example-vr {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 100vh;
-        }
-
-        .bi {
-            vertical-align: -.125em;
-            fill: currentColor;
-        }
-
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-    </style>
-
-
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
+    <script src="/js/javascript.js"></script>
 </head>
-<header class="navbar navbar-light sticky-top bg-ungu flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand  col-md-4 col-lg-2 text-center ms-0  fs-6" href="#">Sistem Informasi Desa</a>
-    <button class="navbar-toggler position-absolute top-2 w-25 start-50 d-md-none collapsed" type="button"
-        data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+
+<body>
+    @if(session('perubahan'))
+        <script>alert("{{session('perubahan')}}");</script>
+    @endif
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 m-0 shadow">
+        <button class="navbar-toggler top-1 w-100 d-md-none collapsed" type="button"
+        data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="true"
         aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-</header>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="sidebar col-md-3 col-lg-2 d-md-block bg-light fixed top-0  collapsed mt-0">
+                <div class="position-sticky sidebar-sticky">
+                    <img class="m-1" src="/storage/logo web.png"  width="180" alt="">
+                    {{-- <div class=" logo">
+                        <img src="/storage/logo web.jpg"  alt="">
+                        <p class="fw-bold" href="#">Pemerintah kabupaten Enrekang Desa Buntu Barana</p>
+                    </div> --}}
+                    <div class="nav-item  text-center">
+                        <a  class="nav-link mb-2" data-bs-toggle="modal" data-bs-target="#profil">
+                            <img src="{{asset('storage/'.auth()->user()->profil)}}" class="bg-white border rounded-circle shadow" alt="" width="80" height="80">
+                        </a>
+                        <a href="Dashboard/pemerintah" data-bs-toggle="modal" data-bs-target="#profil" class="nav-link link-dark"><p class="fw-bold text-uppercase">{{ auth()->user()->username}}</p></a>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }} link-dark" aria-current="page"
+                                href="/dashboard">
+                                <span class="bi bi-layout-text-sidebar-reverse">
+                                    Dashboard
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('/dashboard/pendapatan') ? 'active' : '' }} link-dark" aria-current="page"
+                                href="/dashboard/pendapatan">
+                                <span class="bi bi-cash-stack">
+                                    Keuangan
+                                </span>
+                            </a>
+                        </li>
+                        @can('sekertaris')
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('databerita') ? 'active' : '' }} link-dark"
+                                href="/databerita">
+                                <span class="bi bi-archive-fill">
+                                    Berita
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/datapenduduk') ? 'active' : '' }} link-dark"
+                            href="/dashboard/datapenduduk">
+                            <span class="bi bi-archive-fill">
+                                Penduduk
+                            </span>
+                        </a>
+                        </li>
+                        @endcan
+                        
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/kesehatan') ? 'active' : '' }} link-dark"
+                                href="/dashboard/kesehatan">
+                            <span class="bi bi-archive-fill">
+                                Kesehatan
+                            </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/pemerintah') ? 'active' : '' }} link-dark"
+                                href="/dashboard/pemerintah">
+                               <span class="bi bi-archive-fill" >
+                                    Pegawai
+                               </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/programkerja') ? 'active' : '' }} link-dark"
+                                href="/dashboard/programkerja">
+                                <span class="bi bi-archive-fill">
+                                 Program Kerja
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/pemerintah') ? 'active' : '' }} link-dark"
+                                href="/dashboard/tambahalbum">
+                                <span class="bi bi-archive-fill">
+                                    Documentasi
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/databantuan') ? 'active' : '' }} link-dark"
+                                href="/dashboard/databantuan">
+                                <span class="bi bi-archive-fill">
+                                    Bantuan
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-<div class="container-fluid">
-    <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 fs-14 d-md-block bg-light fixed  collapse">
-            <div class="position-sticky sidebar-sticky ">
-                <small class="fs-4 mt-3">Menu Bar</small>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }} link-dark" aria-current="page"
-                            href="/dashboard">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
-                                <path
-                                    d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z" />
-                                <path
-                                    d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2zM4 1v14H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2zm1 0h9a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5V1z" />
-                            </svg>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  {{ Request::is('databerita') ? 'active' : '' }} link-dark"
-                            href="/databerita">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-archive-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" />
-                            </svg>
-                            Data berita
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  {{ Request::is('dashboard/datapenduduk') ? 'active' : '' }} link-dark"
-                            href="/dashboard/datapenduduk">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-archive-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" />
-                            </svg>
-                            Data Penduduk
-                        </a>
-                    </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link  {{ Request::is('dashboard/datapenduduk') ? 'active' : '' }} link-dark"
-                            href="/dashboard/datapenduduk">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-archive-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" />
-                            </svg>
-                            Data Kependudukan
-                        </a>
-                    </li> --}}
-                    <li class="nav-item">
-                        <a class="nav-link  {{ Request::is('dashboard/pemerintah') ? 'active' : '' }} link-dark"
-                            href="/dashboard/pemerintah">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-archive-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" />
-                            </svg>
-                            Data Pemerintahan
-                        </a>
-                    </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link  {{ Request::is('dashboard/datapenduduk') ? 'active' : '' }} link-dark"
-                            href="/dashboard/datapenduduk">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-archive-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" />
-                            </svg>
-                            Data Ekonomi
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  {{ Request::is('dashboard/datapenduduk') ? 'active' : '' }} link-dark"
-                            href="/dashboard/datapenduduk">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-archive-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" />
-                            </svg>
-                            Data Sosial
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  {{ Request::is('dashboard/datapenduduk') ? 'active' : '' }} link-dark"
-                            href="/dashboard/datapenduduk">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-archive-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" />
-                            </svg>
-                            Laporan
-                        </a>
-                    </li> --}}
-                    <li class="nav-item">
-                        <a class="nav-link  {{ Request::is('dashboard/pemerintah') ? 'active' : '' }} link-dark"
-                            href="/dashboard/tambahalbum">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-archive-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" />
-                            </svg>
-                            Data Album
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav flex-column mb-2">
-                    <li class="nav-item">
-                        <a href="/registrasi"class="nav-link  btn btn-success  btn-sm mx-2 px-2 link-dark">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-person-add" viewBox="0 0 16 16">
-                                <path
-                                    d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
-                                <path
-                                    d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z" />
-                            </svg>
-                            Registrasi user
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav flex-column mb-2">
-                    <li class="nav-item">
-                        <a href="/dashboard/logout"class="nav-link  btn btn-danger  btn-sm mx-2 px-2 link-dark">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
-                                <path fill-rule="evenodd"
-                                    d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
-                            </svg>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+               
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-primary dropdown-toggle position-fixed m-2 end-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Registrasi / Log out
+                    </button>
+                    <ul class="dropdown-menu border border-0 ">
+                        <li class=" bg-danger text-center border rounded mx-2 mb-2"> 
+                            <a href="/dashboard/logout"class="text-decoration-none link-dark fw-bold m-2 end-0 shadow">
                             Logout
+                            <span class="bi bi-box-arrow-right"></span>
+                            </a>
+                         </li>
+                      <li class=" bg-success text-center border rounded mx-2">
+                        <a href="/registrasi"class="link-dark text-decoration-none">
+                            registrasi
+                            <span class="bi bi-person-add"></span>
                         </a>
-                    </li>
-                </ul>
+                      </li>
+                    </ul>
+                  </div>
+                @yield('container')
+
+            </main>
+        </div>
+
+    {{-- modal Edit profil --}}
+    <div class="modal" tabindex="-1" id="profil" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center"> Profil {{auth()->user()->username}}</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/dashboard/loginprofil" method="post" enctype="multipart/form-data">
+                        @method('put')
+                        @csrf
+                        <div class="mb-3 row">
+                            <label for="profil" class="col-sm-4 col-form-label">Profil</label>
+                            <div class="col-sm-8">
+                                <img id="Gambar" class="m-auto mb-2" src="" width="200" alt="">
+                                <input type="file" class="form-control gambar" name="profil"  onchange="previewImage()" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="Nama" class="col-sm-4 col-form-label">Nama</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" hidden name="id">
+                                <input type="text" class="form-control" value="{{auth()->user()->username}}" id="Nama" readonly required>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="email" class="col-sm-4 col-form-label">email</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" value="{{auth()->user()->email}}" id="email" readonly required>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="nik" class="col-sm-4 col-form-label">Nik</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" hidden name="id" value="{{auth()->user()->id}}">
+                                <input type="number" class="form-control" name="nik" id="nik" value="{{(auth()->user()->nik==null)?'':auth()->user()->nik}}" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="hp" class="col-sm-4 col-form-label">Nomor Hanphone</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="hp" id="hp" value="{{(auth()->user()->hp==null)?'':auth()->user()->hp}}" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="alamat" class="col-sm-4 col-form-label">Alamat</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="alamat" name="alamat" value="{{(auth()->user()->alamat==null)?'':auth()->user()->alamat}}">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="taggallahir" class="col-sm-4 col-form-label">Tanggal Lahir</label>
+                            <div class="col-sm-8">
+                                <input type="date" class="form-control" id="taggallahir" name="tanggallahir" value="{{(auth()->user()->tanggallahir==null)?'': auth()->user()->tanggallahir}}" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="jk" class="col-sm-4 col-form-label">Jenis Kelamin</label>
+                            <div class="col-sm-8">
+                                <input class="form-check-input" type="radio" name="jeniskelamin"
+                                    value="laki-laki" {{(auth()->user()->jeniskelamin === 'laki-laki' )?'checked':''}}>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Laki-laki
+                                </label>
+                                <input class="form-check-input" type="radio" name="jeniskelamin"
+                                    value="perempuan" {{(auth()->user()->jeniskelamin === 'perempuan')?'checked':''}}>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Perempuan
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
-        </nav>
-
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
-
-            @yield('container')
-
-        </main>
+        </div>
+        {{-- Akhir modal --}}
     </div>
-    <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; Sistem informasi desa</p>
-    </footer>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-</script>
 
 
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">&copy; Sistem informasi desa Buntu Barana</p>
+        </footer>
+    </div>
 
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
 </body>
-
 </html>

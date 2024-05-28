@@ -29,7 +29,7 @@
                 </tr>
             </thead>
             <tbody>
-                @if (session('sukses'))
+                @if(session('sukses'))
                     <script>
                         alert("{{ session('sukses') }}");
                     </script>

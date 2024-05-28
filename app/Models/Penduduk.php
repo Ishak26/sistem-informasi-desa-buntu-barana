@@ -9,4 +9,7 @@ class Penduduk extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+   public function Surat(){
+    return $this->belongsTo(Surat::class);
+   }
 }

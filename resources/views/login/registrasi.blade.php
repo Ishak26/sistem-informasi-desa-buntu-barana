@@ -36,8 +36,6 @@
                 </div>
             @enderror
 
-
-
             <div class="px-5
                     mb-1 ">
                 <label for="exampleFormControlInput1" class="form-label">Email</label>
@@ -50,8 +48,31 @@
                     {{ $errors->has('email') }}
                 </div>
             @enderror
-
-
+            <div class="px-5
+                    mb-1 ">
+                <label for="bidang" class="form-label">Bidang kerja</label>
+                <select name="bidang" type="text" class="form-select @error('bidang') is-invalid @enderror"
+                id="bidang" placeholder="Bidang Kerja" required value="{{ old('bidang') }}"
+                autocomplete="off">
+                <option value="" selected>--Pilih--</option>
+                <option value="KEPALA DESA">KEPALA DESA</option>
+                <option value="SEKERTARIS">SEKERTARIS</option>
+                <option value="KASI KESEJAHTERAAN MASYARAKAT">KASI KESEJAHTERAAN MASYARAKAT</option>
+                <option value="KASI KEMASYARAKATAN">KASI KEMASYARAKATAN</option>
+                <option value="KASI PEMERINTAHAN">KASI PEMERINTAHAN</option>
+                <option value="STAF DUSUN BUNTU KALOSI">STAF DUSUN BUNTU KALOSI</option>
+                <option value="STAF DUSUN BUNTU AMPALLA">STAF DUSUN BUNTU AMPALLA</option>
+                <option value="STAF DUSUN RANTE LIMBONG">STAF DUSUN RANTE LIMBONG</option>
+                <option value="STAF DUSUN BALABATU">STAF DUSUN BALABATU</option>
+                <option value="STAF DUSUN MALIBA">STAF DUSUN MALIBA</option>
+                <option value="STAF DUSUN SALUALA">STAF DUSUN SALUALA</option>
+                </select>
+            </div>
+            @error('email')
+                <div class="invalid-feedback">
+                    {{ $errors->has('email') }}
+                </div>
+            @enderror
             <div class="px-5 mb-1">
                 <label for="password" class="form-label">Password</label>
                 <input min="5" name="password" type="password"

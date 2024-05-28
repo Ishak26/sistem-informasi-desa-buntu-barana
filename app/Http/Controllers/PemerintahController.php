@@ -10,16 +10,16 @@ use App\Http\Controllers\Controller;
 
 class PemerintahController extends Controller
 {
-
     public function index()
     {
+        $this->authorize('sekertaris');
         return view('Dashboard.pemerintahan.pegawai', [
             "datapegawai" => Pemerintah::with('Jabatan')->get(),
-            "jabatan" => Jabatan::All()
         ]);
     }
     public function tambah(Request $request)
     {
+        $this->authorize('sekertaris');
         $validasi = $request->validate([
             'nik' => 'required',
             'nama' => 'required|max:30',
@@ -35,6 +35,7 @@ class PemerintahController extends Controller
     }
     public function update(Request $request, Pemerintah $Pemerintah)
     {
+        $this->authorize('sekertaris');
         $rules = $request->validate([
             'nik' => 'required|unique:Pemerintah',
             'nama' => 'required|max:30',
@@ -44,7 +45,7 @@ class PemerintahController extends Controller
             'tanggallahir' => 'required',
             'jeniskelamin' => 'required|max:30'
         ]);
-
+        
         if ($request->nik == $Pemerintah->nik) {
             Arr::except($rules, ['nik']);
         }
@@ -53,6 +54,7 @@ class PemerintahController extends Controller
     }
     public function hapus(Pemerintah $Pemerintah)
     {
+        $this->authorize('sekertaris');
         Pemerintah::destroy($Pemerintah->id);
         return redirect('/dashboard/pemerintah')->with('hapus', 'Data berhasil di hapus');
     }

@@ -37,7 +37,6 @@
                     placeholder="name@example.com" required value=" {{ old('email') }}">
                 <label for="floatingInput">Email address</label>
             </div>
-
             <div class="form-floating">
                 <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password"
                     required>

@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         Login::create([
         'username'=>'ishak',
         'email' => 'izhakmahyuddin@gmail.com',
+        'bidang'=>'SEKERTARIS',
         'password'=>bcrypt('12345')
         ]);
         // \App\Models\User::factory(10)->create();
@@ -38,20 +39,6 @@ class DatabaseSeeder extends Seeder
         // DataPenduduk::factory(10)->create();
         Penduduk::factory(100)->create();
         berita::factory(30)->create();
-        // category::factory(3)->create();
-
-        // berita::create([
-        //     'category'=>'olahraga',
-        //     'judul' => 'Judul Pertama',
-        //     'gambar'=>'ALBUM.jpg',
-        //     'slug'=>'judul-pertama',
-        //     'excerpt'=>'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio cumque esse ratione repellendus nulla autem a. Sit autem quas sequi excepturi ipsum laboriosam eum, omnis ex suscipit, temporibus, numquam distinctio.',
-        //     'deskripsi'=>'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita assumenda deserunt, autem facilis placeat nam illum! Tenetur perferendis possimus laborum sit, impedit ea, sed soluta quisquam quae quis iure aperiam in aliquam numquam quaerat. Nihil quaerat mollitia sunt cupiditate inventore, ab officiis commodi praesentium? Repellat eum sint saepe minus rerum.'
-
-
-
-        // ]);
-        // kades
         Kades::create([
             'nama' => 'mr . XYZ s.kom',
             'foto'=>'no-profil.jpg',
@@ -70,25 +57,5 @@ class DatabaseSeeder extends Seeder
         category::create([
             'category' => 'Olahraga'
         ]); 
-        Jabatan::create([
-            'jabatan' => "KEPALA DESA"
-        ]);
-        Jabatan::create([
-            'jabatan' => "SEKERTARIS DESA"
-        ]);
-
-        Jabatan::create([
-            'jabatan' => "STAF KEUANGAN DESA"
-        ]);
-
-        Jabatan::create([
-            'jabatan' => "STAF PERENCANAAN DESA"
-        ]);
-        Jabatan::create([
-            'jabatan' => "STAF UMUM DESA"
-        ]);
-        Jabatan::create([
-            'jabatan' => "STAF KEPENDUDUKAN DESA"
-        ]);
     }
 }
