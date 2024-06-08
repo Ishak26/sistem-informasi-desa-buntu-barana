@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
             return $logins->bidang === "KEPALA DESA";
         });
         Gate::define('kasikesra',function(Login $logins) {
-            return $logins->bidang === "KASI KESEJATERAAN MASYARAKAT";
+            return $logins->bidang === "KASI KESEJAHTERAAN MASYARAKAT";
         });
         Gate::define('kasikemasyarakatan',function(Login $logins) {
             return $logins->bidang === "KASI KEMASYARAKATAN";

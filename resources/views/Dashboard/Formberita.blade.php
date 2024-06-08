@@ -4,7 +4,6 @@
 @if (session('sukses'))
        <script>alert('{{session('sukses')}}');</script>
     @endif
-
     <form action="/formberita" method="post" enctype="multipart/form-data">
         @csrf
         <legend>Form Berita</legend>

@@ -64,7 +64,9 @@
                     }
                 @endphp
             </ul>
+            @can('sekertaris')
             <a href="" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#Formdata">Update</a>
+            @endcan
         </div>
 
         {{-- modal tambah data --}}

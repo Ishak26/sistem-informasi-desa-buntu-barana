@@ -13,7 +13,7 @@
         <div class="header text-center">
             <h3 class="fs-semibold mt-3">Daftar Pegawai Pemerintah Desa</h3>
         </div>
-        <a href="" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#Formdata">Tambah Data</a>
+        <a href="" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#Formdata"><i class="bi bi-database-fill-add "></i></a>
         <div class="table-responsive-sm">
             <table class="table text-center" cellpaddding="0" cellspacing="0">
                 <thead>
@@ -96,16 +96,9 @@
                                             <div class="mb-3
                                                         row">
                                                 <label for="jabatan" class="col-sm-4 col-form-label">Jabatan</label>
-                                                {{-- <div class="col-sm-8">
-                                                    <select class="form-select" id="jabatan" name="id_jabatan">
-                                                        @foreach (session(jabatan) as $data)
-                                                            <option value="{{$data->id }}"
-                                                                {{( $data->id == $item->id_jabatan)? 'selected' : '' }}>
-                                                                {{ $data->jabatan }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div> --}}
+                                                <div class="col-sm-8">
+                                                   <input type="text" name="jabatan" class="form-control" id="" value="{{$item->jabatan}}">
+                                                </div>
                                             </div>
                                             <div class="mb-3 row">
                                                 <label for="hp" class="col-sm-4 col-form-label">Nomor
@@ -196,14 +189,9 @@
                             </div>
                             <div class="mb-3 row">
                                 <label for="jabatan" class="col-sm-4 col-form-label">Jabatan</label>
-                                {{-- <div class="col-sm-8">
-                                    <select class="form-select" id="jabatan" name="id_jabatan">
-                                        <option selected>--Pilih--</option>
-                                        @foreach ($jabatan as $data)
-                                            <option value="{{ $data->id }}">{{ $data->jabatan }}</option>
-                                        @endforeach
-                                    </select>
-                                </div> --}}
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="jabatan">
+                                </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="hp" class="col-sm-4 col-form-label">Nomor Hanphone</label>

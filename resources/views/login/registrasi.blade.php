@@ -6,29 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registrasi</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.min.css">  
     <link href="css/registras.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-    <style>
-        * {
-            font-family: 'Poppins', sans-serif;
-        }
-    </style>
 
 </head>
 
 <body class="bg-body">
 
-    <div class="registrasi shadow-lg p-3 mb-5  rounded ">
-        <h3 class=" mb-3 text-center">Registrasi</h3>
+    <div class="registrasi shadow-lg p-3  rounded  ">
+        <h4 class="encode-sans-condensed-extrabold text-bluelight mb-3 text-center">REGISTRASI</h4>
         <form action="/registrasi" method="post">
             @csrf
-            <div class="px-5 mb-1 ">
-                <label for="exampleFormControlInput1" class="form-label">Username</label>
+            <div class="form-floating mb-1">
                 <input name="username" type="text" class="form-control @error('username') is-invalid @enderror"
-                    autocomplete="off" id="exampleFormControlInput1" placeholder="Username" required autofocus
-                    value="{{ old('username') }}">
+                autocomplete="off" id="exampleFormControlInput1" placeholder="Username" required autofocus
+                value="{{ old('username') }}" id="floatingInput">
+                <label class="form-label">Username</label>
             </div>
             @error('username')
                 <div class="invalid-feedback">
@@ -36,48 +31,40 @@
                 </div>
             @enderror
 
-            <div class="px-5
-                    mb-1 ">
-                <label for="exampleFormControlInput1" class="form-label">Email</label>
+            <div class="form-floating mb-1">
                 <input name="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                    id="exampleFormControlInput1" placeholder="Email" required value="{{ old('email') }}"
-                    autocomplete="off">
+                placeholder="Email" required value="{{ old('email') }}"
+                autocomplete="off" id="floatingInput">
+                <label class="form-label">Email</label>
             </div>
             @error('email')
                 <div class="invalid-feedback">
                     {{ $errors->has('email') }}
                 </div>
             @enderror
-            <div class="px-5
-                    mb-1 ">
-                <label for="bidang" class="form-label">Bidang kerja</label>
+            <div class="form-floating mb-1 ">
                 <select name="bidang" type="text" class="form-select @error('bidang') is-invalid @enderror"
-                id="bidang" placeholder="Bidang Kerja" required value="{{ old('bidang') }}"
-                autocomplete="off">
-                <option value="" selected>--Pilih--</option>
-                <option value="KEPALA DESA">KEPALA DESA</option>
-                <option value="SEKERTARIS">SEKERTARIS</option>
-                <option value="KASI KESEJAHTERAAN MASYARAKAT">KASI KESEJAHTERAAN MASYARAKAT</option>
-                <option value="KASI KEMASYARAKATAN">KASI KEMASYARAKATAN</option>
-                <option value="KASI PEMERINTAHAN">KASI PEMERINTAHAN</option>
-                <option value="STAF DUSUN BUNTU KALOSI">STAF DUSUN BUNTU KALOSI</option>
-                <option value="STAF DUSUN BUNTU AMPALLA">STAF DUSUN BUNTU AMPALLA</option>
-                <option value="STAF DUSUN RANTE LIMBONG">STAF DUSUN RANTE LIMBONG</option>
-                <option value="STAF DUSUN BALABATU">STAF DUSUN BALABATU</option>
-                <option value="STAF DUSUN MALIBA">STAF DUSUN MALIBA</option>
-                <option value="STAF DUSUN SALUALA">STAF DUSUN SALUALA</option>
+                placeholder="Bidang Kerja" required value="{{ old('bidang') }}"
+                autocomplete="off" id="floatingInput">
+                    <option value="" selected>--Pilih--</option>
+                    <option value="KEPALA DESA">KEPALA DESA</option>
+                    <option value="SEKERTARIS">SEKERTARIS</option>
+                    <option value="KASI KESEJAHTERAAN MASYARAKAT">KASI KESEJAHTERAAN MASYARAKAT</option>
+                    <option value="KASI KEMASYARAKATAN">KASI KEMASYARAKATAN</option>
+                    <option value="KASI PEMERINTAHAN">KASI PEMERINTAHAN</option>
                 </select>
+            <label for="bidang" class="text-dark form-label">Bidang kerja</label>
             </div>
             @error('email')
                 <div class="invalid-feedback">
                     {{ $errors->has('email') }}
                 </div>
             @enderror
-            <div class="px-5 mb-1">
-                <label for="password" class="form-label">Password</label>
+            <div class="form-floating mb-1">
                 <input min="5" name="password" type="password"
-                    class="form-control @error('password') is-invalid @enderror" id="password" placeholder="password"
-                    required value="{{ old('password') }}" autocomplete="off">
+                class="form-control @error('password') is-invalid @enderror" id="floatingInput" placeholder="password"
+                required value="{{ old('password') }}" autocomplete="off">
+                <label for="password" class="form-label">Password</label>
             </div>
             @error('password')
                 <div class="invalid-feedback">
@@ -87,21 +74,21 @@
 
 
 
-            <div class="px-5 mb-1">
-                <label for="Cpassword" class="form-label">Konfirmasi Password</label>
+            <div class="form-floating mb-1">
                 <input min="5" name="konfirmasi" type="password"
-                    class="form-control @error('konfirmasi') is-invalid @enderror" id="Cpassword"
-                    placeholder="konfirmasi" required value="{{ old('konfirmasi') }}" autocomplete="off">
+                class="form-control @error('konfirmasi') is-invalid @enderror" id="floatingInput"
+                placeholder="konfirmasi" required value="{{ old('konfirmasi') }}" autocomplete="off">
+                <label for="Cpassword" class="form-label">Konfirmasi Password</label>
                 @if (session()->has('errorkonfirmasi'))
-                    <div class="invalid-feedback">
+                <div class="invalid-feedback">
                         {{ session('errorkonfirmasi') }}
                     </div>
                 @endif
-                <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                <button type="submit" class="btn btn-bluedark mt-3">simpan</button>
             </div>
 
         </form>
-        <p class="text-center"> Klik di sini untuk <a class="text-decoration-none" href="/login">login </a></p>
+        <p class="text-center text-muted fs-6">klik disini untuk <a class="" href="/login">login </a></p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">

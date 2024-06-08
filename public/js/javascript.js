@@ -7,9 +7,9 @@
     //     }
     //   }
     // }
-    function previewImage() {
-      const file = document.querySelector('.gambar');
-      const gambar = document.getElementById('Gambar');
+    function previewImage(img,fileimg) {
+    const file = document.querySelector(fileimg);
+    const gambar = document.getElementById(img);
       gambar.style.height='200px'; 
           var reader = new FileReader();
           reader.readAsDataURL(file.files[0]);

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('category_id');
             $table->string('judul');
             $table->string('gambar')->nullable();
-            $table->string('slug')->unique();
+            $table->string('slug');
             // $table->text('excerpt');
             $table->text('deskripsi');
             $table->timestamp('time')->nullable();

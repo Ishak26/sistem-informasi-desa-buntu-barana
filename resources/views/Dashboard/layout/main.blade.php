@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.104.2">
     <title>Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleap.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,6 +51,8 @@
                                 </span>
                             </a>
                         </li>
+                        {{-- authorize sekertaris --}}
+                        @can('sekertaris','kasipemerintahan')
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('/dashboard/pendapatan') ? 'active' : '' }} link-dark" aria-current="page"
                                 href="/dashboard/pendapatan">
@@ -60,7 +61,70 @@
                                 </span>
                             </a>
                         </li>
-                        @can('sekertaris')
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('databerita') ? 'active' : '' }} link-dark"
+                                href="/databerita">
+                                <span class="bi bi-archive-fill">
+                                    Berita
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/datapenduduk') ? 'active' : '' }} link-dark"
+                            href="/dashboard/datapenduduk">
+                                <span class="bi bi-archive-fill">
+                                    Penduduk
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/pemerintah') ? 'active' : '' }} link-dark"
+                                href="/dashboard/pemerintah">
+                               <span class="bi bi-archive-fill" >
+                                    Pegawai
+                               </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/kesehatan') ? 'active' : '' }} link-dark"
+                                href="/dashboard/kesehatan">
+                            <span class="bi bi-archive-fill">
+                                Kesehatan
+                            </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/databantuan') ? 'active' : '' }} link-dark"
+                                href="/dashboard/databantuan">
+                                <span class="bi bi-archive-fill">
+                                    Bantuan
+                                </span>
+                            </a>
+                        </li>    
+                        @endcan
+
+                        {{-- authorize kasi pemerintahan --}}
+                        @can('kasipemerintahan')
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('/dashboard/pendapatan') ? 'active' : '' }} link-dark" aria-current="page"
+                                href="/dashboard/pendapatan">
+                                <span class="bi bi-cash-stack">
+                                    Keuangan
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/pemerintah') ? 'active' : '' }} link-dark"
+                                href="/dashboard/pemerintah">
+                               <span class="bi bi-archive-fill" >
+                                    Pegawai
+                               </span>
+                            </a>
+                        </li>
+                        @endcan
+
+                        {{-- authorize kasi kemasyarakatan --}}
+                        @can('kasikemasyarakatan')
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('databerita') ? 'active' : '' }} link-dark"
                                 href="/databerita">
@@ -78,23 +142,26 @@
                         </a>
                         </li>
                         @endcan
-                        
-                        <li class="nav-item">
-                            <a class="nav-link  {{ Request::is('dashboard/kesehatan') ? 'active' : '' }} link-dark"
-                                href="/dashboard/kesehatan">
-                            <span class="bi bi-archive-fill">
-                                Kesehatan
-                            </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  {{ Request::is('dashboard/pemerintah') ? 'active' : '' }} link-dark"
-                                href="/dashboard/pemerintah">
-                               <span class="bi bi-archive-fill" >
-                                    Pegawai
-                               </span>
-                            </a>
-                        </li>
+
+                        {{-- authorize kasi kesejahteraan masyarakat --}}
+                        @can('kasikesra')
+                            <li class="nav-item">
+                                <a class="nav-link  {{ Request::is('dashboard/kesehatan') ? 'active' : '' }} link-dark"
+                                    href="/dashboard/kesehatan">
+                                <span class="bi bi-archive-fill">
+                                    Kesehatan
+                                </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  {{ Request::is('dashboard/databantuan') ? 'active' : '' }} link-dark"
+                                    href="/dashboard/databantuan">
+                                    <span class="bi bi-archive-fill">
+                                        Bantuan
+                                    </span>
+                                </a>
+                            </li>
+                        @endcan
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/programkerja') ? 'active' : '' }} link-dark"
                                 href="/dashboard/programkerja">
@@ -111,20 +178,13 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link  {{ Request::is('dashboard/databantuan') ? 'active' : '' }} link-dark"
-                                href="/dashboard/databantuan">
-                                <span class="bi bi-archive-fill">
-                                    Bantuan
-                                </span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                
+                @if (auth()->user()->can('sekertaris'))
                 <div class="dropdown">
                     <button class="btn btn-sm btn-primary dropdown-toggle position-fixed m-2 end-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Registrasi / Log out
@@ -143,14 +203,21 @@
                         </a>
                       </li>
                     </ul>
-                  </div>
+                </div>
+                @else
+                <a href="/dashboard/logout"class="btn btn-sm btn-danger position-fixed m-2 end-0">
+                    Logout
+                    <span class="bi bi-box-arrow-right"></span>
+                </a>
+                @endif
+               
                 @yield('container')
 
             </main>
         </div>
 
     {{-- modal Edit profil --}}
-    <div class="modal" tabindex="-1" id="profil" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal mt-0" tabindex="-1" id="profil" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -165,7 +232,7 @@
                             <label for="profil" class="col-sm-4 col-form-label">Profil</label>
                             <div class="col-sm-8">
                                 <img id="Gambar" class="m-auto mb-2" src="" width="200" alt="">
-                                <input type="file" class="form-control gambar" name="profil"  onchange="previewImage()" required>
+                                <input type="file" class="form-control gambar" name="profil"  onchange="previewImage('Gambar','.gambar')" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -236,7 +303,7 @@
 
 
         <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">&copy; Sistem informasi desa Buntu Barana</p>
+            <p class="mb-1">&copy; Pemerintah Desa Buntu Barana</p>
         </footer>
     </div>
 

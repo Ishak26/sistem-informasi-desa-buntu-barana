@@ -4,12 +4,15 @@
     @php
         use Illuminate\Support\Str;
     @endphp
+    @if (session('edit'))
+        <script>alert('{{session('edit')}}');</script>
+    @endif
      @if (session('hapus'))
        <script>alert('{{session('hapus')}}');</script>
     @endif
     <div class="container">
         <h2 class="mt-2 text-center fw-bold">Data berita</h2>
-           <a href="/formberita" class="btn btn-sm  btn-primary float-start">Tambah Berita</a>
+           <a href="/formberita" class="btn btn-sm  btn-primary float-start"><i class="bi bi-database-fill-add"></i></a>
         <form action="/databerita" method="get" class=" d-flex">
             <div class="input-group input-group-sm mb-3 w-50 m-auto ">
                 <button class="btn btn-sm  btn-primary" type="submit">Cari</button>
@@ -34,13 +37,16 @@
                             <td>{{ $item->judul }}</td>
                             <td>{{ $item->gambar }}</td>
                             <td>{{ str::limit($item->deskripsi, 165, ' . . . ') }}</td>
-                            <td class="p-3" width="150px">
+                            <td class="p-3 d-flex flex-rows">
                                 <a href="/databerita/{{ $item->slug }}/updatedataberita"><button
-                                        class="btn btn-primary btn-sm">Edit</button></a>
+                                        class="btn btn-warning btn-sm"><span class="bi bi-pencil-square"></span></button>
+                                </a>
                                 <form class="d-inline" action="/databerita/{{ $item->slug }}" method="post">
                                     @method('delete')
                                     @csrf
-                                    <button class="btn btn-danger  btn-sm" type="submit">Hapus</button>
+                                    <button  class=" ms-1 btn btn-danger  btn-sm" type="submit">
+                                        <span class="bi bi-trash"></span>
+                                    </button>
                                 </form>
                             </td>
                         </tr>

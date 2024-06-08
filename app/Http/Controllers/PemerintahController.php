@@ -7,12 +7,14 @@ use App\Models\Pemerintah;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Gate;
 class PemerintahController extends Controller
 {
     public function index()
     {
-        $this->authorize('sekertaris');
+        if (!Gate::any(['sekertaris','kasipemerintahan'])){
+            abort(403);
+        }
         return view('Dashboard.pemerintahan.pegawai', [
             "datapegawai" => Pemerintah::with('Jabatan')->get(),
         ]);
@@ -23,7 +25,7 @@ class PemerintahController extends Controller
         $validasi = $request->validate([
             'nik' => 'required',
             'nama' => 'required|max:30',
-            'id_jabatan' => 'required|max:30',
+            'jabatan' => 'required|max:30',
             'hp' => 'required',
             'alamat' => 'required',
             'tanggallahir' => 'required',

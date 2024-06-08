@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+     <link rel="stylesheet" href="/css/main.min.css">  
     <link href="css/login.css" rel="stylesheet">
     <style>
         .btn-ungu{
@@ -29,8 +28,8 @@
 
         <form action="/login" method="post">
             @csrf
-            {{-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> --}}
-            <h1 class="h3 mb-3 fw-normal">Login</h1>
+            <img class="d-block m-auto mb-4" src="img/R.png" alt="" width="72" height="80">
+            {{-- <img class="m-auto" src="img/R.png" width="50" height="50" alt=""> --}}
 
             <div class="form-floating">
                 <input type="email" name="email" class="form-control" id="floatingInput"
@@ -48,8 +47,8 @@
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div> --}}
-            <button class="w-100 btn btn-lg btn-ungu text-white"  type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-muted">&copy; Sistem informasi desa</p>
+            <button class="w-100 btn btn-lg btn-bluedark"  type="submit">Sign in</button>
+            <p class="mt-5 mb-3 text-center text-muted">&copy; Sistem Informasi Desa Buntu Barana</p>
         </form>
     </main>
 

@@ -1,3 +1,4 @@
+
 .bg-bluesky{
   background-color: #98c5e9;
 }
@@ -60,7 +61,7 @@
 .header-font{ 
     font-family: "Encode Sans Condensed", sans-serif;
     font-weight: 600;
-    font-size: 43px;
+    font-size: 50px;
     line-height: 44px;
     letter-spacing: -1px;
     margin-bottom: 13px;
@@ -80,4 +81,13 @@
 }
 .active{
   text-decoration: underline;
+}
+
+@media only screen and (max-width: 750px) {
+  .vr {
+    display: none;
+  }
+  .logo{
+    margin-right:0px;
+  }
 }
