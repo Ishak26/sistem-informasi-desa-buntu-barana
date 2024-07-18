@@ -9,8 +9,4 @@ class Pemerintah extends Model
 {
     use HasFactory;
    protected  $guarded=['id'];
-
-   public function jabatan(){
-    return $this->belongsTo(Jabatan::class,'id_jabatan');
-   }
 }

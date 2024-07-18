@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('surats', function (Blueprint $table) {
             $table->id();
             $table->integer('id_warga');
+            $table->String('jenis');
+            $table->String('keperluan');
+            $table->boolean('verifikasi')->nullable()->default(false);
+            $table->string('filesurat')->nullable();
             $table->timestamps();
-            $table->String('jenis_surat');
         });
     }
 

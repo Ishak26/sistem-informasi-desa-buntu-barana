@@ -1,44 +1,36 @@
+@php
+    use Illuminate\Support\Str;
+@endphp
 @extends('layout.main')
-
-{{-- Awal Container --}}
-
 @section('container')
-    <style>
-        .container {
-            width: 70%;
-            margin: auto;
-        }
-
-        .conten {
-            padding: 0px 50px;
-            margin: auto;
-
-        }
-    </style>
-    <div class="container">
-        {{-- <img class="img-fluid" src="../img/{{ $baca['gambar'] }}" alt="" width="100%" height=""> --}}
-        <img class="img-fluid" src="{{ asset('storage/' . $baca->gambar) }}" alt="" width="100%" height="">
-        <h3 class="fs-3 text-center my-3"> {{ $baca['judul'] }}</h3>
-        <div class="conten">
-            <p class="d-inline"><small class="opacity-75 d-inline">{{ date_format($baca->created_at,'d-m-Y') }} - </small> {!! $baca['deskripsi'] !!}
-            </p>
+<style>
+  .encode-sans-condensed-bold {
+    font-family: "Encode Sans Condensed", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <img class="img-fluid object-fit" src="{{"/".$baca->gambar}}" alt="" width="100%" height="50%">
+            <h3 class="fs-3 text-center my-3"> {{ $baca['judul'] }}</h3>
+            <div class="conten">
+                <p class="fs-6"><small class="text-muted d-inline">{{ date_format($baca->created_at,'d-M-Y') }} - </small>
+                    {!! $baca['deskripsi'] !!}
+                </p>
+            </div>
         </div>
-
-        <a href="/berita" class="mt-3">kembali</a>
+        <div class="col-sm-4">
+            <div class="shadow p-3 ">
+                <p class="fs-5 fw-bold">BACA JUGA :</p>
+                @foreach ($berita as $item)
+                    <a href="" class="lh-sm py-3 text-bluedark d-block text-decoration-none fw-bold p-1 border-bottom border-1 border-bluedark">{{ str::limit($item['judul'], 100, ' . . .') }}</a>
+                @endforeach
+            </div>
+        </div>
     </div>
-
-    <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; Sistem informasi desa</p>
-
-    </footer>
+    <a href="/berita" class="mt-3">kembali</a>
+</div>
+@include('layout.footer')
 @endsection
-
-{{-- Akhir Container --}}
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
-</script>
-</body>
-
-</html>

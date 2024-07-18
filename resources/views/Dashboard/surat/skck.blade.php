@@ -57,22 +57,21 @@
     Desa Buntu Barana</p>
       <p class="alamat">Alamat : Jl. Pendidikan No. 1 Rante Limbong, Kode.Pos. 91755</p>
   <p class="skck">Surat Keterangan Berkelakuan Baik</p>
-  <p class="nomor"> Nomor: 330/{{$nosurat->id}}/DBB/KC//II/2024</p>
+  <p class="nomor"> Nomor: {{$nosurat->id}}/03/DBB/KC//II/2024</p>
   <ol type="1">
     <li>Pemerintah Desa Buntu Barana dengan ini menerangkan bahwa :</li>
-    @foreach($data as $penduduk)
       <table class="table">
         <tr>
           <td>Nama</td>$
-          <td>: {{$penduduk->nama}}</td>
+          <td>: {{$data->nama}}</td>
         </tr>
         <tr>
           <td>Alamat</td>
-          <td>: {{$penduduk->alamat}}</td>
+          <td>: {{$data->alamat}}</td>
         </tr>
         <tr>
           <td>Tempat/Tgl. lahir	</td>
-          <td>: {{$penduduk->tanggallahir}}</td>
+          <td>: {{$data->tanggallahir}}</td>
         </tr>
         <tr>
           <td>Kewarganegaraan</td>
@@ -80,18 +79,17 @@
         </tr>
         <tr>
           <td>Pendidikan Terakhir</td>
-          <td>: {{$penduduk->pendidikan}}</td>
+          <td>: {{$data->pendidikan}}</td>
         </tr>
         <tr>
           <td>Pekerjaan</td>
-          <td>: {{$penduduk->pekerjaan}}</td>
+          <td>: {{$data->pekerjaan}}</td>
         </tr>
         <tr>
           <td>Agama</td>
-          <td>: {{$penduduk->agama}}</td>
+          <td>: {{$data->agama}}</td>
         </tr>
       </table>
-      @endforeach
       <p>Berdasarkan keterangan dan laporan yang ada serta sepanjang penyelidikan kami selaku Pemerintah Desa, menerangkan bahwa yang bersangkutan berkelakuan baik, tidak menjadi penyokong dari salah satu perkumpulan yang terlarang/dilarang oleh Pemerintah.</p>
     <li>Surat keterangan ini diberikan untuk keperluan :</li>
     <p style="text-align: center; font-size:12pt; font-weight=bold; ">- Kelengkapan Berkas -</p>

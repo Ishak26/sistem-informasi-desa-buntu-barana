@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class BelanjaController extends Controller
 {
     public function index(Program_Kerja $Program_Kerja){
-        $belanja =Belanja::Where('id_Program_kerja',$Program_Kerja->id)->get();
+        $belanja =Belanja::Where('Programkerja_id',$Program_Kerja->id)->get();
         return view('Dashboard.pemerintahan.belanja',[
             'proker' => $Program_Kerja,
             'Belanja'=> $belanja
@@ -17,7 +17,7 @@ class BelanjaController extends Controller
     }
     public function tambah(Request $request){
         $validasi = $request->validate([
-            'id_Program_kerja'=> 'required|numeric|maxdigits:7',
+            'ProgramKerja_id'=> 'required|numeric|maxdigits:7',
             'Belanja'=>'required|max:200',
             'Jumlah_satuan'=>'required|numeric|maxdigits:7',
             'harga'=>'required|numeric|maxdigits:20',

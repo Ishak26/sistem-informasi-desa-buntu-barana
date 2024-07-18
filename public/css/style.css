@@ -70,19 +70,19 @@
 .nav-link{
   font-family: "Encode Sans Condensed", sans-serif;
   font-weight: 600;
-  font-size: 20px;
-  letter-spacing: -1px;
+  letter-spacing: 0px;
 }
 .nav-link:hover{
   text-decoration: underline;
 }
-.nav-link {
-  color:rgb(0,24,56) ;
-}
 .active{
   text-decoration: underline;
 }
+.object-fit{
+  max-width: 100%;
+  object-fit:cover;
 
+}
 @media only screen and (max-width: 750px) {
   .vr {
     display: none;
@@ -90,4 +90,10 @@
   .logo{
     margin-right:0px;
   }
+}
+.conten{
+  padding: 0px 50px;
+  margin: auto;
+  font-size: 12px;
+
 }

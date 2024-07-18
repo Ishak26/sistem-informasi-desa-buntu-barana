@@ -17,19 +17,20 @@ class BeritaController extends Controller
             $berita->where('judul', 'LIKE', '%' . request('filter') . '%');
         }
         return view('berita', [
-            "title" => 'Desa XYZ | berita',
+            "title" => 'Desa Buntu Barana | Berita',
             "berita" => $berita->paginate(9)
         ]);
     }
 
     public function show(berita $berita)
     {
-        return view('baca', [
-            "title" => 'Baca',
-            "baca" => $berita
+        $beritas =berita::all()->skip($berita->id);
+        return view('baca',[
+            "title" => 'Desa Buntu Barana | Berita',
+            "baca" => $berita,
+            "berita"=> $beritas
         ]);
     }
-
     public function create(Request $request)
     {
         $validate = $request->validate([
@@ -40,7 +41,6 @@ class BeritaController extends Controller
             'deskripsi' => 'required',
             'time' => 'required'
         ]);
-
         $validate['gambar'] = $request->file('gambar')->store('img-berita');
         berita::create($validate);
         return redirect('/databerita')->with('sukses', 'Data Berhasil di Tambahkan!!');
@@ -62,7 +62,9 @@ class BeritaController extends Controller
     }
     public function tambah()
     {
-        return view('Dashboard.Formberita');
+        return view('Dashboard.Formberita',[
+            'kategori'=>Category::all()
+        ]);
     }
 
 

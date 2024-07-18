@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Models\berita;
+use App\Models\Surat;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Login;
+
 use App\Models\Program_Kerja;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        
     }
 
     /**
@@ -29,6 +31,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        
+        Gate::define('kepaladesa',function(Login $logins) {
+            return $logins->bidang === "KEPALA DESA";
+        });
         Gate::define('sekertaris',function(Login $logins) {
             return $logins->bidang === "SEKERTARIS";
         });

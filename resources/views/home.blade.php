@@ -3,9 +3,17 @@
 {{-- Awal container --}}
 
 @section('container')
-<div class="container">
-    <div class="row justify-content-center shadow">
-        <div class="col-4 bg-bluedark">
+<style>
+    body{
+        background-image: url('img/bacground-desa.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
+</style>
+<div class="container opacity-75">
+    <div class="row justify-content-center shadow-lg">
+        <div class="col-sm-4 bg-bluedark">
             <div class="d-flex flex-column text-white justify-content-center p-5 overflow-hidden m-0">
                 <p class="encode-sans-condensed-bold text-bluelight m-0 fs-6"> WEBSITE RESMI</p>
                 <p class="header-font">DESA BUNTU BARANA</p>
@@ -17,7 +25,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-8 p-0">
+        <div class="col-sm-8 sm-hidden p-0">
             <img src="img/bacground-desa.jpg" width="100%">
         </div>
     </div>

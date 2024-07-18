@@ -13,8 +13,8 @@ class AlbumController extends Controller
     public function index()
     {
         $album = Album::all();
-        return view('Album', [
-            "title" => 'Desa XYZ | dokumentasi',
+        return view('dokumentasi', [
+            "title" => 'Desa Buntu Barana | dokumentasi',
             "Albums" =>Album::with('Komentar')->get()
         ]);
     }
@@ -45,6 +45,6 @@ class AlbumController extends Controller
             'komentar' => 'required|max:100'
         ]);
         Komentar::create($validasi);
-        return redirect('/album');
+        return redirect('/dokumentasi');
     }
 }

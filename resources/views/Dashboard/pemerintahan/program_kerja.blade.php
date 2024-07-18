@@ -1,7 +1,7 @@
 @extends('Dashboard.layout.main')
 @section('container')
     @if(session('status'))
-      <script>alert("{{session('status')}}");</script>  
+      <script>alert("{{session()->pull('status')}}");</script>  
     @endif
     <h3 class="text-center fw-semibold mt-3">Program Kerja {{(auth()->user()->bidang==null)?'':auth()->user()->bidang}}</h3>
     <button class="btn btn-sm btn-primary m-3 bi bi-clipboard-plus-fill " data-bs-toggle='modal' data-bs-target='#createdata' >
@@ -31,6 +31,18 @@
                 <div class="col-md-8"><input type="text" name="terbilang"  class="form-control" required placeholder="Terbilang sebanyak!!"></div>
               </div>
               <div class="row mb-2">
+                <div class="col-md-4"><label for="" class="col-form-label">Sumber Dana</label></div>
+                <div class="col-md-8">
+                  <select name="Sumber_dana" class="form-select" id="">
+                    <option >--Pilih--</option>
+                    <option value="DD">Dana Desa</option>
+                    <option value="DBH">Bagi Hasil Pajak</option>
+                    <option value="ADD">Alokasi Dana Desa</option>
+                    <option value="LAINNYA">Lain-Nya..</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-2">
                 <div class="col-md-4"><label for="Tanggal_Pengerjaan" class="col-form-label">Waktu pengerjaan</label></div>
                 <div class="col-md-8"><input type="date" name="Tanggal_Pengerjaan" class="form-control" required></div>
               </div>
@@ -52,7 +64,6 @@
         <th>No</th>
         <th>Program Kerja</th>
         <th>Anggaran</th>
-        <th>Terbilang</th>
         <th>Sumber dana</th>
         <th>Verifikasi sekertaris</th>
         <th>Verifikasi Kepala Desa</th>
@@ -64,15 +75,21 @@
             <td>{{$loop->iteration}}</td>
             <td>{{$item->proker}}</td>
             <td>{{$item->anggaran}}</td>
-            <td>{{$item->terbilang}}</td>
             <td>{{$item->Sumber_dana}}</td>
-            <td class="text-center"><div class="{{($item->Verifikasi_sekertaris==0)?'bi-primary bi-x-square-fill':'bi bi-check-square-fill'}}"></div>
+            <td class="text-center">
+              <div class="{{($item->Verifikasi_sekertaris==0)?'bi-primary bi-x-square-fill':'bi bi-check-square-fill'}}"></div>
             </td>
-            <td class="text-center"><div class="{{($item->Verifikasi_KeplaDesa==0)?'bi-primary bi-x-square-fill':'bi bi-check-square-fill'}}"></div></td>
-            <td><a href="{{asset('storage/'.$item->proposal)}}" class="btn btn-outline-danger"> <div class="bi bi-filetype-pdf"></div></a></td>
+            <td class="text-center">
+              <div class="{{($item->Verifikasi_KepalaDesa==0)?'bi-primary bi-x-square-fill':'bi bi-check-square-fill'}}"></div></td>
+            <td>
+              <a href="{{asset('storage/'.$item->proposal)}}" class="btn btn-outline-danger">
+                 <i class="bi bi-filetype-pdf"></i></a>
+            </td>
             <td class="d-flex">
               <button class="btn btn-sm btn-primary"><i class="bi bi-eye-fill"></i></button>
-              <a href="/dashboard/programkerja/belanja/{{$item->id}}" class="btn btn-sm btn-warning ms-1"><i class="bi bi-cart-plus-fill"></i></a>
+              @if ($item->Verifikasi_KepalaDesa&&$item->Verifikasi_sekertaris==1)
+                <a href="/dashboard/programkerja/belanja/{{$item->id}}" class="btn btn-sm btn-warning ms-1"><i class="bi bi-cart-plus-fill"></i></a>
+              @endif
               @canany(['sekertaris','kepaladesa'])
               <button class="btn btn-sm btn-success ms-1" data-bs-toggle="modal" data-bs-target="#verifikasi{{$item->id}}"><i class="bi bi-patch-check"></i></button>
               @endcanany

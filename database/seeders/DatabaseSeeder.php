@@ -12,6 +12,7 @@ use App\Models\category;
 use App\Models\Penduduk;
 use App\Models\Pemerintah;
 use App\Models\DataPenduduk;
+use App\Models\Program_Kerja;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -55,6 +56,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         // DataPenduduk::factory(10)->create();
+        Program_Kerja::factory(30)->create();
         Penduduk::factory(100)->create();
         // berita::factory(30)->create();
         berita::create([

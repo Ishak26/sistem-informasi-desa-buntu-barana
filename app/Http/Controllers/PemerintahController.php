@@ -16,7 +16,7 @@ class PemerintahController extends Controller
             abort(403);
         }
         return view('Dashboard.pemerintahan.pegawai', [
-            "datapegawai" => Pemerintah::with('Jabatan')->get(),
+            "datapegawai" => Pemerintah::all(),
         ]);
     }
     public function tambah(Request $request)

@@ -9,7 +9,7 @@ class Belanja extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    public function proker(){
-        return $this->belongsTo(Program_Kerja::class);
+    public function Program_Kerja(){
+        return $this->belongsTo(Program_Kerja::class,'ProgramKerja_id');
     }
 }

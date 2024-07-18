@@ -1,17 +1,23 @@
 @extends('Dashboard.layout.main')
 
 @section('container')
+<style>
+    trix-editor{
+        height: 200px;
+    }
+</style>
 @if (session('sukses'))
        <script>alert('{{session('sukses')}}');</script>
-    @endif
+@endif
     <form action="/formberita" method="post" enctype="multipart/form-data">
         @csrf
-        <legend>Form Berita</legend>
+        <legend class="text-center">Form Berita</legend>
         <div class="mb-3">
             <label for="judul" class="form-label">Judul Berita</label>
             <input type="text" class="form-control" id="judul" name="judul"
-                placeholder="Masukkan judul Berita"class=" "value="{{ old('judul') }}" autofocus required>
-            <span class="text-danger"> @error('judul')
+                placeholder="Masukkan judul Berita"class=" "value="{{ old('judul') }}" >
+            <span class="text-danger"> 
+                @error('judul')
                     {{ $message }}
                 @enderror
             </span>
@@ -20,11 +26,11 @@
         <div class="mb-3">
             <label for="category" class="form-label">Category</label>
             <select name="category_id" id="category" class="form-select"
-                class=" @error('category')  is-invalid {{ $message }} @enderror" required>
-                <option selected>Pilih Category</option>
-                <option value="1">acara</option>
-                <option value="2">Gotong royong</option>
-                <option value="3">Politik</option>
+                class=" @error('category')  is-invalid {{ $message }} @enderror" >
+                <option selected>--Pilih Category--</option>
+               @foreach ($kategori as $item)
+                   <option value="{{$item->category}}">{{$item->category}}</option>
+               @endforeach
             </select>
 
         </div>
@@ -50,7 +56,7 @@
         <div class="mb-3">
             <label for="time" class="form-label">Time</label>
             <input type="datetime-local" name="time" class="form-control" id="time"
-                class=" @error('time')  is-invalid {{ $message }} @enderror" required>
+                class=" @error('time')  is-invalid {{ $message }} @enderror" >
             <span class="text-danger"> @error('time')
                     {{ $message }}
                 @enderror
@@ -59,8 +65,10 @@
 
         <div class="mb-3">
             <label for="Textberita" class="form-label">Deskripsi</label>
-            <textarea name="deskripsi" class="form-control" id="Textberita" rows="7" placeholder="Masukkan Deskripsi Berita"
-                class=" @error('deskripsi')  is-invalid {{ $message }} @enderror"></textarea>
+            {{-- <textarea name="deskripsi" class="form-control" id="Textberita" rows="7" placeholder="Masukkan Deskripsi Berita"
+                class=" @error('deskripsi')  is-invalid {{ $message }} @enderror"></textarea> --}}
+            <input id="x" type="hidden" name="deskripsi" class="form-control h-50 @error('deskripsi')  is-invalid {{ $message }} @enderror">
+                <trix-editor input="x"></trix-editor>
             <span class="text-danger"> @error('deskripsi')
                     {{ $message }}
                 @enderror

@@ -17,3 +17,10 @@
               gambar.src = e.target.result;
           }
       }
+
+      function loadModal(modalId){
+        window.onload = function() {
+                var myModal = new bootstrap.Modal(modalId);
+                myModal.show();
+        };      
+      }

@@ -40,7 +40,7 @@
         <div class="modal-body">
           <form action="/dashboard/programkerja/belanja/tambah" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="number" name="id_Program_kerja" value="{{$proker->id}}" id="" hidden>
+            <input type="number" name="ProgramKerja_id" value="{{$proker->id}}" id="" hidden>
             <div class="mb-3">
               <label class="col-form-label">Keterangan Belanja</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="Belanja" required></textarea>
@@ -95,7 +95,7 @@
       let satuan =document.getElementById("satuan").value;
       let harga = document.getElementById("harga").value;
       let total = document.getElementById("total");
-      return total.value =satuan+harga;
+      return total.value =satuan*harga;
     }
   </script>
 

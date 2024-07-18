@@ -11,7 +11,7 @@
             </div>
         @endif
         <div class="header text-center">
-            <h3 class="fs-semibold mt-3">Daftar Pegawai Pemerintah Desa</h3>
+            <p class="encode-sans-condensed-extrabold fs-3 text-bluelight">Daftar Pegawai Pemerintah Desa</p>
         </div>
         <a href="" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#Formdata"><i class="bi bi-database-fill-add "></i></a>
         <div class="table-responsive-sm">
@@ -35,7 +35,7 @@
                             <td scope="row">{{ $loop->iteration }}</td>
                             <td>{{ $item->nama }}</td>
                             <td>{{ $item->nik }}</td>
-                            <td>{{ $item->bidang }}</td>
+                            <td>{{ $item->jabatan}}</td>
                             <td>+62-{{ $item->hp }}</td>
                             <td>{{ $item->alamat }}</td>
                             <td>{{ $item->tanggallahir }}</td>

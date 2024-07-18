@@ -19,17 +19,16 @@ return new class extends Migration
             $table->string('bidang');
             $table->string('terbilang');
             $table->bigInteger('anggaran');
-            $table->foreignId('Sumber_dana')->nullable();
+            $table->string('Sumber_dana')->nullable();
             $table->boolean('Verifikasi_sekertaris')->nullable();
             $table->boolean('Verifikasi_KepalaDesa')->nullable();
-            $table->string('proposal');
+            $table->string('proposal')->nullable();
             $table->boolean('Status_terlaksana')->nullable();
             $table->string('Dokumentasi_pelaksanaan')->nullable();
-            $table->date('Tanggal_Pengerjaan');
+            $table->date('Tanggal_Pengerjaan')->nullable();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

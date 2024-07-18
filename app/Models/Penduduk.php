@@ -9,7 +9,7 @@ class Penduduk extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-   public function Surat(){
-    return $this->belongsTo(Surat::class);
+   public function surat(){
+    return $this->hasMany(Surat::class,'id_warga');
    }
 }

@@ -1,7 +1,7 @@
 @extends('Dashboard.layout.main')
 @section('container')
     <div class="container">
-        <h3 class="text-center fw-bold">Album Desa XYZ</h1>
+        <h3 class="m-auto text-center p-2 encode-sans-condensed-extrabold w-50 text-bluedark">ALBUM KERJA PEMERINTAH DESA BUNTU BARANA</h1>
         <div class="col-sm-7 border p-3 shadow">
             <p class="text-center fw-bold m-0">Tambah foto</p>
             <form action="/dashboard/album" method="post" enctype="multipart/form-data">
@@ -17,10 +17,10 @@
         </form>
         </div>
 
-        <div class="row ">
+        <div class="row">
             @foreach ($album as $albums)
                 <div class="col-md-4 mb-2 mt-3">
-                    <div class="rounded border p-2 border-box shadow w-100 h-50">
+                    <div class="rounded border p-2 border-box shadow w-100 h-100">
                         <img class="text-content-center  text-center" src="{{ asset('storage/' . $albums->gambar) }}"
                             alt="" width="100%" height="100%">
                     </div>

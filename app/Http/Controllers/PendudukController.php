@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
-
+use Illuminate\View\View;
 class PendudukController extends Controller
 {
     public function index()
@@ -26,10 +26,10 @@ class PendudukController extends Controller
 
     public function bantuan()
     {
-        $penduduk = Penduduk::paginate(10);
+        $penduduk= Penduduk::all();
         $data=$penduduk->where('penghasilan','<=', 200000)->where('jk','laki-laki')->Where('status','kawin');
         return view('Dashboard.databantuan',[
-            'bantuan'=> $data
+            "bantuan"=>$data
         ]);
     }
     public function tambah()
@@ -119,5 +119,36 @@ class PendudukController extends Controller
         return redirect('dashboard/datapenduduk')->with('hapus', 'DataBerhasil di hapus!!');
     }
 
-    // public function bantuan(Penduduk  )
+    public function verifikasi(Request $request){
+        $validate =$request->validate([
+            'nik'=>'required|numeric|maxdigits:15',
+            'hp'=>'required|numeric'
+        ]);
+        $penduduks=Penduduk::all();
+        if($penduduks->firstwhere('nik','=',$validate['nik'])){
+            $verifikasi =$penduduks->firstWhere('nik','=',$validate['nik']);
+        }
+        if($verifikasi->nik == $validate['nik']){
+            if($validate['hp']!=$verifikasi->hp){
+                return redirect('/layanan')->with('fail' ,'hp yang anda masukkan tidak sesuai!');
+            }
+            $request->session()->regenerate();
+            $request->session()->put('penduduk',$verifikasi->nik);
+            return redirect('/layanan/surat');
+        }
+        return redirect('/layanan')->with('error' ,'Nik Yang anda masukkan tidak sesuai!');
+    }
+    public function mySurat(){
+        if(!session('penduduk')){
+            return redirect('/layanan');
+        }
+        $pengaju =Penduduk::firstwhere('nik','like',session('penduduk'));
+        $dataSurats = $pengaju->surat;
+        return view('pengajuansurat',[
+            'dataSurat'=>$dataSurats,
+            'pengaju' =>$pengaju,
+            'title'=>'DESA BUNTU BARANA | PENGAJUAN SURAT'
+        ]);
+        
+    }
 }

@@ -1,16 +1,18 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.104.2">
+    {{-- <meta name="generator" content="Hugo 0.104.2"> --}}
     <title>Dashboard</title>
     <link rel="stylesheet" href="/css/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleap.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    {{-- trix editor --}}
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
     <script src="/js/javascript.js"></script>
@@ -18,7 +20,7 @@
 
 <body>
     @if(session('perubahan'))
-        <script>alert("{{session('perubahan')}}");</script>
+        <script>alert("{{session()->pull('perubahan')}}");</script>
     @endif
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 m-0 shadow">
         <button class="navbar-toggler top-1 w-100 d-md-none collapsed" type="button"
@@ -29,19 +31,20 @@
     </header>
     <div class="container-fluid">
         <div class="row">
-            <nav id="sidebarMenu" class="sidebar col-md-3 col-lg-2 d-md-block bg-light fixed top-0  collapsed mt-0">
+            <nav id="sidebarMenu" class="sidebar col-md-3 col-lg-2 d-md-block fixed top-0 collapsed mt-0">
                 <div class="position-sticky sidebar-sticky">
-                    <img class="m-1" src="/storage/logo web.png"  width="180" alt="">
-                    {{-- <div class=" logo">
-                        <img src="/storage/logo web.jpg"  alt="">
-                        <p class="fw-bold" href="#">Pemerintah kabupaten Enrekang Desa Buntu Barana</p>
-                    </div> --}}
                     <div class="nav-item  text-center">
-                        <a  class="nav-link mb-2" data-bs-toggle="modal" data-bs-target="#profil">
-                            <img src="{{asset('storage/'.auth()->user()->profil)}}" class="bg-white border rounded-circle shadow" alt="" width="80" height="80">
+                        <a class="nav-link mb-2" data-bs-toggle="modal" data-bs-target="#profil">
+                            @if (auth()->user()->profil == null)
+                            <img src="/img/no-profil.JPG" class=" mt-2 object-fit bg-white border rounded-circle shadow" alt="" width="50" height="50">    
+                            @else
+                            <img src="{{asset('storage/'.auth()->user()->profil)}}" class=" mt-2 object-fit bg-white border rounded-circle shadow" alt="" width="80" height="80">    
+                            @endif
                         </a>
-                        <a href="Dashboard/pemerintah" data-bs-toggle="modal" data-bs-target="#profil" class="nav-link link-dark"><p class="fw-bold text-uppercase">{{ auth()->user()->username}}</p></a>
+                        <a href="Dashboard/pemerintah" data-bs-toggle="modal" data-bs-target="#profil" class="nav-link link-dark"><p class="fw-bold fs-6 text-uppercase">{{ auth()->user()->username}}</p></a>
                     </div>
+                    <p class="ms-2 text-muted mt-3 text-uppercase">Dashboard menu</p>
+                    <div class="border-bottom"></div>
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }} link-dark" aria-current="page"
@@ -54,7 +57,7 @@
                         {{-- authorize sekertaris --}}
                         @can('sekertaris','kasipemerintahan')
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('/dashboard/pendapatan') ? 'active' : '' }} link-dark" aria-current="page"
+                            <a class="nav-link {{ Request::is('dashboard/pendapatan') ? 'active' : '' }} link-dark" aria-current="page"
                                 href="/dashboard/pendapatan">
                                 <span class="bi bi-cash-stack">
                                     Keuangan
@@ -101,6 +104,14 @@
                                 </span>
                             </a>
                         </li>    
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/surat') ? 'active' : '' }} link-dark"
+                                href="/dashboard/surat">
+                               <span class="bi bi-archive-fill" >
+                                    Surat
+                               </span>
+                            </a>
+                        </li>
                         @endcan
 
                         {{-- authorize kasi pemerintahan --}}
@@ -118,6 +129,14 @@
                                 href="/dashboard/pemerintah">
                                <span class="bi bi-archive-fill" >
                                     Pegawai
+                               </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/surat') ? 'active' : '' }} link-dark"
+                                href="/dashboard/surat">
+                               <span class="bi bi-archive-fill" >
+                                    Surat
                                </span>
                             </a>
                         </li>
@@ -183,20 +202,20 @@
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-               
+                <img class="mt-1" src="/storage/logo web.png"  width="180" alt="">
                 @if (auth()->user()->can('sekertaris'))
                 <div class="dropdown">
-                    <button class="btn btn-sm btn-primary dropdown-toggle position-fixed m-2 end-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-sm btn-bluedark text-light dropdown-toggle position-fixed top-0 m-2 end-0 mt-4 mt-sm-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Registrasi / Log out
                     </button>
                     <ul class="dropdown-menu border border-0 ">
-                        <li class=" bg-danger text-center border rounded mx-2 mb-2"> 
-                            <a href="/dashboard/logout"class="text-decoration-none link-dark fw-bold m-2 end-0 shadow">
+                        <li class="bg-bluedark text-center border rounded mx-2 mb-2"> 
+                            <a href="/dashboard/logout"class="text-decoration-none link-light fw-bold m-2 end-0 shadow">
                             Logout
                             <span class="bi bi-box-arrow-right"></span>
                             </a>
                          </li>
-                      <li class=" bg-success text-center border rounded mx-2">
+                      <li class="bg-bluelight text-center border rounded mx-2">
                         <a href="/registrasi"class="link-dark text-decoration-none">
                             registrasi
                             <span class="bi bi-person-add"></span>

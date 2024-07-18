@@ -9,11 +9,11 @@
         @if (session('hapus'))
             <script>alert('{{session('hapus')}}');</script>
         @endif
-        <h2 class="my-3 text-center fw-bold">Daftar Data Penduduk</h2>
-        <a href="/dashboard/formpenduduk"><button class="btn btn-sm  btn-primary float-start"><i class="bi bi-database-fill-add fs-4"></i></button></a>
+        <h2 class="my-3 text-center fw-bold encode-condensed-bold text-bluedark text-uppercase fw-bold">Daftar Data Penduduk</h2>
+        <a href="/dashboard/formpenduduk"><button class="btn btn-sm  btn-bluedark"><i class="bi bi-database-fill-add"></i></button></a>
         <form action="/dashboard/datapenduduk" method="get" class=" d-flex">
             <div class="input-group input-group-sm mb-3 w-50 m-auto ">
-                <button class="btn btn-sm  btn-primary" type="submit">Cari</button>
+                <button class="btn btn-sm  btn-bluedark" type="submit">Cari</button>
                 <input type="text" class="form-control" placeholder="Cari data Penduduk" name="filter">
             </div>
         </form>
@@ -34,7 +34,6 @@
                         alert("{{ session('sukses') }}");
                     </script>
                 @endif
-
                 @foreach ($penduduk as $item)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
@@ -67,8 +66,8 @@
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Data {{ $item->nama }}
+                                <div class="modal-header bg-bluedark">
+                                    <h1 class="modal-title fs-5 text-bluelight" id="exampleModalLabel">Detail Data {{ $item->nama }}
                                     </h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>

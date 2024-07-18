@@ -15,11 +15,13 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KadesController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\PendapatanController;
-use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\keuanganController;
 use App\Http\Controllers\PemerintahController;
 use App\Http\Controllers\SuratController;
 use App\Http\Controllers\ProgramKerjaController;
+use App\Http\Controllers\KritikSaranController;
 use App\Models\Jabatan;
+use App\Models\KritikSaran;
 use Illuminate\Http\Request;
 
 /*
@@ -45,38 +47,39 @@ Route::post('/registrasi', [LoginController::class, 'create']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/dashboard/logout', [LoginController::class,'logout']);
 
-Route::post('/about/surat',[SuratController::class,'surat']
-);
-
-
+// ROUTE DATA SURAT
+Route::get('/layanan/surat/keluar',function(){
+    session()->flush();
+    return redirect('/layanan');
+});
+Route::get('/dashboard/surat',[SuratController::class,'surat']);
+Route::get('dashboard/surat/{surat:id}/verifikasi',[SuratController::class,'buatSurat']);
+Route::get('/layanan/surat',[PendudukController::class,'mySurat']);
+Route::post('/layanan/surat',[PendudukController::class,'verifikasi']);
+Route::post('/layanan/pengajuansurat',[SuratController::class,'pengajuan']);
 
 // user
 Route::get('/', function () {
     return view('home', [
-        "title" => "Desa XYz | Home"
+        "title" => "Desa Buntu Barana | Home"
     ]);
 });
-Route::get('/about', function () {
-    return view('about', [
+Route::get('/tentang', function () {
+    return view('tentang', [
         "title" => "Desa Buntu Barana | Tentang",
         'kades' => Kades::first()
     ]);
-})->name('about');
+    })->name('tentang');
 Route::get('/berita', [BeritaController::class, 'index']);
 Route::get('/berita/{berita:slug}', [BeritaController::class, 'show']);
 Route::get('/category/{category:slug}', [CategoryController::class, 'index']);
-
-// testing
-Route::get('beritas', function () {
-    return view('beritas');
-});
 
 Route::get('layanan', function () {
     return view('layanan',[
         'title'=> 'Desa Buntu Barana | Layanan'
     ]);
 });
-
+Route::get('/info/keuangan',[KeuanganController::class,'index']);
 
 // Route Dashboard
 Route::get('/dashboard', function () {
@@ -143,9 +146,12 @@ Route::put('/dashboard/kesehatan/{kesehatan}',[KesehatanController::class,'updat
 // edit profil kades
 Route::put('/dashboard/editkades/{Kades}', [KadesController::class, 'edit']);
 // bagian album
-Route::get('/album', [AlbumController::class, 'index']);
+Route::get('/dokumentasi', [AlbumController::class, 'index']);
 Route::get('/dashboard/tambahalbum',[AlbumController::class,'view'])->middleware('auth');
 Route::post('/dashboard/album',[AlbumController::class,'tambahfoto']);
 
 // bagian komentar
 Route::post('/album/komentar',[AlbumController::class,'komentar']);
+
+// kritik dan saran
+Route::post('/layanan/kritik',[KritikSaranController::class,'tambah']);

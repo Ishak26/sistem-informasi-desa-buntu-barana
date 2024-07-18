@@ -26,6 +26,7 @@ class ProgramKerjaController extends Controller
             'bidang' =>'required|String',
             'anggaran'=>'required|numeric|max_digits:15',
             'terbilang'=>'required|max:200',
+            'Sumber_dana'=>'required',
             'Tanggal_Pengerjaan'=>'required|date',
             'proposal'=>'required|file|mimes:pdf'
         ]
@@ -36,9 +37,9 @@ class ProgramKerjaController extends Controller
       Program_Kerja::create($validasi);
       return back()->with('status', 'Data berhasil di tambahkan!');
     }
-    public function verifikasi(Program_Kerja $Program_Kerja,Request $request):RedirectResponse
+    public function verifikasi(Program_Kerja $Program_Kerja,Request $request)
     {
-      if (!Gate::allows('sekertaris')) {
+      if (!Gate::any(['sekertaris','kepaladesa'])) {
         abort(403);
     }
       $validate =$request->validate([
