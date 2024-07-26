@@ -17,10 +17,11 @@
                 <input type="text" class="form-control" placeholder="Cari data Penduduk" name="filter">
             </div>
         </form>
+        <a href="/dashboard/datapenduduk" class="btn btn-sm btn-bluedark position-relative end-0 {{(!request('filter')?'d-none':'')}}"><i class="bi bi-arrow-clockwise me-1 align-middle"></i> refresh</a>
         <table class="table ">
             <thead>
                 <tr class="text-center">
-                    <th scope="col">No</th>
+                    <th scope="col">No </th>
                     <th scope="col">Nik</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Alamat</th>
@@ -42,7 +43,7 @@
                         <td>{{ $item->alamat }}</td>
                         <td>{{ $item->dusun }}</td>
                         <td class="d-flex">
-                            <a href="#exampleModal{{ $item->nik }}" data-bs-toggle="modal" data-bs-target="">
+                            <a id="data" onclick="dataPenduduk({{$item}})" href="" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <button class="btn btn-primary btn-sm">
                                     <span class="bi bi-info"></span>
                                 </button>
@@ -61,90 +62,108 @@
                            </form>
                         </td>
                     </tr>
-                    {{-- my modal view --}}
-                    <div class="modal fade" id="exampleModal{{ $item->nik }}" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header bg-bluedark">
-                                    <h1 class="modal-title fs-5 text-bluelight" id="exampleModalLabel">Detail Data {{ $item->nama }}
-                                    </h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-4">Nama </div>
-                                        <div class="col-8">: {{ $item->nama }} </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">Nik </div>
-                                        <div class="col-8">: {{ $item->nik }} </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">Jenis Kelamin </div>
-                                        <div class="col-8">: {{ $item->jk }} </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">Agama : </div>
-                                        <div class="col-8">: {{ $item->agama }} </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">Alamat </div>
-                                        <div class="col-8">: {{ $item->alamat }} </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">Tempat/tanggal lahir </div>
-                                        <div class="col-8">:
-                                            {{ $item->tempatlahir . ', ' . date('d F Y', strtotime($item->tanggalalahir)) }}
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">Dusun </div>
-                                        <div class="col-8">: {{ $item->dusun }} </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">Email : </div>
-                                        <div class="col-8">: {{ $item->email }} </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">No.handphone : </div>
-                                        <div class="col-8">: {{ $item->hp }} </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">Status : </div>
-                                        <div class="col-8">: {{ $item->status }} </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">Pendidikan terakhir </div>
-                                        <div class="col-8">: {{ $item->pendidikan }} </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">Asal sekolah </div>
-                                        <div class="col-8">: {{ $item->namasekolah }} </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">Pekerjaaan </div>
-                                        <div class="col-8">: {{ $item->pekerjaan }} </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">Penghasilan </div>
-                                        <div class="col-8">: {{ $item->penghasilan }} </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 @endforeach
             </tbody>
         </table>
         <div class="d-flex justify-content-center">
             {{ $penduduk->links() }}
         </div>
-
     </div>
+    {{-- my modal view --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-bluedark">
+                    <h1 class="modal-title fs-5 text-bluelight" id="exampleModalLabel">Detail Data 
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-4">Nama </div>
+                        <div class="col-8" id="nama"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Nik </div>
+                        <div class="col-8" id="nik"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Jenis Kelamin </div>
+                        <div class="col-8" id="jk"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Agama : </div>
+                        <div class="col-8" id="agama"> </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Alamat </div>
+                        <div class="col-8" id="alamat"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Tempat/tanggal lahir </div>
+                        <div class="col-8" id="tempatlahir">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Dusun </div>
+                        <div class="col-8" id="dusun"> </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Email : </div>
+                        <div class="col-8" id="email"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">No.handphone : </div>
+                        <div class="col-8" id="hp">: </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Status : </div>
+                        <div class="col-8" id="status"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4" >Pendidikan terakhir </div>
+                        <div class="col-8" id="pendidikan">: </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Asal sekolah </div>
+                        <div class="col-8" id='asalsekolah'> </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Pekerjaaan </div>
+                        <div class="col-8" id="pekerjaan"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Penghasilan </div>
+                        <div class="col-8" id="penghasilan"> </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Script>
+        const dataPenduduk = (Penduduk) => {
+            document.getElementById('exampleModalLabel').innerHTML = `detail Data ${Penduduk.nama}`
+            document.getElementById('nama').innerHTML = `: ${Penduduk.nama}`
+            document.getElementById('nik').innerHTML =`: ${Penduduk.nik}` 
+            document.getElementById('jk').innerHTML = `: ${Penduduk.jk}`
+            document.getElementById('agama').innerHTML =`: ${Penduduk.agama}` 
+            document.getElementById('alamat').innerHTML =`: ${Penduduk.alamat}` 
+            document.getElementById('tempatlahir').innerHTML =`: ${Penduduk.tempatlahir},${Penduduk.tanggallahir}`
+            document.getElementById('dusun').innerHTML = `: ${Penduduk.dusun}`
+            document.getElementById('email').innerHTML = `: ${Penduduk.email}`
+            document.getElementById('hp').innerHTML = `: ${Penduduk.hp}`
+            document.getElementById('status').innerHTML = `: ${Penduduk.status}`
+            document.getElementById('pendidikan').innerHTML =`: ${Penduduk.pendidikan}`
+            document.getElementById('asalsekolah').innerHTML = `: ${Penduduk.namasekolah}`
+            document.getElementById('pekerjaan').innerHTML = `: ${Penduduk.pekerjaan}`
+            document.getElementById('penghasilan').innerHTML =`: ${ Penduduk.penghasilan}`
+        }
+
+    </Script>
 @endsection

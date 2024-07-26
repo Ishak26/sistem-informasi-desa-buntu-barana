@@ -54,11 +54,10 @@ class SuratController extends Controller
 
     public function buatSurat(Surat $surat){
         $mpdf = new mpdf(['format' => 'Legal']);
-        // @dd($surat->jenis);
         switch ($surat->jenis) {
             case 'Surat Pengantar SKCK':
                 $mpdf->WriteHTML(view('Dashboard.surat.skck',
-                    ['data'=>$surat,
+                    ['data'=>$surat->penduduk,
                     'nosurat'=> Surat::latest()->first()
                 ]));
             break;
@@ -82,8 +81,11 @@ class SuratController extends Controller
             'verifikasi'=>1,
             'filesurat'=>$surat->penduduk->nama.'.pdf'
         ]);
-        $mpdf->Output(storage_path('app/public/file-surat/' .$surat->penduduk->nama.'.pdf'),\Mpdf\Output\Destination::FILE);
+        $mpdf->Output(storage_path('app/public/file-surat/' .$surat->penduduk->nama.'pdf'),\Mpdf\Output\Destination::FILE);
         // $mpdf->Output();
         return redirect('/dashboard/surat')->with('verifikasiSurat','Surat Telah diverifikasi');
+    }
+    public function cetakSurat(Surat $surat){
+        
     }
 }

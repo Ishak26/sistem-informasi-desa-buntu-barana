@@ -17,6 +17,7 @@ use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\PendapatanController;
 use App\Http\Controllers\keuanganController;
 use App\Http\Controllers\PemerintahController;
+use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\SuratController;
 use App\Http\Controllers\ProgramKerjaController;
 use App\Http\Controllers\KritikSaranController;
@@ -54,6 +55,7 @@ Route::get('/layanan/surat/keluar',function(){
 });
 Route::get('/dashboard/surat',[SuratController::class,'surat']);
 Route::get('dashboard/surat/{surat:id}/verifikasi',[SuratController::class,'buatSurat']);
+Route::get('dashboard/surat/{surat:id}/cetak',[SuratController::class,'cetakSurat']);
 Route::get('/layanan/surat',[PendudukController::class,'mySurat']);
 Route::post('/layanan/surat',[PendudukController::class,'verifikasi']);
 Route::post('/layanan/pengajuansurat',[SuratController::class,'pengajuan']);
@@ -123,7 +125,12 @@ Route::get('/dashboard/datapenduduk/{Penduduk:nik}/updatependuduk', [PendudukCon
 Route::put('/dashboard/updatependuduk/{Penduduk:nik}', [PendudukController::class, 'update'])->middleware('auth');
 Route::post('/dashboard/datapenduduk', [PendudukController::class, 'create'])->middleware('auth');
 Route::delete('/dashboard/datapenduduk/{Penduduk:nik}', [PendudukController::class, 'hapus'])->middleware('auth');
-Route::get('/dashboard/databantuan',[PendudukController::class, 'bantuan'])->middleware('auth');
+
+// bagian data bantuan
+Route::get('/dashboard/databantuan',[BantuanController::class, 'index'])->middleware('auth');
+Route::post('/dashboard/databantuan',[BantuanController::class, 'tambah'])->middleware('auth');
+Route::get('/dashboard/databantuan/{bantuan:id}/penerima',[BantuanController::class, 'penerima'])->middleware('auth');
+Route::post('/dashboard/bantuan/penerima/filterpenduduk', [BantuanController::class, 'filter'])->middleware('auth');
 
 // bagian data pegawai pemerintah
 Route::middleware('auth')->group(function(){

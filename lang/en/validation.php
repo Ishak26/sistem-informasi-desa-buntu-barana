@@ -152,9 +152,19 @@ return [
     |
     */
 
+    // 'custom' => [
+    //     'attribute-name' => [
+    //         'rule-name' => 'custom-message',
+    //     ],
+    // ],
+    
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'nik' => [
+            'required' => 'Harus Di Isi!',
+            'numeric' => 'Fiel harus berisi angka!',
+            'maxdigits' => 'angka terlalu banyak!',
+            'digits_between'=>'field :attribute harus berjumlah antara :min dan :max angka!.',
+            'unique'=>':attribute anda tidak sesuai.',
         ],
     ],
 

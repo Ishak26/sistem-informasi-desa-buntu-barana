@@ -29,8 +29,8 @@ class PendudukFactory extends Factory
             'jk' => fake()->randomElement(['laki-laki', 'perempuan']),
             'status' => fake()->randomElement(['kawin', 'Belum kawin']),
             'pendidikan' => fake()->randomElement(['SD', 'SMP', 'SMA', 'S1', 'S2', 'S3']),
-            'pekerjaan' => fake()->randomElement(['pns', 'pengusaha','petani', 'Tidakbekerja']),
-            'penghasilan' => fake()->randomElement(['10000', '200000']),
+            'pekerjaan' => fake()->randomElement(['pns', 'pengusaha','petani', 'Tidakbekerja','pedagang','peternak']),
+            'penghasilan' => fake()->randomElement(['500000', '1000000','1500000','2000000','2500000','3000000']),
             'umur' => fake()->randomNumber(2, false),
             'namasekolah' => fake()->city(),
         ];

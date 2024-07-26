@@ -62,7 +62,7 @@
     <li>Pemerintah Desa Buntu Barana dengan ini menerangkan bahwa :</li>
       <table class="table">
         <tr>
-          <td>Nama</td>$
+          <td>Nama</td>
           <td>: {{$data->nama}}</td>
         </tr>
         <tr>

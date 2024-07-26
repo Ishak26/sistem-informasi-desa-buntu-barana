@@ -42,9 +42,9 @@
           <p>Pilih Jenis Surat yang Diajukan</p>
             <select name="jenis" class="form-select" aria-label="Default select example">
                 <option selected>--pilih--</option>
-                <option value="Surat Pangantar SKCK">Surat Pengantar SKCK</option>
-                <option value="Surat Pengantar NPWP">Surat Pengantar NPWP</option>
-                <option value="Surat Pengantar KTP">Surat Izin Usaha</option>
+                <option value="Surat Pengantar SKCK">Surat Pengantar SKCK</option>
+                <option value="Surat Pengantar KTP">Surat Pengantar KTP</option>
+                <option value="Surat Izin Usaha">Surat Izin Usaha</option>
               </select>
               <label for="exampleFormControlInput1" class="form-label mt-3">Keperluan Surat</label>
               <input type="text" name="keperluan" class="form-control" id="exampleFormControlInput1" placeholder="Keperluan Surat">

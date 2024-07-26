@@ -45,13 +45,13 @@
                     </div>
                     <p class="ms-2 text-muted mt-3 text-uppercase">Dashboard menu</p>
                     <div class="border-bottom"></div>
-                    <ul class="nav flex-column">
+                    <ul class="nav flex-column text-uppercase">
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }} link-dark" aria-current="page"
                                 href="/dashboard">
-                                <span class="bi bi-layout-text-sidebar-reverse">
-                                    Dashboard
+                                <span class="bi bi-layout-text-sidebar-reverse me-2">
                                 </span>
+                                 Dashboard
                             </a>
                         </li>
                         {{-- authorize sekertaris --}}
@@ -59,87 +59,87 @@
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('dashboard/pendapatan') ? 'active' : '' }} link-dark" aria-current="page"
                                 href="/dashboard/pendapatan">
-                                <span class="bi bi-cash-stack">
-                                    Keuangan
+                                <span class="bi bi-cash-stack me-2">
                                 </span>
+                                Keuangan
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('databerita') ? 'active' : '' }} link-dark"
                                 href="/databerita">
-                                <span class="bi bi-archive-fill">
-                                    Berita
+                                <span class="me-2 bi bi-archive-fill">
                                 </span>
+                                Berita
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/datapenduduk') ? 'active' : '' }} link-dark"
                             href="/dashboard/datapenduduk">
-                                <span class="bi bi-archive-fill">
-                                    Penduduk
+                                <span class="me-2 bi bi-archive-fill">
                                 </span>
+                                Penduduk
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/pemerintah') ? 'active' : '' }} link-dark"
                                 href="/dashboard/pemerintah">
-                               <span class="bi bi-archive-fill" >
-                                    Pegawai
-                               </span>
+                               <span class="me-2 bi bi-archive-fill" >
+                            </span>
+                            Pegawai
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/kesehatan') ? 'active' : '' }} link-dark"
                                 href="/dashboard/kesehatan">
-                            <span class="bi bi-archive-fill">
-                                Kesehatan
+                            <span class="me-2 bi bi-archive-fill">
                             </span>
+                                Kesehatan
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/databantuan') ? 'active' : '' }} link-dark"
                                 href="/dashboard/databantuan">
-                                <span class="bi bi-archive-fill">
-                                    Bantuan
+                                <span class="me-2 bi bi-archive-fill">
                                 </span>
+                                Bantuan
                             </a>
                         </li>    
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/surat') ? 'active' : '' }} link-dark"
                                 href="/dashboard/surat">
-                               <span class="bi bi-archive-fill" >
-                                    Surat
-                               </span>
+                               <span class="me-2 bi bi-archive-fill" >
+                            </span>
+                                Surat
                             </a>
                         </li>
                         @endcan
 
                         {{-- authorize kasi pemerintahan --}}
                         @can('kasipemerintahan')
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('/dashboard/pendapatan') ? 'active' : '' }} link-dark" aria-current="page"
-                                href="/dashboard/pendapatan">
-                                <span class="bi bi-cash-stack">
-                                    Keuangan
+                            <li class="nav-item">
+                                <a class="nav-link {{ Request::is('/dashboard/pendapatan') ? 'active' : '' }} link-dark" aria-current="page"
+                                    href="/dashboard/pendapatan">
+                                    <span class="me-2 bi bi-cash-stack">
+                                    </span>
+                                        Keuangan
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  {{ Request::is('dashboard/pemerintah') ? 'active' : '' }} link-dark"
+                                    href="/dashboard/pemerintah">
+                                <span class="me-2 bi bi-archive-fill" >
                                 </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  {{ Request::is('dashboard/pemerintah') ? 'active' : '' }} link-dark"
-                                href="/dashboard/pemerintah">
-                               <span class="bi bi-archive-fill" >
                                     Pegawai
-                               </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  {{ Request::is('dashboard/surat') ? 'active' : '' }} link-dark"
-                                href="/dashboard/surat">
-                               <span class="bi bi-archive-fill" >
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  {{ Request::is('dashboard/surat') ? 'active' : '' }} link-dark"
+                                    href="/dashboard/surat">
+                                <span class="me-2 bi bi-archive-fill" >
+                                </span>
                                     Surat
-                               </span>
-                            </a>
-                        </li>
+                                </a>
+                            </li>
                         @endcan
 
                         {{-- authorize kasi kemasyarakatan --}}
@@ -147,17 +147,17 @@
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('databerita') ? 'active' : '' }} link-dark"
                                 href="/databerita">
-                                <span class="bi bi-archive-fill">
-                                    Berita
+                                <span class="me-2 bi bi-archive-fill">
                                 </span>
+                                    Berita
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/datapenduduk') ? 'active' : '' }} link-dark"
                             href="/dashboard/datapenduduk">
-                            <span class="bi bi-archive-fill">
-                                Penduduk
+                            <span class="me-2 bi bi-archive-fill">
                             </span>
+                                Penduduk
                         </a>
                         </li>
                         @endcan
@@ -167,34 +167,34 @@
                             <li class="nav-item">
                                 <a class="nav-link  {{ Request::is('dashboard/kesehatan') ? 'active' : '' }} link-dark"
                                     href="/dashboard/kesehatan">
-                                <span class="bi bi-archive-fill">
-                                    Kesehatan
+                                <span class="me-2 bi bi-archive-fill">
                                 </span>
+                                    Kesehatan
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link  {{ Request::is('dashboard/databantuan') ? 'active' : '' }} link-dark"
                                     href="/dashboard/databantuan">
-                                    <span class="bi bi-archive-fill">
-                                        Bantuan
+                                    <span class="me-2 bi bi-archive-fill">
                                     </span>
+                                     Bantuan
                                 </a>
                             </li>
                         @endcan
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/programkerja') ? 'active' : '' }} link-dark"
                                 href="/dashboard/programkerja">
-                                <span class="bi bi-archive-fill">
-                                 Program Kerja
+                                <span class="me-2 bi bi-archive-fill">
                                 </span>
+                                 Program Kerja
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/pemerintah') ? 'active' : '' }} link-dark"
                                 href="/dashboard/tambahalbum">
-                                <span class="bi bi-archive-fill">
-                                    Documentasi
+                                <span class="me-2 bi bi-archive-fill">
                                 </span>
+                                 Documentasi
                             </a>
                         </li>
                     </ul>
@@ -212,13 +212,13 @@
                         <li class="bg-bluedark text-center border rounded mx-2 mb-2"> 
                             <a href="/dashboard/logout"class="text-decoration-none link-light fw-bold m-2 end-0 shadow">
                             Logout
-                            <span class="bi bi-box-arrow-right"></span>
+                            <span class="me-2 bi bi-box-arrow-right"></span>
                             </a>
                          </li>
                       <li class="bg-bluelight text-center border rounded mx-2">
                         <a href="/registrasi"class="link-dark text-decoration-none">
                             registrasi
-                            <span class="bi bi-person-add"></span>
+                            <span class="me-2 bi bi-person-add"></span>
                         </a>
                       </li>
                     </ul>

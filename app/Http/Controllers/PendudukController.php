@@ -9,27 +9,8 @@ class PendudukController extends Controller
     public function index()
     {
         $penduduk = Penduduk::latest();
-        if (request('filter')) {
-            $penduduk->where('nik', 'LIKE', '%' . request('filter') . '%')
-                ->orWhere('nama', 'LIKE', '%' . request('filter') . '%')
-                ->orWhere('alamat', 'LIKE', '%' . request('filter') . '%')
-                ->orWhere('dusun', 'LIKE', '%' . request('filter') . '%')
-                ->orWhere('agama', 'LIKE', '%' . request('filter') . '%')
-                ->orWhere('jk', 'LIKE', '%' . request('filter') . '%')
-                ->orWhere('pendidikan', 'LIKE', '%' . request('filter') . '%')
-                ->orWhere('pekerjaan', 'LIKE', '%' . request('filter') . '%');
-        }
         return view('Dashboard.datapenduduk', [
-            "penduduk" => $penduduk->paginate(20)
-        ]);
-    }
-
-    public function bantuan()
-    {
-        $penduduk= Penduduk::all();
-        $data=$penduduk->where('penghasilan','<=', 200000)->where('jk','laki-laki')->Where('status','kawin');
-        return view('Dashboard.databantuan',[
-            "bantuan"=>$data
+            "penduduk" => Penduduk::latest()->Search(request(['filter']))->paginate(20)
         ]);
     }
     public function tambah()
@@ -46,21 +27,21 @@ class PendudukController extends Controller
     {
 
         $validate = $request->validate([
-            "nik" => 'required|numeric|unique:Penduduks',
-            "nama" => 'required|max:30',
-            "email" => 'required|email:dns',
-            "alamat" => 'required|max:100',
-            "dusun" => 'required|max:30',
-            "agama" => 'required|max:30',
-            "status" => 'required|max:30',
+            "nik" => 'required|numeric|unique:Penduduks|maxdigits:12|digits_between:7,12',
+            "nama" => 'required|size:30',
+            "email" => 'required|email:rfc',
+            "alamat" => 'required|size:100',
+            "dusun" => 'required|size:30',
+            "agama" => 'required|size:30',
+            "status" => 'required|size:30',
             "hp" => 'required|numeric',
             "umur" => 'required|numeric|max_digits:3',
-            "jk" => 'required|max:30',
-            "tempatlahir" => 'required|max:30',
+            "jk" => 'required|size:30',
+            "tempatlahir" => 'required|size:30',
             "tanggallahir" => 'Date',
-            "pendidikan" => 'required|max:30',
-            "namasekolah" => 'required|max:30',
-            "pekerjaan" => 'required|max:30',
+            "pendidikan" => 'required|size:30',
+            "namasekolah" => 'required|size:30',
+            "pekerjaan" => 'required|size:30',
             "penghasilan" => 'max_digits:30|numeric'
         ]);
         Penduduk::create($validate);
@@ -69,7 +50,6 @@ class PendudukController extends Controller
     public function update(Penduduk $Penduduk, Request $request)
     {
         if ($request->nik == $Penduduk->nik) {
-        
             $validate = $request->validate([
                 "nama" => 'required|max:30',
                 "email" => 'required|email:dns',

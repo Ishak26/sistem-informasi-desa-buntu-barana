@@ -87,51 +87,52 @@
             </td>
             <td class="d-flex">
               <button class="btn btn-sm btn-primary"><i class="bi bi-eye-fill"></i></button>
-              @if ($item->Verifikasi_KepalaDesa&&$item->Verifikasi_sekertaris==1)
+              @if ($item->Verifikasi_KepalaDesa && $item->Verifikasi_sekertaris==1)
                 <a href="/dashboard/programkerja/belanja/{{$item->id}}" class="btn btn-sm btn-warning ms-1"><i class="bi bi-cart-plus-fill"></i></a>
-              @endif
-              @canany(['sekertaris','kepaladesa'])
-              <button class="btn btn-sm btn-success ms-1" data-bs-toggle="modal" data-bs-target="#verifikasi{{$item->id}}"><i class="bi bi-patch-check"></i></button>
-              @endcanany
-              {{-- verifikasi modal --}}
-              <div class="modal fade" id="verifikasi{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Belanja</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <form action="/dashboard/programkerja/verifikasi/{{$item->id}}" method="POST">
-                        @method('PUT')
-                        @csrf
-                       @can('sekertaris')
-                       <div class="mb-3">
-                        <label class="col-form-label">Verifikasi Sekertaris</label>
-                        <select class="form-select" name="Verifikasi_sekertaris">
-                          <option value="0" >Tidak setuju</option>
-                          <option value="1">Setuju</option>
-                        </select>
-                      </div>
-                       @endcan
-                       @can('kepaladesa')
-                       <div class="mb-3">
-                         <label class="col-form-label">Verifikasi Kepala</label>
-                         <select class="form-select" name="Verifikasi_KepalaDesa" >
-                           <option value="0" >Tidak Setuju</option>
-                           <option value="1">Setuju</option>
-                         </select>
-                       </div>
-                       @endcan
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary">Verifikasi</button>
+              @else
+                @canany(['sekertaris','kepaladesa'])
+                  <button class="btn btn-sm btn-success ms-1" data-bs-toggle="modal" data-bs-target="#verifikasi{{$item->id}}"><i class="bi bi-patch-check"></i></button>
+                  {{-- verifikasi modal --}}
+                  <div class="modal fade" id="verifikasi{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Belanja</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                      </form>
+                        <div class="modal-body">
+                          <form action="/dashboard/programkerja/verifikasi/{{$item->id}}" method="POST">
+                            @method('PUT')
+                            @csrf
+                          @can('sekertaris')
+                          <div class="mb-3">
+                            <label class="col-form-label">Verifikasi Sekertaris</label>
+                            <select class="form-select" name="Verifikasi_sekertaris">
+                              <option value="0" >Tidak setuju</option>
+                              <option value="1">Setuju</option>
+                            </select>
+                          </div>
+                          @endcan
+                          @can('kepaladesa')
+                          <div class="mb-3">
+                            <label class="col-form-label">Verifikasi Kepala</label>
+                            <select class="form-select" name="Verifikasi_KepalaDesa" >
+                              <option value="0" >Tidak Setuju</option>
+                              <option value="1">Setuju</option>
+                            </select>
+                          </div>
+                          @endcan
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Verifikasi</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                @endcanany
+              @endif                
             </td>
           </tr>
           @endforeach

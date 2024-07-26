@@ -30,7 +30,7 @@
               <i class="bi bi-patch-check-fill"></i> verifikasi
             </a>
           @else
-            <a class="" target="_blank" href="{{asset('storage/filesurat/'.$item->filesurat)}}"><i class="bi bi-filetype-pdf"></i></a>
+            <a class="btn btn-sm btn-bluedark" href="{{asset('/storage/file-surat/'.$item->filesurat)}}"><i class="bi bi-filetype-pdf me-1 align-middle"></i>Cetak</a>
           @endif
         </td>
       </tr>
