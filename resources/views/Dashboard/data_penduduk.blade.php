@@ -1,5 +1,6 @@
 @extends('Dashboard.layout.main')
  @section('container')
+ @include('Dashboard.partials.sessionhandle')
 <div class="container">
     <form class="row g-3">
       <legend>Data Pribadi</legend>

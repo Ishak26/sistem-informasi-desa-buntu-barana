@@ -1,5 +1,6 @@
 @extends('Dashboard.layout.main')
 @section('container')
+@include('Dashboard.partials.sessionhandle')
     <style>
         .fs-7 {
             font-size: 12px;
@@ -9,12 +10,11 @@
         @if (session('hapus'))
             <script>alert('{{session('hapus')}}');</script>
         @endif
-        <h2 class="my-3 text-center fw-bold encode-condensed-bold text-bluedark text-uppercase fw-bold">Daftar Data Penduduk</h2>
         <a href="/dashboard/formpenduduk"><button class="btn btn-sm  btn-bluedark"><i class="bi bi-database-fill-add"></i></button></a>
         <form action="/dashboard/datapenduduk" method="get" class=" d-flex">
             <div class="input-group input-group-sm mb-3 w-50 m-auto ">
                 <button class="btn btn-sm  btn-bluedark" type="submit">Cari</button>
-                <input type="text" class="form-control" placeholder="Cari data Penduduk" name="filter">
+                <input type="text" class="form-control" placeholder="Cari data Penduduk" name="filter" value="{{(Request::has('filter'))?Request::string('filter'):''}}">
             </div>
         </form>
         <a href="/dashboard/datapenduduk" class="btn btn-sm btn-bluedark position-relative end-0 {{(!request('filter')?'d-none':'')}}"><i class="bi bi-arrow-clockwise me-1 align-middle"></i> refresh</a>
@@ -25,31 +25,24 @@
                     <th scope="col">Nik</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Alamat</th>
-                    <th scope="col">Dusun</th>
                     <th scope="col">-</th>
                 </tr>
             </thead>
             <tbody>
-                @if(session('sukses'))
-                    <script>
-                        alert("{{ session('sukses') }}");
-                    </script>
-                @endif
                 @foreach ($penduduk as $item)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $item->nik }}</td>
                         <td>{{ $item->nama }}</td>
                         <td>{{ $item->alamat }}</td>
-                        <td>{{ $item->dusun }}</td>
                         <td class="d-flex">
                             <a id="data" onclick="dataPenduduk({{$item}})" href="" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <button class="btn btn-primary btn-sm">
+                                <button class="btn btn-bluedark btn-sm">
                                     <span class="bi bi-info"></span>
                                 </button>
                             </a>
                             <a href="/dashboard/datapenduduk/{{ $item->nik }}/updatependuduk" class="mx-1">
-                                <button type="button" class="btn btn-success btn-sm">
+                                <button type="button" class="btn btn-bluelight btn-sm">
                                    <span class="bi bi-pencil-square"></span>
                                 </button>
                             </a>
@@ -65,6 +58,9 @@
                 @endforeach
             </tbody>
         </table>
+        @if($penduduk->all()===[])
+             <p class="text-muted fs-4 fw-bold text-center mt-3">Data Belum Ada</p> 
+         @endif
         <div class="d-flex justify-content-center">
             {{ $penduduk->links() }}
         </div>
@@ -75,8 +71,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-bluedark">
-                    <h1 class="modal-title fs-5 text-bluelight" id="exampleModalLabel">Detail Data 
-                    </h1>
+                    <h1 class="modal-title fs-5 text-bluelight fw-bold" id="exampleModalLabel"></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -148,7 +143,7 @@
     </div>
     <Script>
         const dataPenduduk = (Penduduk) => {
-            document.getElementById('exampleModalLabel').innerHTML = `detail Data ${Penduduk.nama}`
+            document.getElementById('exampleModalLabel').innerHTML = `Detail Data ${Penduduk.nama}`
             document.getElementById('nama').innerHTML = `: ${Penduduk.nama}`
             document.getElementById('nik').innerHTML =`: ${Penduduk.nik}` 
             document.getElementById('jk').innerHTML = `: ${Penduduk.jk}`

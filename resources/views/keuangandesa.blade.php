@@ -4,8 +4,8 @@
     $tkasipemerintahan=0;
     $tpendapatan=0;
 @endphp
-<img class="position-fixed top-0 w-100 h-100 object-fit" src="/img/bgkeuangan.jpg" alt="">
-  <div class="container position-relative text-white start-0 bg-bluedark bg-opacity-75 shadow">
+{{-- <img class="position-fixed top-0 w-100 h-100 object-fit" src="/img/bgkeuangan.jpg" alt=""> --}}
+  <div class="container position-relative text-white start-0 bg-bluedark bg-opacity-75 shadow rounded">
     <div class="row pt-2 justify-content-center align-items-center">
       <div class="col-sm-3 text-center text-sm-end" >
         <img class="obcject-fit w-25 h-25" src="/storage/R.png" alt="">

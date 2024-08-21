@@ -98,6 +98,8 @@ Route::get('/dashboard', function () {
 Route::get('/dashboard/programkerja',[ProgramKerjaController::class,'index'])->middleware('auth')->name('dataProker');
 Route::post('/dashboard/programkerja/ajuanproker',[ProgramKerjaController::class,'tambah'])->middleware('auth');
 Route::put('/dashboard/programkerja/verifikasi/{Program_Kerja:id}',[ProgramKerjaController::class,'verifikasi'])->middleware('auth');
+Route::put('/dashboard/programkerja/edit/{id}',[ProgramKerjaController::class,'edit'])->middleware('auth');
+Route::delete('/dashboard/programkerja/hapus/{program_Kerja}',[ProgramKerjaController::class,'hapus'])->middleware('auth');
 
 // route pendapatan
 Route::get('/dashboard/pendapatan',[PendapatanController::class,'index'])->middleware('auth');
@@ -106,7 +108,7 @@ Route::post('/dashboard/pendapatan/tambah',[PendapatanController::class,'tambah'
 // route belanja
 Route::get('/dashboard/programkerja/belanja/{Program_Kerja:id}',[BelanjaController::class,'index'])->middleware('auth');
 Route::POST('/dashboard/programkerja/belanja/tambah',[BelanjaController::class,'tambah'])->middleware('auth');
-
+Route::POST('/dashboard/programkerja/belanja/{belanja:id}/verifikasi',[BelanjaController::class,'verifikasiBelanja'])->middleware('auth');
 // route data login akun
 Route::put('/dashboard/loginprofil',[LoginController::class,'updateData'])->middleware('auth');
 
@@ -136,8 +138,8 @@ Route::post('/dashboard/bantuan/penerima/filterpenduduk', [BantuanController::cl
 Route::middleware('auth')->group(function(){
     Route::get('/dashboard/pemerintah', [PemerintahController::class, 'index']);
     Route::post('/dashboard/pemerintah', [PemerintahController::class, 'tambah']);
-    Route::put('/dashboard/pemerintah/{Pemerintah:nik}', [PemerintahController::class, 'update']);
-    Route::delete('/dashboard/pemerintah/{Pemerintah:nik}', [PemerintahController::class, 'hapus']);    
+    Route::put('/dashboard/pemerintah/{pemerintah:nik}/update', [PemerintahController::class, 'update']);
+    Route::delete('/dashboard/pemerintah/{pemerintah:nik}', [PemerintahController::class, 'hapus']);    
 });
 
 // data kesehatan
@@ -148,7 +150,7 @@ Route::get('/dashboard/dataajax/{nik}', function($nik){
 Route::get('/dashboard/kesehatan',[KesehatanController::class,'index'])->middleware('auth');
 Route::post('/dashboard/kesehatan/tambah',[KesehatanController::class,'tambah'])->middleware('auth');
 Route::put('/dashboard/kesehatan/update/{kesehatan}',[KesehatanController::class,'update'])->middleware('auth');
-Route::put('/dashboard/kesehatan/{kesehatan}',[KesehatanController::class,'update'])->middleware('auth');
+Route::delete('/dashboard/kesehatan/{kesehatan}',[KesehatanController::class,'hapus'])->middleware('auth');
 
 // edit profil kades
 Route::put('/dashboard/editkades/{Kades}', [KadesController::class, 'edit']);
@@ -156,6 +158,7 @@ Route::put('/dashboard/editkades/{Kades}', [KadesController::class, 'edit']);
 Route::get('/dokumentasi', [AlbumController::class, 'index']);
 Route::get('/dashboard/tambahalbum',[AlbumController::class,'view'])->middleware('auth');
 Route::post('/dashboard/album',[AlbumController::class,'tambahfoto']);
+Route::delete('/dashboard/album/delete/{album}',[AlbumController::class,'hapus']);
 
 // bagian komentar
 Route::post('/album/komentar',[AlbumController::class,'komentar']);

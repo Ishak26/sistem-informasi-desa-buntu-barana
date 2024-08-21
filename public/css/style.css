@@ -1,75 +1,11 @@
-
-.bg-bluesky{
-  background-color: #98c5e9;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+*{
+  font-family: "Roboto", sans-serif;
+  line-height: 20px;
 }
-.font-color{
-  color: rgb(0,24,56);
-}
-.encode-sans-condensed-thin {
-  font-family: "Encode Sans Condensed", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-}
-
-.encode-sans-condensed-extralight {
-  font-family: "Encode Sans Condensed", sans-serif;
-  font-weight: 200;
-  font-style: normal;
-}
-
-.encode-sans-condensed-light {
-  font-family: "Encode Sans Condensed", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.encode-sans-condensed-regular {
-  font-family: "Encode Sans Condensed", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.encode-sans-condensed-medium {
-  font-family: "Encode Sans Condensed", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.encode-sans-condensed-semibold {
-  font-family: "Encode Sans Condensed", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-}
-
-.encode-sans-condensed-bold {
-  font-family: "Encode Sans Condensed", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.encode-sans-condensed-extrabold {
-  font-family: "Encode Sans Condensed", sans-serif;
-  font-weight: 800;
-  font-style: normal;
-}
-
-.encode-sans-condensed-black {
-  font-family: "Encode Sans Condensed", sans-serif;
-  font-weight: 900;
-  font-style: normal;
-}
-.header-font{ 
-    font-family: "Encode Sans Condensed", sans-serif;
-    font-weight: 600;
-    font-size: 50px;
-    line-height: 44px;
-    letter-spacing: -1px;
-    margin-bottom: 13px;
-    text-transform: uppercase;
-  }
 .nav-link{
   font-family: "Encode Sans Condensed", sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0px;
 }
 .nav-link:hover{

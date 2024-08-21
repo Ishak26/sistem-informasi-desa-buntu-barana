@@ -1,13 +1,7 @@
 @extends('Dashboard.layout.main')
 @section('container')
 {{-- SESSION HANDLING --}}
-    @if (session('berhasil'))
-      <script>alert('{{session("berhasil")}}')</script>
-    @endif
-
-    @if ($errors->all())
-    <script>loadModal('#pendapatan')</script>
-  @endif
+@include('Dashboard.partials.sessionhandle')
 {{-- END SESSION HANDLING --}}
     <div class="row mt-2 mb-2">
       <div class="col-sm-6">
@@ -136,7 +130,7 @@
     <td>{{$loop->iteration}}</td>
     <td>{{$item->Program_Kerja->proker}}</td>
     <td>{{$item->Belanja}}</td>
-    <td class="text-center">{{$item->Program->Sumber_dana}}</td>
+    <td class="text-center">{{$item->Program_Kerja->Sumber_dana}}</td>
     <td>{{"Rp ". number_format($item->total_harga,0,',','.')}}</td>
   </tr>
    @endforeach

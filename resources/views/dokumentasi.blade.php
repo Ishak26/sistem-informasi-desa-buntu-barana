@@ -4,10 +4,13 @@
     <div class="container">
         <h3 class="encode-sans-condensed-extrabold text-center text-bluelight py-3">KOLEKSI FOTO</h3>
         <div class="row ">
+            @empty($Albums->all())
+                <h3 class="text-center">BELUM ADA GAMBAR YANG DI TERSEDIA</h3>
+            @endempty
             @foreach ($Albums as $album)
                 <div class="col-md-4 mb-3">
                     <div class="rounded border p-2 border-box shadow w-100 h-100">
-                        <img class="p-1 text-content-center  text-center" src="{{ asset('storage/' . $album->gambar) }}"
+                        <img class="p-1 text-content-center object-fit text-center" src="{{ asset('storage/' . $album->gambar) }}"
                             alt="" width="100%" height="90%">
                         <div class="text-center">
                             <a class="btn text-decoration-none text-bluedark" data-bs-toggle="modal"
@@ -41,19 +44,10 @@
                                         value="{{ $album->id }}">
                                     <input type="text" class="form-control" placeholder="Komentar anda" name="komentar"
                                         required>
-                                    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-
-                                    {{-- <button type="submit" class="opacity-0">
-                                        <a href="" type="submit" class="position-absolute bottom-0 mb-35 me-3"> <svg
-                                                xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                                fill="currentColor" class="bi bi-s  end-fill" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />
-                                            </svg>
-                                        </button></a> --}}
                                     <button type="submit"
-                                        class="btn btn-hijau position-absolute bottom-0 mb-3 rounded  "><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                        class="btn btn-hijau position-absolute bottom-0 mb-3 rounded  ">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
                                             <path
                                                 d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />

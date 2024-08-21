@@ -1,8 +1,8 @@
 @extends('Dashboard.layout.main')
 @section('container')
-  @if (session('berhasil'))
-      <script>alert("{{session('berhasil')}}");</script>
-  @endif  
+{{-- SESSION HANDLING --}}
+@include('Dashboard.partials.sessionhandle')
+{{-- END SESSION HANDLING --}}
 
    <h3 class="text-center">Riwayat Belanja</h3>
    <table class="mb-3">
@@ -78,6 +78,9 @@
       <th>harga</th>
       <th>Total harga</th>
       <th>Status verifikasi</th>
+      @canany(['sekertaris', 'kasipemerintahan'])
+        <th>Verifikasi</th>
+      @endcanany
     </tr>
     {{-- @dd($Belanja) --}}
     @foreach ($Belanja as $item)
@@ -86,11 +89,26 @@
           <td>{{$item->Jumlah_satuan}}</td>
           <td>{{$item->harga}}</td>
           <td>{{$item->total_harga}}</td>
-          <td><div class="{{($item->verifikasi)?'bi bi-x-square-fill':'bi bi-check-square-fill'}}"></div></td>
+          <td>
+            <i class="{{($item->verifikasi==0)?'bi bi-x-square-fill':'bi bi-check-square-fill'}}">
+            </i>
+          </td>
+          @canany(['sekertaris', 'kasipemerintahan'])
+            <td>
+              @if ($item->verifikasi==0)
+              <form action="/dashboard/programkerja/belanja/{{$item->id}}/verifikasi" method="POST">
+                @csrf
+                <button class="btn btn-sm btn-success" type="submit">verifikasi</button>
+              </form>
+              @else
+                  <i class="bi">diverifikasi</i>
+              @endif
+            </td>
+           @endcanany
         </tr>
     @endforeach
   </table>
-  <script>
+ <script>
     function jumlah(){
       let satuan =document.getElementById("satuan").value;
       let harga = document.getElementById("harga").value;

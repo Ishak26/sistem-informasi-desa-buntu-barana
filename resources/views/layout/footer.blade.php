@@ -1,4 +1,4 @@
-<div class="container-fluid postion-fixed bottom-0 bg-dark text-muted fs-7 h-100 mt-3">
+<div class="container-fluid position-stick bottom-0 bg-dark text-muted fs-7 h-100 mt-3">
   <div class="row">
       <div class="col-7 col-sm-5 p-3">
         <table class="">

@@ -1,29 +1,31 @@
 @extends('Dashboard.layout.main')
 @section('container')
+@include('Dashboard.partials.sessionhandle')
     <div class="container">
         <h3 class="m-auto text-center p-2 encode-sans-condensed-extrabold w-50 text-bluedark">ALBUM KERJA PEMERINTAH DESA BUNTU BARANA</h1>
-        <div class="col-sm-7 border p-3 shadow">
+        <div class="border p-3 mb-2 shadow">
             <p class="text-center fw-bold m-0">Tambah foto</p>
             <form action="/dashboard/album" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="mb-3">
-                <label for="formFileMultiple" class="form-label">Masukkan gambar</label>
-                <img class="text-center mb-2 text-center d-block m-auto" width="" src="" id="Gambar">
-                <input class="form-control gambar" type="file" id="formFileMultiple" multiple name="gambar" onchange="previewImage()" required>
-                        {{-- <img class="text-content-center  text-center" src="{{ asset('storage/file-bukti-belanja/3q8TAT4ue3txAGEu3fZMCfXonl5gHqcrQLRLAoZS.jpg') }}"
-                            alt="" width="100%" height="100%"> --}}
-            </div>
-            <button class="btn btn-primary text-center">Tambahkan</button>
-        </form>
+                <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label">Masukkan gambar</label>
+                    <img class="text-center mb-2 text-center d-block m-auto" width="" src="" id="Gambar">
+                    <input class="form-control gambar" type="file" id="formFileMultiple" multiple name="gambar" onchange="previewImage()" required>
+                </div>
+                <button class="btn btn-bluedark text-center">Tambahkan</button>
+            </form>
         </div>
 
         <div class="row">
             @foreach ($album as $albums)
-                <div class="col-md-4 mb-2 mt-3">
-                    <div class="rounded border p-2 border-box shadow w-100 h-100">
-                        <img class="text-content-center  text-center" src="{{ asset('storage/' . $albums->gambar) }}"
-                            alt="" width="100%" height="100%">
-                    </div>
+            <div class="col-sm-4 border px-0">
+                    <form action="/dashboard/album/delete/{{$albums->id}}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button onclick="confirmedHapus(event)" class="position-absolute btn mt-3 ms-3 btn-sm btn-danger rounded-circle bi bi-trash-fill" type="submit"></button>
+                    </form>
+                    <img class="" style="object-fit: cover" src="{{asset('storage/'.$albums->gambar) }}"
+                    alt="" width="100%" height="100%">
                 </div>
             @endforeach
         </div>

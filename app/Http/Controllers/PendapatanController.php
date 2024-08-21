@@ -31,6 +31,6 @@ class PendapatanController extends Controller
             'sumberdana'=>'required|max:50',
         ]);
         Pendapatan::create($validasi);
-        return back()->with('berhasil','Data berhasil di tambahkan!');
+        return back()->with('sukses','Data berhasil di tambahkan!');
     }
 }

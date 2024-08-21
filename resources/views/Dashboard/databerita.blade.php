@@ -1,15 +1,9 @@
 @extends('Dashboard.layout.main')
-
 @section('container')
+@include('Dashboard.partials.sessionhandle')
     @php
         use Illuminate\Support\Str;
     @endphp
-    @if (session('edit'))
-        <script>alert('{{session('edit')}}');</script>
-    @endif
-     @if (session('hapus'))
-       <script>alert('{{session('hapus')}}');</script>
-    @endif
     <div class="container">
         <h2 class="mt-2 text-uppercase text-bluelight text-center fw-bold encode-sans-condensed-bold">Data berita</h2>
            <a href="/formberita" class="btn btn-sm  btn-bluedark float-start"><i class="bi bi-database-fill-add"></i></a>
@@ -19,7 +13,7 @@
                 <input type="text" class="form-control" placeholder="Cari judul berita" name="filter">
             </div>
         </form>
-        <div class="table-responsive shadow p-2">
+        <div class="table-responsive shadow p-3">
             <table class="table table-striped table-sm">
                 <thead>
                     <tr class=" text-center">
@@ -39,19 +33,19 @@
                             <td>{{ str::limit($item->deskripsi, 165, ' . . . ') }}</td>
                             <td class="p-3 d-flex flex-rows">
                                 <a href="/berita/{{ $item->slug }}" target="_blank">
-                                    <button class="btn btn-primary btn-sm me-1" >
+                                    <button class="btn btn-bluedark btn-sm me-1" >
                                         <span class="bi bi-info"></span>
                                     </button>
                                 </a>
                                 <a href="/databerita/{{ $item->slug }}/updatedataberita">
-                                    <button class="btn btn-warning btn-sm">
+                                    <button class="btn btn-bluelight btn-sm">
                                         <span class="bi bi-pencil-square"></span>
                                     </button>
                                 </a>
-                                <form class="d-inline" action="/databerita/{{ $item->slug }}" method="post">
+                                <form  class="d-inline" action="/databerita/{{ $item->slug }}" method="post">
                                     @method('delete')
                                     @csrf
-                                    <button  class=" ms-1 btn btn-danger  btn-sm" type="submit">
+                                    <button onclick="confirmedHapus(event)" class=" ms-1 btn btn-danger  btn-sm" id="hapus" type="submit">
                                         <span class="bi bi-trash"></span>
                                     </button>
                                 </form>

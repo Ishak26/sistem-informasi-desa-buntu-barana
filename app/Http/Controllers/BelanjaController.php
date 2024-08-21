@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Program_Kerja;
 use App\Models\Belanja;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class BelanjaController extends Controller
 {
@@ -28,7 +29,16 @@ class BelanjaController extends Controller
             $validasi['Bukti_belanja']=$request->file('Bukti_belanja')->store('file-bukti-belanja');
         }
         Belanja::create($validasi);
-        return back()->with('berhasil','Data Berhasil Di Tambahkan');
+        return back()->with('sukses','Data belanjaan berhasil ditambahkan!');
 
     }
+
+    public function verifikasiBelanja(Belanja $belanja){
+        if (!Gate::any(['sekertaris','kasipemerintahan'])) {
+            abort(404);
+          }
+        $belanja->update(['verifikasi'=>1]);
+        return back()->with('sukses',$belanja->Belanja.' Data belanjaan berhasil di verifikasi');
+    }
+
 }

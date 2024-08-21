@@ -28,7 +28,7 @@ class LoginController extends Controller
             $pass = Hash::make($request->password);
             $validate['password'] = $pass;
             Login::create($validate);
-            return redirect('/login');
+            return redirect('/dashboard')->with('sukses','account berhasil di daftar!!');
         } else {
             return back()->with('errorkonfirmasi', 'Konfirmasi Salah!!');
         }

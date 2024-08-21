@@ -49,7 +49,7 @@ class KesehatanController extends Controller
     
     public function hapus(Kesehatan $kesehatan){
         Kesehatan::destroy($kesehatan->id);
-        return back();
+        return back()->with('hapus','data kesehatan telah di hapus!!');
     }
 
 

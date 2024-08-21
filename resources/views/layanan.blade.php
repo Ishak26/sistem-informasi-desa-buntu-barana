@@ -6,12 +6,15 @@
 @if (session('fail'))
     <Script>alert('{{session('fail')}}')</Script>
 @endif
-@if(session('error'))
+@if (session('error'))
+    <Script>alert('{{session('error')}}')</Script>
+@endif
+{{-- @if(session('error'))
 <div class="alert alert-danger alert-dismissible fade show position-absolute top-5 start-5" role="alert">
     <strong>Maaf!</strong> {{session('error')}}.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
-@endif
+@endif --}}
 <div class="container">
   <div class="row justify-content-around align-items-center">
     <div class="col-sm-6">

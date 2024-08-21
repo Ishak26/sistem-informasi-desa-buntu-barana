@@ -34,7 +34,7 @@ class AlbumController extends Controller
             $validasi['gambar'] = $request->file('gambar')->store('img-album');
 
             Album::create($validasi);
-            return redirect('/dashboard/tambahalbum')->with('sukses', 'Data Berhasil di Tambahkan!!');
+            return redirect('/dashboard/tambahalbum')->with('sukses', 'Gambar Berhasil di Tambahkan!!');
         }
     }
 
@@ -46,5 +46,10 @@ class AlbumController extends Controller
         ]);
         Komentar::create($validasi);
         return redirect('/dokumentasi');
+    }
+
+    public function hapus(Album $album){
+        $album->delete();
+        return back()->with('hapus','Data Berhasil Dihapus');
     }
 }

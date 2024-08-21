@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('pemerintahs', function (Blueprint $table) {
             $table->id();
+            $table->String('foto');
             $table->String('nama');
-            $table->bigInteger('nik')->unique();
+            $table->bigInteger('nip')->unique();
             $table->String('jabatan');
             $table->bigInteger('hp');
             $table->String('alamat');

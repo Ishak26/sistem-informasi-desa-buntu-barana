@@ -1,9 +1,7 @@
 @extends('Dashboard.layout.main')
 @section('container')
+@include('Dashboard.partials.sessionhandle')
 {{-- SESSION HENDLING  --}}
-  @if ($errors->has('penduduk_id'))
-  <script>alert("{{$errors->first('penduduk_id')}}")</script>
-  @endif
   @if (session('noted'))
       <script>alert("{{session('noted')}}")</script>
   @endif
@@ -12,8 +10,7 @@
   @endif
 
   {{-- END SESSION HENDLING --}}
-    <h3 class="fw-semibold mt-3 text-center">RIWAYAT KESEHATAN MASYARAKAT</h3>
-    <button id="button" class="button btn btn-sm btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#tambah" >
+    <button id="button" class="button btn btn-sm btn-bluedark" type="button" data-bs-toggle="modal" data-bs-target="#tambah" >
       <i class="bi bi-database-fill-add"></i>
     </button>
     {{-- form tambah --}}
@@ -22,8 +19,8 @@
       <div class="modal fade" id="tambah" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="text-center text-semibold">Menambahkan data</h4>
+            <div class="modal-header bg-bluedark ">
+              <h4 class="text-center text-semibold text-light">Tambah Data Kesehatan</h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
             </div>
             <div class="modal-body">
@@ -58,7 +55,7 @@
                 <div class="col-3">
                   <label for="golongan-darah" class="col-form-label">Golongan Darah</label>
                   <select type="text" name="golongandarah" class="form-select">
-                    <option>-pilih-</option>
+                    <option value="">-pilih-</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="O">O</option>
@@ -69,7 +66,7 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-sm btn-danger" type="button" data-bs-dismiss="modal">tutup</button>
-              <button class="btn btn-sm btn-primary" type="submit">Simpan</button>
+              <button class="btn btn-sm btn-bluedark" type="submit">Simpan</button>
             </div>
           </div>
         </div>
@@ -101,6 +98,7 @@
       <td>
         <a class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modal{{$item->id}}"> <span class="bi bi-pencil-square"></span></a>
         <form class="d-inline" action="/dashboard/kesehatan/{{$item->id}}" method="post">
+          @csrf
         @method('delete')
         <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Yakin menhapus data {{$item->penduduk->nama}}?')"><span class="bi bi-trash-fill"></span></button>
         </form>
@@ -183,9 +181,8 @@
             }
           }
         };
-        xhttp.open("GET", `/dashboard/dataajax/${search.value}`, true);
+        xhttp.open("GET",`/dashboard/dataajax/${search.value}`, true);
         xhttp.send();
       });
-
     </script>
 @endsection

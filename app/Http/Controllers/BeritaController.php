@@ -36,7 +36,7 @@ class BeritaController extends Controller
         $validate = $request->validate([
             'judul' => 'required|max:255',
             'category_id' => 'required',
-            'slug' => 'required|unique:beritas|min:4|max:20',
+            'slug' => 'required|unique:beritas|min:4|max:500',
             'gambar' => 'image|file',
             'deskripsi' => 'required',
             'time' => 'required'

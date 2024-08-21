@@ -44,7 +44,12 @@
             </ul>
         </div> --}}
 
-
+    @if (session('sukses'))
+        <script>
+            alert('{{session('sukses')}}')
+        </script>
+    
+    @endif
         <div class="m-auto">
             <div class="text-center float-start">
                 {{-- <img src="img/{{ $kades->foto }}" class="img-fluid me-4" width="300" height="350" alt=""> --}}
@@ -65,7 +70,7 @@
                 @endphp
             </ul>
             @can('sekertaris')
-            <a href="" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#Formdata">Update</a>
+            <a href="" class="btn btn-bluedark m-2" data-bs-toggle="modal" data-bs-target="#Formdata">Update</a>
             @endcan
         </div>
 

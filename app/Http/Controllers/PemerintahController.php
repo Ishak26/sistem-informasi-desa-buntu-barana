@@ -23,6 +23,24 @@ class PemerintahController extends Controller
     {
         $this->authorize('sekertaris');
         $validasi = $request->validate([
+            'foto'=>'required|file',
+            'nip' => 'required|unique:Pemerintahs',
+            'nama' => 'required|max:30',
+            'jabatan' => 'required|max:30',
+            'hp' => 'required',
+            'alamat' => 'required',
+            'tanggallahir' => 'required',
+            'jeniskelamin' => 'required|max:30'
+        ]);
+        $validasi['foto']=$request->file('foto')->store('img-foto-pegawai');
+        Pemerintah::create($validasi);
+        return  redirect('/dashboard/pemerintah')->with('sukses', 'Data Pegawai Berhasil di tambahkan!!');
+    }
+    public function update(Request $request, Pemerintah $Pemerintah)
+    {
+        $this->authorize('sekertaris');
+        
+        $rules = $request->validate([
             'nik' => 'required',
             'nama' => 'required|max:30',
             'jabatan' => 'required|max:30',
@@ -31,33 +49,16 @@ class PemerintahController extends Controller
             'tanggallahir' => 'required',
             'jeniskelamin' => 'required|max:30'
         ]);
-
-        Pemerintah::create($validasi);
-        return  redirect('/dashboard/pemerintah')->with('sukses', 'Data Pegawai Berhasil di tambahkan!!');
-    }
-    public function update(Request $request, Pemerintah $Pemerintah)
-    {
-        $this->authorize('sekertaris');
-        $rules = $request->validate([
-            'nik' => 'required|unique:Pemerintah',
-            'nama' => 'required|max:30',
-            'id_jabatan' => 'required|max:30',
-            'hp' => 'required',
-            'alamat' => 'required',
-            'tanggallahir' => 'required',
-            'jeniskelamin' => 'required|max:30'
-        ]);
-        
         if ($request->nik == $Pemerintah->nik) {
-            Arr::except($rules, ['nik']);
+            Arr::except($rules, $rules['nik']);
         }
         Pemerintah::where('nik', $Pemerintah->nik)->update($rules);
         return redirect('/dashboard/pemerintah')->with('edit', 'Data berhasil di Edit');
     }
     public function hapus(Pemerintah $Pemerintah)
     {
-        $this->authorize('sekertaris');
+        Gate::any(['sekertaris','kasipemerintahan']);
         Pemerintah::destroy($Pemerintah->id);
-        return redirect('/dashboard/pemerintah')->with('hapus', 'Data berhasil di hapus');
+        return redirect('/dashboard/pemerintah')->with('hapus', 'Data '.$Pemerintah->nama.' berhasil di hapus');
     }
 }

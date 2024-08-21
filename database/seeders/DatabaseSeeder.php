@@ -56,8 +56,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         // DataPenduduk::factory(10)->create();
-        Program_Kerja::factory(30)->create();
-        Penduduk::factory(100)->create();
+        // Program_Kerja::factory(30)->create();
+        // Penduduk::factory(100)->create();
         // berita::factory(30)->create();
         berita::create([
             'judul'=>"Banjir Setinggi 1 Meter Terjang Enrekang, Jalan Poros ke Sidrap Terputus",

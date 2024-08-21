@@ -28,20 +28,20 @@ class PendudukController extends Controller
 
         $validate = $request->validate([
             "nik" => 'required|numeric|unique:Penduduks|maxdigits:12|digits_between:7,12',
-            "nama" => 'required|size:30',
+            "nama" => 'required|max:30',
             "email" => 'required|email:rfc',
-            "alamat" => 'required|size:100',
-            "dusun" => 'required|size:30',
-            "agama" => 'required|size:30',
-            "status" => 'required|size:30',
+            "alamat" => 'required|max:100',
+            "dusun" => 'required|max:30',
+            "agama" => 'required|max:30',
+            "status" => 'required|Max:30',
             "hp" => 'required|numeric',
             "umur" => 'required|numeric|max_digits:3',
-            "jk" => 'required|size:30',
-            "tempatlahir" => 'required|size:30',
+            "jk" => 'required|max:30',
+            "tempatlahir" => 'required|max:30',
             "tanggallahir" => 'Date',
-            "pendidikan" => 'required|size:30',
-            "namasekolah" => 'required|size:30',
-            "pekerjaan" => 'required|size:30',
+            "pendidikan" => 'required|max:30',
+            "namasekolah" => 'required|max:30',
+            "pekerjaan" => 'required|max:30',
             "penghasilan" => 'max_digits:30|numeric'
         ]);
         Penduduk::create($validate);
@@ -107,14 +107,14 @@ class PendudukController extends Controller
         $penduduks=Penduduk::all();
         if($penduduks->firstwhere('nik','=',$validate['nik'])){
             $verifikasi =$penduduks->firstWhere('nik','=',$validate['nik']);
-        }
-        if($verifikasi->nik == $validate['nik']){
-            if($validate['hp']!=$verifikasi->hp){
-                return redirect('/layanan')->with('fail' ,'hp yang anda masukkan tidak sesuai!');
+            if($verifikasi->nik == $validate['nik']){
+                if($validate['hp']!=$verifikasi->hp){
+                    return redirect('/layanan')->with('fail' ,'hp yang anda masukkan tidak sesuai!');
+                }
+                $request->session()->regenerate();
+                $request->session()->put('penduduk',$verifikasi->nik);
+                return redirect('/layanan/surat');
             }
-            $request->session()->regenerate();
-            $request->session()->put('penduduk',$verifikasi->nik);
-            return redirect('/layanan/surat');
         }
         return redirect('/layanan')->with('error' ,'Nik Yang anda masukkan tidak sesuai!');
     }
