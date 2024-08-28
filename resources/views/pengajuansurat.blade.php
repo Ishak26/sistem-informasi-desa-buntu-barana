@@ -1,9 +1,9 @@
 @extends('layout.main')
 @section('container')
-<div class="container shadow p-5 rounded">
+<div class="container shadow p-5 bg-bluelight rounded">
   <a href="/layanan/surat/keluar" class=" btn btn-danger">keluar</a>
-  <p class="text-center fw-bold fs-4 p-3"><span class="text-uppercase">Selamat datang</span> {{$pengaju->nama}}</p>
-  <button class="btn btn-sm btn-bluelight fw-semibold" data-bs-toggle="modal" data-bs-target="#ajuan">ajukan surat</button>   
+  <p class="text-center fw-bold fs-4 p-3 text-uppercase">Selamat datang {{$pengaju->nama}}</p>
+  <button class="btn btn-sm btn-bluedark fw-semibold" data-bs-toggle="modal" data-bs-target="#ajuan">ajukan surat</button>   
 
   <table class="table text-center">
     <tr>
@@ -21,8 +21,13 @@
             @if ($item->verifikasi == 0)
                 <p>Tunggu verifikasi</p>
             @else
-              <a target="_blank" href="{{asset('storage/file-surat/'.$item->filesurat)}}" class="btn btn-sm btn-bluelight"><span class="bi bi-eye"></span></a>
-              <a href="" class="btn btn-sm btn-bluedark"><i class="bi bi-download"></i></a>
+              <a target="_blank" href="{{asset('storage/file-surat/'.$item->filesurat)}}" class="btn btn-sm btn-bluedark"><span class="bi bi-eye"></span></a>
+              <form action="/dashboard/surat/cetak" method="post">
+              @csrf
+              @method('post')
+                <input type="hidden" name="fileSurat" value="file-surat/{{$item->filesurat}}">
+                <button class="btn btn-sm bi bi-download btn-success" type="submit"></button>
+              </form>
             @endif     
           </td>
         </tr>
@@ -51,8 +56,8 @@
               <input type="hidden" value="{{$pengaju->id}}" name="id_warga" class="form-control">
             </div>
             <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="submit" class="btn btn-primary">Lanjut</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-bluedark">Lanjut</button>
         </div>
         </form>
       </div>

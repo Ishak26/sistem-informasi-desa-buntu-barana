@@ -28,10 +28,10 @@ class ProgramKerjaController extends Controller
     public function tambah(Request $request){
       $validasi=$request->validate(
         [
-            'proker' => 'required|max:400',
+            'proker' => 'required|max:400|string',
             'bidang' =>'required|String',
             'anggaran'=>'required|numeric|max_digits:15',
-            'terbilang'=>'required|max:200',
+            'terbilang'=>'required|max:100|string',
             'Sumber_dana'=>'required',
             'Tanggal_Pengerjaan'=>'required|date',
             'proposal'=>'required|file|mimes:pdf'

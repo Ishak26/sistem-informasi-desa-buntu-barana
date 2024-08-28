@@ -3,23 +3,18 @@
 @endphp
 @extends('layout.main')
 @section('container')
-<style>
-  .encode-sans-condensed-bold {
-    font-family: "Encode Sans Condensed", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-  }
-</style>
 <div class="container">
     <div class="row">
         <div class="col-sm-8">
-            <img class="img-fluid object-fit" src="{{"/".$baca->gambar}}" alt="" width="100%" height="50%">
+            <img class="img-fluid object-fit" src="{{"/storage/".$baca->gambar}}" alt="" width="100%" height="50%">
             <h3 class="fs-3 text-center my-3"> {{ $baca['judul'] }}</h3>
             <div class="conten">
-                <p class="fs-6"><small class="text-muted d-inline">{{ date_format($baca->created_at,'d-M-Y') }} - </small>
+                <p class="float-start" style="margin-top: 19px;margin-bottom:0px">
+                    <small class="text-muted">{{ date_format($baca->created_at,'d-M-Y') }} --</small>
                     {!! $baca['deskripsi'] !!}
                 </p>
             </div>
+            <p class="float-end"></p>
         </div>
         <div class="col-sm-4">
             <div class="shadow p-3 ">

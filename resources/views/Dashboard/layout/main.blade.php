@@ -19,16 +19,17 @@
     @if(session('perubahan'))
         <script>alert("{{session()->pull('perubahan')}}")</script>
     @endif
-    <header class="navbar sticky-top p-2">
-        <button class="navbar-toggler d-md-none collapsed" type="button"
-        data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="true"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    </header>
+    
     <div class="container-fluid">
+        <header class="navbar sticky-top p-2">
+            <button class="navbar-toggler d-md-none" type="button"
+            data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="true" aria-hidden="true"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        </header>
         <div class="row">
-            <nav id="sidebarMenu" class="sidebar col-md-3 col-lg-2 d-md-block fixed top-0 collapsed mt-0 pt-0" style="backdrop-filter: blur(10px)">
+            <nav id="sidebarMenu" class="sidebar collapse col-md-3 col-lg-2 d-md-block fixed top-0 mt-0 pt-0" style="backdrop-filter: blur(10px)">
                 <div class="position-sticky sidebar-sticky">
                     <div class="nav-item  text-center">
                         <a class="nav-link mb-2" data-bs-toggle="modal" data-bs-target="#profil">
@@ -191,7 +192,15 @@
                                 href="/dashboard/tambahalbum">
                                 <span class="me-2 bi bi-archive-fill">
                                 </span>
-                                 Documentasi
+                                 Galeri
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/kegiatan') ? 'active' : '' }} link-dark"
+                                href="/dashboard/kegiatan">
+                                <span class="me-2 bi bi-archive-fill">
+                                </span>
+                                 Kegiatan
                             </a>
                         </li>
                     </ul>
@@ -230,7 +239,7 @@
         </div>
 
     {{-- modal Edit profil --}}
-        <div class="modal mt-0" tabindex="-1" id="profil" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal mt-0" tabindex="-1" id="profil" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -315,8 +324,8 @@
         </div>
 
 
-        <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">&copy; Pemerintah Desa Buntu Barana</p>
+        <footer class="footer my-5 text-muted text-center w-100 text-small position-relative bottom-0">
+            <p class="mb-1 text-center">&copy; Pemerintah Desa Buntu Barana</p>
         </footer>
     </div>
 

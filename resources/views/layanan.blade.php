@@ -52,9 +52,19 @@
       @csrf
        <div class="modal-body">
             <label for="exampleFormControlInput1" class="form-label mt-3">Masukkan Nik Yang Terdaftar di Desa Buntu Barana</label>
-            <input type="text" name="nik" class="form-control" id="exampleFormControlInput1" placeholder="Nik Yg terdaftar">
+            <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Nik Yg terdaftar">
+            @error('nik')
+                <div class="invlid-feedback">
+                  {{$message}}
+                </div>
+            @enderror
             <label for="exampleFormControlInput1" class="form-label mt-3">Masukkan nomor telpon anda</label>
-            <input type="text" name="hp" class="form-control" id="exampleFormControlInput1" placeholder="Nomor hp yang terdatar">
+            <input type="text" name="hp" class="form-control @error('hp') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Nomor hp yang terdatar">
+            @error('nik')
+                <div class="invlid-feedback">
+                  {{$message}}
+                </div>
+            @enderror
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

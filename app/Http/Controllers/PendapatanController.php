@@ -25,7 +25,7 @@ class PendapatanController extends Controller
     }
     public function tambah(Request $request){
         $validasi = $request->validate([
-            'Keterangan' => 'required|max:300',
+            'Keterangan' => 'required|max:300|string',
             'nominal' =>'required|maxdigits:11',
             'tahunanggaran' =>'required|maxdigits:4',
             'sumberdana'=>'required|max:50',

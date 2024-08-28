@@ -19,9 +19,11 @@ use App\Http\Controllers\keuanganController;
 use App\Http\Controllers\PemerintahController;
 use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\SuratController;
+use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\ProgramKerjaController;
 use App\Http\Controllers\KritikSaranController;
 use App\Models\Jabatan;
+use App\Models\Kegiatan;
 use App\Models\KritikSaran;
 use Illuminate\Http\Request;
 
@@ -55,7 +57,7 @@ Route::get('/layanan/surat/keluar',function(){
 });
 Route::get('/dashboard/surat',[SuratController::class,'surat']);
 Route::get('dashboard/surat/{surat:id}/verifikasi',[SuratController::class,'buatSurat']);
-Route::get('dashboard/surat/{surat:id}/cetak',[SuratController::class,'cetakSurat']);
+Route::post('/dashboard/surat/cetak',[SuratController::class,'cetakSurat']);
 Route::get('/layanan/surat',[PendudukController::class,'mySurat']);
 Route::post('/layanan/surat',[PendudukController::class,'verifikasi']);
 Route::post('/layanan/pengajuansurat',[SuratController::class,'pengajuan']);
@@ -69,7 +71,8 @@ Route::get('/', function () {
 Route::get('/tentang', function () {
     return view('tentang', [
         "title" => "Desa Buntu Barana | Tentang",
-        'kades' => Kades::first()
+        'kades' => Kades::first(),
+        'dataPegawai'=>Pemerintah::all(),
     ]);
     })->name('tentang');
 Route::get('/berita', [BeritaController::class, 'index']);
@@ -138,8 +141,8 @@ Route::post('/dashboard/bantuan/penerima/filterpenduduk', [BantuanController::cl
 Route::middleware('auth')->group(function(){
     Route::get('/dashboard/pemerintah', [PemerintahController::class, 'index']);
     Route::post('/dashboard/pemerintah', [PemerintahController::class, 'tambah']);
-    Route::put('/dashboard/pemerintah/{pemerintah:nik}/update', [PemerintahController::class, 'update']);
-    Route::delete('/dashboard/pemerintah/{pemerintah:nik}', [PemerintahController::class, 'hapus']);    
+    Route::put('/dashboard/pemerintah/{pemerintah:nip}/update', [PemerintahController::class, 'update']);
+    Route::delete('/dashboard/pemerintah/{pemerintah:nip}', [PemerintahController::class, 'hapus']);    
 });
 
 // data kesehatan
@@ -153,15 +156,18 @@ Route::put('/dashboard/kesehatan/update/{kesehatan}',[KesehatanController::class
 Route::delete('/dashboard/kesehatan/{kesehatan}',[KesehatanController::class,'hapus'])->middleware('auth');
 
 // edit profil kades
-Route::put('/dashboard/editkades/{Kades}', [KadesController::class, 'edit']);
+Route::put('/dashboard/editkades/{Kades}', [KadesController::class, 'edit'])->middleware('auth');
 // bagian album
 Route::get('/dokumentasi', [AlbumController::class, 'index']);
 Route::get('/dashboard/tambahalbum',[AlbumController::class,'view'])->middleware('auth');
-Route::post('/dashboard/album',[AlbumController::class,'tambahfoto']);
-Route::delete('/dashboard/album/delete/{album}',[AlbumController::class,'hapus']);
+Route::post('/dashboard/album',[AlbumController::class,'tambahfoto'])->middleware('auth');
+Route::delete('/dashboard/album/delete/{album}',[AlbumController::class,'hapus'])->middleware('auth');
 
 // bagian komentar
 Route::post('/album/komentar',[AlbumController::class,'komentar']);
-
 // kritik dan saran
 Route::post('/layanan/kritik',[KritikSaranController::class,'tambah']);
+Route::get('/kegiatan',[KegiatanController::class,'publicView']);
+Route::get('/dashboard/kegiatan',[KegiatanController::class,'index'])->middleware('auth');
+Route::post('/dashboard/tambahkegiatan',[KegiatanController::class,'tambah'])->middleware('auth');
+Route::delete('/dashboard/hapuskegiatan/{kegiatan}',[KegiatanController::class,'hapus'])->middleware('auth');

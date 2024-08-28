@@ -24,7 +24,7 @@
                     <th scope="col">No </th>
                     <th scope="col">Nik</th>
                     <th scope="col">Nama</th>
-                    <th scope="col">Alamat</th>
+                    <th class="d-none d-md-table-cell" scope="col">Alamat</th>
                     <th scope="col">-</th>
                 </tr>
             </thead>
@@ -34,25 +34,27 @@
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $item->nik }}</td>
                         <td>{{ $item->nama }}</td>
-                        <td>{{ $item->alamat }}</td>
-                        <td class="d-flex">
-                            <a id="data" onclick="dataPenduduk({{$item}})" href="" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <button class="btn btn-bluedark btn-sm">
-                                    <span class="bi bi-info"></span>
-                                </button>
-                            </a>
-                            <a href="/dashboard/datapenduduk/{{ $item->nik }}/updatependuduk" class="mx-1">
-                                <button type="button" class="btn btn-bluelight btn-sm">
-                                   <span class="bi bi-pencil-square"></span>
-                                </button>
-                            </a>
-                           <form action="/dashboard/datapenduduk/{{$item->nik}}" method="post">
-                            @csrf
-                            @method('delete')
-                                <button class="btn btn-danger btn-sm">
-                                    <span class="bi bi-trash"></span>
-                                </button>
-                           </form>
+                        <td class=" d-none d-md-table-cell">{{ $item->alamat }}</td>
+                        <td>
+                           <div class="d-flex justify-content-center">
+                                <a id="data" onclick="dataPenduduk({{$item}})" href="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <button class="btn btn-bluedark btn-sm">
+                                        <span class="bi bi-info"></span>
+                                    </button>
+                                </a>
+                                <a href="/dashboard/datapenduduk/{{ $item->nik }}/updatependuduk" class="mx-1">
+                                    <button type="button" class="btn btn-bluelight btn-sm">
+                                    <span class="bi bi-pencil-square"></span>
+                                    </button>
+                                </a>
+                                <form action="/dashboard/datapenduduk/{{$item->nik}}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                        <button class="btn btn-danger btn-sm">
+                                            <span class="bi bi-trash"></span>
+                                        </button>
+                                </form>
+                           </div>
                         </td>
                     </tr>
                 @endforeach

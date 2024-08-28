@@ -1,18 +1,5 @@
 @extends('Dashboard.layout.main')
 @section('container')
-    <style>
-        @media screen and (min-width: 900px) {
-            body {
-                /* font-size: 12px; */
-            }
-        }
-
-        @media screen and (max-width:600px) {
-            body {
-                font-size: 12px;
-            }
-        }
-    </style>
 
     @if (session('sukses'))
         <div class="alert alert-info" role="alert">

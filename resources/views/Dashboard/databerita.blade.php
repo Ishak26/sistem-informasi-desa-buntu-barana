@@ -29,8 +29,8 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->judul }}</td>
-                            <td>{{ $item->gambar }}</td>
-                            <td>{{ str::limit($item->deskripsi, 165, ' . . . ') }}</td>
+                            <td><img src="{{ asset('./storage/'.$item->gambar) }}" width="50" height="50" alt=""></td>
+                            <td>{!! str::limit($item->deskripsi, 165, ' . . . ') !!}</td>
                             <td class="p-3 d-flex flex-rows">
                                 <a href="/berita/{{ $item->slug }}" target="_blank">
                                     <button class="btn btn-bluedark btn-sm me-1" >

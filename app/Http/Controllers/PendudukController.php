@@ -27,22 +27,22 @@ class PendudukController extends Controller
     {
 
         $validate = $request->validate([
-            "nik" => 'required|numeric|unique:Penduduks|maxdigits:12|digits_between:7,12',
-            "nama" => 'required|max:30',
+            "nik" => 'required|numeric|unique:Penduduks|max_digits:16',
+            "nama" => 'required|max:30|string',
             "email" => 'required|email:rfc',
-            "alamat" => 'required|max:100',
-            "dusun" => 'required|max:30',
-            "agama" => 'required|max:30',
-            "status" => 'required|Max:30',
-            "hp" => 'required|numeric',
+            "alamat" => 'required|max:100|string',
+            "dusun" => 'required|max:30|string',
+            "agama" => 'required|max:30|string',
+            "status" => 'required|Max:30|string',
+            "hp" => 'required|numeric|max_digits:12',
             "umur" => 'required|numeric|max_digits:3',
-            "jk" => 'required|max:30',
-            "tempatlahir" => 'required|max:30',
+            "jk" => 'required|max:30|string',
+            "tempatlahir" => 'required|max:30|string',
             "tanggallahir" => 'Date',
-            "pendidikan" => 'required|max:30',
+            "pendidikan" => 'required|max:30|string',
             "namasekolah" => 'required|max:30',
-            "pekerjaan" => 'required|max:30',
-            "penghasilan" => 'max_digits:30|numeric'
+            "pekerjaan" => 'required|max:30|string',
+            "penghasilan" => 'numeric'
         ]);
         Penduduk::create($validate);
         return  redirect('/dashboard/datapenduduk')->with('sukses', 'Data Berhasil di Tambahkan!!');
@@ -101,7 +101,7 @@ class PendudukController extends Controller
 
     public function verifikasi(Request $request){
         $validate =$request->validate([
-            'nik'=>'required|numeric|maxdigits:15',
+            'nik'=>'required|numeric|maxdigits:16',
             'hp'=>'required|numeric'
         ]);
         $penduduks=Penduduk::all();

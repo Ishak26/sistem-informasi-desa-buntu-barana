@@ -81,11 +81,11 @@ class SuratController extends Controller
             'verifikasi'=>1,
             'filesurat'=>$surat->penduduk->nama.'.pdf'
         ]);
-        $mpdf->Output(storage_path('app/public/file-surat/' .$surat->penduduk->nama.'pdf'),\Mpdf\Output\Destination::FILE);
+        $mpdf->Output(storage_path('app/public/file-surat/' .$surat->penduduk->nama.'.pdf'),\Mpdf\Output\Destination::FILE);
         // $mpdf->Output();
         return redirect('/dashboard/surat')->with('verifikasiSurat','Surat Telah diverifikasi');
     }
-    public function cetakSurat(Surat $surat){
-        
+    public function cetakSurat(Request $request){
+        return Storage::download($request->fileSurat);
     }
 }

@@ -7,12 +7,14 @@
   .sejarah::-webkit-scrollbar{
     display: none;
   }
+  
 </style>
+
 <div class="container">
     <section id="visMisi" class="row justify-content-center align-items-center">
         <div class="col-md-4 text-center float-start">
             {{-- <img src="img/{{ $kades->foto }}" class="img-fluid me-4" width="300" height="350" alt=""> --}}
-            <img src="{{ asset('storage/' . $kades->foto) }}" class="img-fluid me-4 my-2 p-3 shadow" width="300" height="400"
+            <img src="{{ asset('storage/' . $kades->foto) }}" class="img-fluid me-4 my-2 shadow w-100 h-100 object-fit"
                 alt="">
             <small class="d-block fw-bold">{{ $kades->nama }}</small>
             <p class="fs-5 fw-bold">KEPALA DESA BUNTU BARANA</p>
@@ -39,7 +41,7 @@
           Desa Buntu Barana terdiri dari 6 Dusun antara lain: Dusun Rante Limbong, Dusun Buntu Kalosi, Dusun Buntu Ampalla, Dusun Saluala, Dusun Maliba, dan Dusun Bala Batu. Luas Wilayah Desa Buntu Barana berkisar 3.794 Hektar</br>
           Pada tahun 1965 Kepala Wilayah Kecamatan Alla yang dijabat oleh Puang Barana sebagai Putra Rante menunjuk Uwa Tahera sebagai Kepala Desa pertama di Rantelimbong. Tugas pertama yang dilakukan oleh Kepala Desa adalah mengumpul kembali warga terpencar untuk kembali berkumpul dan menghuni Rantelimbong. Pada saat ini Desa yang dipimpinnya diberi nama Desa Buntu Barana. Nama Buntu Barana sendiri diambil dari nama sebuah gunung kecil (bukit) di sebelah utara Rantelimbong yang diatasnya tumbuh sebuah pohon besar yang pada saat ini gunug itulah satu-satunya gunung disekitar Rantelimbong yang ditumbuhi pohon. Sehingga gunung itu disebut oleh warga Buntu Barana (Gunung Berpohon) dan gunung itulah yang berlangsung diambil sebagai nama Desa sehingga disebutlah Desa Buntu Barana. Selain itu nama Desa Buntu barana diidentikkan juga dengan nama Puang Barana sebagai Putera Rantelimbong yang pada saat itu menjabat sebagai Kepala Wilayah Kecamatan Alla.</br>
           Pemerintahan Uwa Tahera membawahi wilayah Rantelimbong, Saluala, Balabatu, Maliba, Sangtempe, Minanga, Mandalan, sampai ke Parombean. Pemerintahan ini berlangsung hingga Tahun 1980. Setelah itu dilanjutkan oleh Andi Saripuddin sejak tahun 1980-1983 melalui penunjukan dan selanjutnya digantikan oleh Gama juga melalui penunjukan dalam periode 1983-1991, namun periodenya hanya berjalan sampai tahun 1986 karena mengundurkan diri. Dan ahirnya periode ini dilanjutkan oleh Asbar, M.BA sebagai pelaksana Tugas. Setelah periode ini selesai maka dilakukan pemilihan Kepala Desa pertama pada Tahun 1991 dengan Kepala Desa Amma Leha setelah mengalahkan Asbar, M.BA. pada periode ini terjadi pemekaran Desa Parombean dan Desa Pebaloran. Periode pemerintahan Amma Leha tidak sampai selesai disebabkan karena diangkat menjadi Lurah di Kambiolangi, dan selanjutnya diangkatlah Andi Paturusi sebagai pelaksana tugas Kepala Desa dan periodenya dilanjutkan setelah terpilih menjadi Kepala Desa divenitif melaui proses pemilihan hingga tahun 2003. Setelah masa pemerintahan Paturusi berakhir maka dilanjutkan oleh Maskur Manggau, S.Si setelah mengalahkan M. Ridwan dan Drs. Jamaluddin dalam proses pemilihan Kepala Desa. Periode ini berlangsung hingga Tahun 2009. Pada periode ini Desa Buntu Barana dipecah kedalam Enam Dusun yakni Dusun Rantelimbong, Dusun Buntu Kalosi, Dusun Buntu Ampalla, Dusun Balabatu, Dusun Maliba dan Dusun Saluala.</br>
-          Setelah periode ini berakhir dilanjutkan oleh H. Takdir setelah terpilih pada Tahun 2009  yang mengalahkan Ir. Awaluddin dalam proses pemilihan yang demokratis. Periode ini berlangsung hingga bulan Maret Tahun 2015. Periode selanjutnya dijabat oleh Jamaluddin,S.Ag (Sekdes) sebagai pelaksana tugas sampai terjadi pemilihan Kepala Desa serentak berdasarkan Perundang-Undangan. Pada tahun 2015 dilakukan pemilihan Kepala Desa serentak pada bulan April yang dipimpin oleh H. Takdir Arifin, masa pemerintahannya sampai bulan Desember 2021, selanjutnya kepemerintahan dipimpin oleh Malik, A.Md untuk periode 2021-2027 setelah dilakukan lagi pemilihan Kepala Desa pada tanggal 2 Desember 2021. 
+          Setelah periode ini berakhir dilanjutkan oleh H.Takdir setelah terpilih pada Tahun 2009  yang mengalahkan Ir. Awaluddin dalam proses pemilihan yang demokratis. Periode ini berlangsung hingga bulan Maret Tahun 2015. Periode selanjutnya dijabat oleh Jamaluddin,S.Ag (Sekdes) sebagai pelaksana tugas sampai terjadi pemilihan Kepala Desa serentak berdasarkan Perundang-Undangan. Pada tahun 2015 dilakukan pemilihan Kepala Desa serentak pada bulan April yang dipimpin oleh H. Takdir Arifin, masa pemerintahannya sampai bulan Desember 2021, selanjutnya kepemerintahan dipimpin oleh Malik, A.Md untuk periode 2021-2027 setelah dilakukan lagi pemilihan Kepala Desa pada tanggal 2 Desember 2021. 
           </p>
       </div>
     </section>
@@ -76,16 +78,16 @@
 
     <section id="suku" class="row mt-3 mt-5">
         <div class="col-md-6">
-            <div id="carouselExampleControls" class="carousel slide p-5" data-bs-ride="carousel">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner ">
                   <div class="carousel-item active">
-                    <img src="img/budaya1.jpg" class="d-block w-100" height="450" alt="...">
+                    <img src="img/budaya1.jpg" class="d-block w-100 object-fit" height="450" alt="...">
                   </div>
                   <div class="carousel-item">
-                    <img src="img/budaya2.jpg" class="d-block w-100" height="450" alt="...">
+                    <img src="img/budaya2.jpg" class="d-block w-100 object-fit" height="450" alt="...">
                   </div>
                   <div class="carousel-item">
-                    <img src="img/budaya3.jpg" class="d-block w-100" height="450"    alt="...">
+                    <img src="img/budaya3.jpg" class="d-block w-100 object-fit" height="450"    alt="...">
                   </div>
                 </div>
                 <button class="carousel-control-prev ms-5" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -104,7 +106,23 @@
         </div>
     </section>
 
-
+    <section id="aparat Desa" class="mt-3">
+      <h4 class="text-center text-bluedark mb-3 fs-4 fw-bold">Aparat Desa Buntu Barana</h4>
+      <div class="d-flex gap-1 justify-content-center flex-wrap w-75 h-75 m-auto" >
+        @foreach ($dataPegawai as $item)
+        <div class="card" style="width: 10rem; ">
+          <img src="{{asset('./storage/'.$item->foto)}}" class="card-img-top object-fit w-100" style="height: 150px" alt="...">
+          <div class="card-body d-flex flex-column text-center">
+            <p class="fw-bold mb-1">{{$item->jabatan}}</p>
+            <p class="font-monospace" style="font-size: 10px">{{$item->nama}}</p>
+          </div>
+        </div>
+        @endforeach
+      </div>
+    </section>
+    
+    
 </div>
+
 @include('layout.footer')
 @endsection

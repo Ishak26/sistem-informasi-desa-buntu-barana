@@ -4,19 +4,19 @@
 @extends('layout.main')
 @section('container')
 <div class="container">
-        @if ($berita->all()==null)
+    @if ($berita->all()==null)
             <div class="d-flex justify-content-center align-items-center">
                 <p class="fs-5">Berita Tidak Ada</p>
             </div>
         @else
         <div class="text-center m-auto shadow mb-3">
-            <img class="m-auto rounded shadow object-fit bg-dark bg-gradient" src="{{asset($berita[0]->gambar)}}" width="100%" height="300" alt="...">
+            <img class="m-auto rounded shadow object-fit bg-dark bg-gradient" src="storage/{{$berita[0]->gambar}}" width="100%" height="300" alt="...">
             <div class="p-4">
-                <h3 class="encode-sans-condensed-bold text-bluedark">{{ $berita[0]->judul }}</h3>
-                <p class="lead lh-1 fs-6 w-75 mx-auto my-3">{{ str::of($berita[0]->deskripsi)->limit(200,'...')}}</p>
+                <h3 class="text-bluedark">{{ $berita[0]->judul }}</h3>
+                <p id="subHeader" class="fw-light">{{ str::of($berita[0]->deskripsi)->limit(300,'...') }}</p>
                 <p class="lead mb-0"><a href="/berita/{{ $berita[0]->slug }}" class="text-decoration-none btn btn-sm btn-bluedark">Baca sekarang</a></p>
             </div>
-          </div>
+        </div>
         @endif
         <div class="row jusify-content-center">
             <div class="col-4 col-sm-4 text-center">
@@ -46,7 +46,7 @@
                                 <a href="berita/{{ $Dberita->slug }}" id="baca{{$Dberita->id}}" class="d-none"></a>
                             </div>
                             <div class="col">
-                                    <img class=" border-start rounded object-fit" height="100%" height="100%" src="{{asset($Dberita->gambar)}}" alt="">
+                                    <img class=" border-start rounded object-fit" height="100%" height="100%" src="storage/{{$Dberita->gambar}}" alt="">
                             </div>
                         </div>
                     </div>
@@ -57,6 +57,8 @@
             </div>
         </div>
     </div>
+</div>
+@include('layout.footer')
 
     <script>
        function bacaBerita(beritaId,buttonId){
@@ -67,6 +69,11 @@
                 }
             )
        }
+        const subHeader =document.getElementById('subHeader')
+        let subHeaderValue =subHeader.textContent
+        let result = new DOMParser().parseFromString(subHeaderValue, 'text/html')
+        subHeader.textContent =result.body.textContent || ""
+
+
     </script>
-    @include('layout.footer')
 @endsection

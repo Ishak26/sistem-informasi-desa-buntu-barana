@@ -27,7 +27,6 @@
       <p class="position-absolute top-0 end-0" >tutup dalam <span id="time"></span> detik</p>
   </div>
   @endif
-  
   <script>
     myAlert()
  </script>

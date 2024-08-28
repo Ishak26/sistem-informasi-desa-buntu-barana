@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
     <style>
         *{
             margin: 0;
@@ -29,7 +30,7 @@
 {{-- 
     navbar// warna navbar lama = #8a2be2 --}}
     {{-- <nav class="navbar navbar-expand-lg fixed-top position-sticky mb-0 encode-sans-condensed-black"> --}}
-    <nav class="navbar navbar-expand-lg mb-0 encode-sans-condensed-black " style="z-index: 99">
+    <nav class="navbar navbar-expand-lg mb-0 encode-sans-condensed-black "style="z-index: 99; backdrop-filter:blur(20px);">
         <div class="container ms-4">
             {{-- <img class="m-1" src="/storage/logo web.png"  width="250" alt=""> --}}
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -37,7 +38,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown" >
-                <ul class="navbar-nav mt-0 align-items-center text-center">
+                <ul class="navbar-nav mt-0 align-items-center text-lowercase fs-5 text-center">
                     <li class="nav-item">
                         <img class="logo me-md-3 m-1" src="/storage/R.png"  width="40" alt="">
                     </li>
@@ -55,7 +56,7 @@
                         <a class="nav-link  {{ Request::is('layanan') ? 'active' : '' }} " href="/layanan">LAYANAN</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  {{ Request::is('dokumentasi') ? 'active' : '' }} " href="/dokumentasi">DOKUMENTASI</a>
+                        <a class="nav-link  {{ Request::is('dokumentasi') ? 'active' : '' }} " href="/dokumentasi">Galeri</a>
                     </li>
                     <li class="nav-item">
                         <div class="dropdown-center">
@@ -64,7 +65,7 @@
                             </a>
                             <ul class="dropdown-menu">
                               <li><a class="nav-link  {{ Request::is('info/keuangan') ? 'active' : '' }}  " href="/info/keuangan">KEUANGAN DESA</a></li>
-                              <li><a class="nav-link  {{ Request::is('pengumuman') ? 'active' : '' }}  " href="berita">PENGUMUMAN</a></li>
+                              <li><a class="nav-link  {{ Request::is('kegiatan') ? 'active' : '' }}  " href="/kegiatan">Kegiatan</a></li>
                             </ul>
                           </div>
                     </li>
@@ -87,5 +88,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 </html>

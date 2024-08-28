@@ -1,7 +1,7 @@
 @extends('layout.main')
 @section('container')
     {{-- awal container --}}
-    <div class="container">
+    <div class="container" style="min-height: 214.5px">
         <h3 class="encode-sans-condensed-extrabold text-center text-bluelight py-3">KOLEKSI FOTO</h3>
         <div class="row ">
             @empty($Albums->all())

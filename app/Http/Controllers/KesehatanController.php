@@ -41,7 +41,7 @@ class KesehatanController extends Controller
             'tekanan'=>'required|numeric|maxdigits:3',
             'berat'=>'required|numeric|maxdigits:3',
             'riwayatpenyakit'=>'required|string',
-            'golongandarah'=>'required|string'
+            'golongandarah'=>'required|max:2|string'
         ]);
         Kesehatan::where('id',$kesehatan->id)->update($validasi);
         return back()->with('update','Data di Perbaharui!!');

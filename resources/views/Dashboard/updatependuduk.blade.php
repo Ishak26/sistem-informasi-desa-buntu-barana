@@ -1,29 +1,7 @@
 @extends('Dashboard.layout.main')
 @section('container')
-    <style>
-        @media screen and (min-width: 900px) {
-            body {
-                /* font-size: 12px; */
-            }
-        }
-
-        @media screen and (max-width:600px) {
-            body {
-                font-size: 12px;
-            }
-        }
-    </style>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <!-- Create Post Form -->
+@include('dashboard.partials.sessionhandle')
+    {{-- edit penduduk --}}
     <div class="container">
         <form action="/dashboard/updatependuduk/{{$data->nik}}" method="POST">
             @method('put')
@@ -57,9 +35,10 @@
                         <label for="validationDefault04" class="form-label">Dusun</label>
                         <select class="form-select" name="dusun" id="validationDefault04" required>
                             <option>--Pilih--</option>
-                            <option {{ $data->dusun == 'dusun1' ? 'selected' : '' }} value="dusun1">dusun 1</option>
-                            <option {{ $data->dusun == 'dusun2' ? 'selected' : '' }} value="dusun2">dusun 2</option>
-                            <option {{ $data->dusun == 'dusun3' ? 'selected' : '' }} value="dusun3">dusun 3</option>
+                            <option {{ $data->dusun == 'DUSUN BUNTUN KALOSI' ? 'selected' : '' }} value="DUSUN BUNTUN KALOSI">DUSUN BUNTUN KALOSI</option>
+                            <option {{ $data->dusun == 'DUSUN RANTE LIMBONG' ? 'selected' : '' }} value="DUSUN RANTE LIMBONG">DUSUN RANTE LIMBONG</option>
+                            <option {{ $data->dusun == 'DUSUN BALABATU' ? 'selected' : '' }} value="DUSUN BALABATU ">DUSUN BALABATU </option>
+                            <option {{ $data->dusun == 'DUSUN MALIBA' ? 'selected' : '' }} value="DUSUN MALIBA ">DUSUN MALIBA </option>
                         </select>
                     </div>
                     <div class="row">
@@ -148,7 +127,7 @@
                         <legend class="ms-3">Pekerjaan</legend>
                         <div class="col-sm-8 mb-3 ms-3">
                             <label for="validationDefault01" class="form-label">Pekerjaan</label>
-                            <select name="pekerjaan" class="form-select" aria-label="Default select example">
+                            <select name="pekerjaan" class="form-select @error('pekerjaan') is-invalid  @enderror" aria-label="Default select example">
                                 <option>--pilih--</option>
                                 <option value="petani" {{ $data->pekerjaan == 'petani' ? 'selected' : '' }}>Petani
                                 </option>
@@ -156,8 +135,14 @@
                                 <option value="pengusaha" {{ $data->pekerjaan == 'pengusaha' ? 'selected' : '' }}>
                                     Pengusaha
                                 </option>
-                                 <option value="Tidak bekerja" {{ $data->pekerjaan == 'Tidak bekerja' ? 'selected' : '' }}>
-                                    Tidak bekerja
+                                <option value="Peternak" {{ $data->pekerjaan == 'Peternak' ? 'selected' : '' }}>
+                                    Peternak
+                                </option>
+                                <option value="Pedagang" {{ $data->pekerjaan == 'Pedagang' ? 'selected' : '' }}>
+                                    Pedagang
+                                </option>
+                                <option value="Belum bekerja" {{ $data->pekerjaan == 'Belum bekerja' ? 'selected' : '' }}>
+                                    Belum bekerja
                                 </option>
                             </select>
                         </div>
