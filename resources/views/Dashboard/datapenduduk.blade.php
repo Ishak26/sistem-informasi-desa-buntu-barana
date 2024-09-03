@@ -18,9 +18,9 @@
             </div>
         </form>
         <a href="/dashboard/datapenduduk" class="btn btn-sm btn-bluedark position-relative end-0 {{(!request('filter')?'d-none':'')}}"><i class="bi bi-arrow-clockwise me-1 align-middle"></i> refresh</a>
-        <table class="table ">
+        <table class="table-responsive w-100">
             <thead>
-                <tr class="text-center">
+                <tr class="text-center bg-bluedark text-white">
                     <th scope="col">No </th>
                     <th scope="col">Nik</th>
                     <th scope="col">Nama</th>

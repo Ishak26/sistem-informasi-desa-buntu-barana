@@ -15,7 +15,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KadesController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\PendapatanController;
-use App\Http\Controllers\keuanganController;
+use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\PemerintahController;
 use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\SuratController;
@@ -84,7 +84,7 @@ Route::get('layanan', function () {
         'title'=> 'Desa Buntu Barana | Layanan'
     ]);
 });
-Route::get('/info/keuangan',[KeuanganController::class,'index']);
+Route::get('/info/keuangan',[keuanganController::class,'index']);
 
 // Route Dashboard
 Route::get('/dashboard', function () {

@@ -6,6 +6,10 @@
     font-family: "Roboto", sans-serif;
     line-height: 20px;
 }
+.invalid-feedbacks{
+    color: rgb(179, 53, 53);
+    font-size: 12px;
+}
 .sidebar {
     position: fixed;
     top: 0;

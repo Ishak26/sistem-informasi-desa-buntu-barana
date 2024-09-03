@@ -66,6 +66,10 @@ class BantuanController extends Controller
                 'penduduk_id'=>$filter->id,
             ]);
         }
-        return back()->with('berhasil','data berhasil di  tambahkan!');
+        return back()->with('sukses','data berhasil di  tambahkan!');
+    }
+
+    public function tambahPenerima(){
+        
     }
 }

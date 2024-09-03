@@ -29,7 +29,7 @@ class ProgramKerjaController extends Controller
       $validasi=$request->validate(
         [
             'proker' => 'required|max:400|string',
-            'bidang' =>'required|String',
+            'bidang' =>'required|string|min:6',
             'anggaran'=>'required|numeric|max_digits:15',
             'terbilang'=>'required|max:100|string',
             'Sumber_dana'=>'required',
@@ -59,7 +59,7 @@ class ProgramKerjaController extends Controller
       $validasi=$request->validate(
         [
             'proker' => 'required|max:400',
-            'bidang' =>'required|String',
+            'bidang' =>'required|string',
             'anggaran'=>'required|numeric|max_digits:15',
             'terbilang'=>'required|max:200',
             'Sumber_dana'=>'required',

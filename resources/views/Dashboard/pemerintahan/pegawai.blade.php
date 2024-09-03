@@ -1,9 +1,6 @@
 @extends('Dashboard.layout.main')
 @section('container')
 @include('Dashboard.partials.sessionhandle')
-@error('foto')
-    <h1>{{$message}}</h1>
-@enderror
     <div class="container">
         <a href="" class="btn btn-bluedark m-2" data-bs-toggle="modal" data-bs-target="#Formdata"><i class="bi bi-database-fill-add "></i></a>
         <div class="table-responsive-sm">
@@ -33,10 +30,10 @@
                                     data-bs-target="#editdata" onclick="editPegawai({{$item}})">
                                     <i class="bi bi-pencil-square"></i>
                                 </button> 
-                                <form action="/dashboard/pemerintah/{{ $item->nik }}" method="post">
+                                <form action="/dashboard/pemerintah/{{$item->nip}}" method="post">
                                     @csrf
                                     @method('delete')
-                                    <button  id='hapus' class="btn btn-sm btn-danger">
+                                    <button onclick="confirmedHapus(event)" class="btn btn-sm btn-danger">
                                         <i class="bi bi-trash3"></i>
                                     </button>
                                 </form>
@@ -45,6 +42,10 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            {{ $datapegawai->links() }}
         </div>
         {{-- modal tambah data --}}
         <div class="modal" tabindex="-1" id="Formdata" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -62,42 +63,77 @@
                                 <div class="col-sm-8">
                                     <img id="fotoPegawai" class="object-fit mb-3">
                                     <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" id="foto" onchange="previewImage('fotoPegawai','#foto')">
+                                    @error('foto')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="nip" class="col-sm-4 col-form-label">Nip</label>
                                 <div class="col-sm-8">
                                     <input type="number" class="form-control @error('nip') is-invalid @enderror" name="nip" id="nip">
+                                    @error('nip')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="nama" class="col-sm-4 col-form-label">Nama</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control @error('nama') is-invalid @enderror"name="nama" id="nama">
+                                    @error('nama')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                     @enderror
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="jabatan" class="col-sm-4 col-form-label">Jabatan</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control @error('jabatan') is-invalid @enderror" name="jabatan">
+                                    @error('jabatan')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="hp" class="col-sm-4 col-form-label">Nomor Hanphone</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control @error('hp') is-invalid @enderror" name="hp" id="hp">
+                                    @error('hp')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="alamat" class="col-sm-4 col-form-label">Alamat</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat">
+                                    @error('alamat')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="taggallahir" class="col-sm-4 col-form-label">Tanggal Lahir</label>
                                 <div class="col-sm-8">
                                     <input type="date" class="form-control @error('tanggallahir') is-invalid @enderror" id="taggallahir" name="tanggallahir">
+                                    @error('tanggallahir')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -113,11 +149,16 @@
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Perempuan
                                     </label>
+                                    @error('jeniskelamin')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
                                 <button type="submit" class="btn btn-bluedark">Simpan</button>
                             </div>
                         </form>
@@ -284,13 +325,6 @@
         $('#viewData #viewFoto').attr('src',`/storage/${datas.foto}`)
     }
 
-    const hapus = document.getElementById('hapus')
-    hapus.addEventListener('click',(e)=>{
-        const konfirmasi =confirm('yakin ingin menghapus data ??')
-        if(konfirmasi==false){
-            e.preventDefault()
-        }
-    })
 </script>
 
     @endsection

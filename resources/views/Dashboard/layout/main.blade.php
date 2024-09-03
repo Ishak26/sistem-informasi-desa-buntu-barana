@@ -65,7 +65,7 @@
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('databerita') ? 'active' : '' }} link-dark"
                                 href="/databerita">
-                                <span class="me-2 bi bi-archive-fill">
+                                <span class="me-2 bi bi-newspaper">
                                 </span>
                                 Berita
                             </a>
@@ -73,7 +73,7 @@
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/datapenduduk') ? 'active' : '' }} link-dark"
                             href="/dashboard/datapenduduk">
-                                <span class="me-2 bi bi-archive-fill">
+                                <span class="me-2 bi bi-people-fill">
                                 </span>
                                 Penduduk
                             </a>
@@ -81,7 +81,7 @@
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/pemerintah') ? 'active' : '' }} link-dark"
                                 href="/dashboard/pemerintah">
-                               <span class="me-2 bi bi-archive-fill" >
+                               <span class="me-2 bi bi-people-fill" >
                             </span>
                             Pegawai
                             </a>
@@ -89,7 +89,7 @@
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/kesehatan') ? 'active' : '' }} link-dark"
                                 href="/dashboard/kesehatan">
-                            <span class="me-2 bi bi-archive-fill">
+                            <span class="me-2 bi bi-file-medical-fill">
                             </span>
                                 Kesehatan
                             </a>
@@ -97,7 +97,7 @@
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/databantuan') ? 'active' : '' }} link-dark"
                                 href="/dashboard/databantuan">
-                                <span class="me-2 bi bi-archive-fill">
+                                <span class="me-2 bi bi-universal-access">
                                 </span>
                                 Bantuan
                             </a>
@@ -105,7 +105,7 @@
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/surat') ? 'active' : '' }} link-dark"
                                 href="/dashboard/surat">
-                               <span class="me-2 bi bi-archive-fill" >
+                               <span class="me-2 bi bi-envelope-paper-fill" >
                             </span>
                                 Surat
                             </a>
@@ -125,7 +125,7 @@
                             <li class="nav-item">
                                 <a class="nav-link  {{ Request::is('dashboard/pemerintah') ? 'active' : '' }} link-dark"
                                     href="/dashboard/pemerintah">
-                                <span class="me-2 bi bi-archive-fill" >
+                                <span class="me-2 bi bi-people-fill" >
                                 </span>
                                     Pegawai
                                 </a>
@@ -133,7 +133,7 @@
                             <li class="nav-item">
                                 <a class="nav-link  {{ Request::is('dashboard/surat') ? 'active' : '' }} link-dark"
                                     href="/dashboard/surat">
-                                <span class="me-2 bi bi-archive-fill" >
+                                <span class="me-2 bi bi-envelope-paper-fill" >
                                 </span>
                                     Surat
                                 </a>
@@ -145,7 +145,7 @@
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('databerita') ? 'active' : '' }} link-dark"
                                 href="/databerita">
-                                <span class="me-2 bi bi-archive-fill">
+                                <span class="me-2 bi bi-newspaper">
                                 </span>
                                     Berita
                             </a>
@@ -153,7 +153,7 @@
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/datapenduduk') ? 'active' : '' }} link-dark"
                             href="/dashboard/datapenduduk">
-                            <span class="me-2 bi bi-archive-fill">
+                            <span class="me-2 bi bi-people-fill">
                             </span>
                                 Penduduk
                         </a>
@@ -165,7 +165,7 @@
                             <li class="nav-item">
                                 <a class="nav-link  {{ Request::is('dashboard/kesehatan') ? 'active' : '' }} link-dark"
                                     href="/dashboard/kesehatan">
-                                <span class="me-2 bi bi-archive-fill">
+                                <span class="me-2 bi bi-file-medical-fill">
                                 </span>
                                     Kesehatan
                                 </a>
@@ -173,7 +173,7 @@
                             <li class="nav-item">
                                 <a class="nav-link  {{ Request::is('dashboard/databantuan') ? 'active' : '' }} link-dark"
                                     href="/dashboard/databantuan">
-                                    <span class="me-2 bi bi-archive-fill">
+                                    <span class="me-2 bi bi-universal-arccess">
                                     </span>
                                      Bantuan
                                 </a>
@@ -182,7 +182,7 @@
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/programkerja') ? 'active' : '' }} link-dark"
                                 href="/dashboard/programkerja">
-                                <span class="me-2 bi bi-archive-fill">
+                                <span class="me-2 bi bi-tools">
                                 </span>
                                  Program Kerja
                             </a>
@@ -190,7 +190,7 @@
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/pemerintah') ? 'active' : '' }} link-dark"
                                 href="/dashboard/tambahalbum">
-                                <span class="me-2 bi bi-archive-fill">
+                                <span class="me-2 bi bi-file-image-fill">
                                 </span>
                                  Galeri
                             </a>
@@ -198,7 +198,7 @@
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('dashboard/kegiatan') ? 'active' : '' }} link-dark"
                                 href="/dashboard/kegiatan">
-                                <span class="me-2 bi bi-archive-fill">
+                                <span class="me-2 bi bi-calendar-event">
                                 </span>
                                  Kegiatan
                             </a>
@@ -234,6 +234,10 @@
                 @endif
                
                 @yield('container')
+
+                <footer class="footer my-5 text-muted text-center w-100 text-small position-relative bottom-0">
+                    <p class="mb-1 text-center">&copy; Pemerintah Desa Buntu Barana</p>
+                </footer>
 
             </main>
         </div>
@@ -322,11 +326,6 @@
             </div>
             {{-- Akhir modal --}}
         </div>
-
-
-        <footer class="footer my-5 text-muted text-center w-100 text-small position-relative bottom-0">
-            <p class="mb-1 text-center">&copy; Pemerintah Desa Buntu Barana</p>
-        </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

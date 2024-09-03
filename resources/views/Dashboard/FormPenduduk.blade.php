@@ -65,7 +65,7 @@
                         <label for="validationDefault04" class="form-label">Dusun</label>
                         <select class="form-select @error('dusun') is-invalid  @enderror" name="dusun" id="validationDefault04">
                             <option>--Pilih--</option>
-                            <option {{ old('dusun') == 'DUSUN BUNTUN KALOSI' ? 'selected' : '' }} value="DUSUN BUNTUN KALOSI">DUSUN BUNTUN KALOSI</option>
+                            <option {{ old('dusun') == 'DUSUN BUNTUN KALOSI' ? 'selected' : '' }} value="DUSUN BUNTU KALOSI">DUSUN BUNTUN KALOSI</option>
                             <option {{ old('dusun') == 'DUSUN RANTE LIMBONG' ? 'selected' : '' }} value="DUSUN RANTE LIMBONG">DUSUN RANTE LIMBONG</option>
                             <option {{ old('dusun') == 'DUSUN BALABATU' ? 'selected' : '' }} value="DUSUN BALABATU ">DUSUN BALABATU </option>
                             <option {{ old('dusun') == 'DUSUN MALIBA' ? 'selected' : '' }} value="DUSUN MALIBA ">DUSUN MALIBA </option>
@@ -96,7 +96,7 @@
                         <div class="col-sm-6 mb-1">
                             <label for="validationDefault05" class="form-label">Status</label>
                             <select name="status" class="form-select @error('status') is-invalid  @enderror" aria-label="Default select example">
-                                <option>--Pilih--</option>
+                                <option value="">--Pilih--</option>
                                 <option {{ old('status') == 'kawin' ? 'selected' : '' }} value="kawin">Kawin</option>
                                 <option {{ old('status') == 'Belum kawin' ? 'selected' : '' }} value="Belum kawin">Belum
                                     Kawin
@@ -110,7 +110,7 @@
                     <div class="row">
                         <div class="col-sm-6 mb-1">
                             <label for="validationDefault05" class="form-label">Nomor Hp</label>
-                            <input type="number" name="hp" class="form-control @error('hp') is-invalid  @enderror" id="validationDefault05"
+                            <input type="text" name="hp" class="form-control @error('hp') is-invalid  @enderror" id="validationDefault05"
                                 value="{{ old('hp') }}" />
                             @error('hp') <div class="invalid-feedback">{{$message}}</div>@enderror
                         </div>
@@ -211,7 +211,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="d-block m-auto mt-3 btn btn-primary text-center">Simpan</button>
+            <button type="submit" class="d-block m-auto mt-3 btn btn-bluedark text-center">Simpan</button>
         </form>
     </div>
 @endsection

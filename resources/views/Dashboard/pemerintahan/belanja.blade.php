@@ -43,23 +43,38 @@
             <input type="number" name="ProgramKerja_id" value="{{$proker->id}}" id="" hidden>
             <div class="mb-3">
               <label class="col-form-label">Keterangan Belanja</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="Belanja" required></textarea>
+              <textarea class="form-control @error('Belanja') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="Belanja" required value={{old('Belanja')}}></textarea>
+              @error('Belanja')
+                  {{$message}}
+              @enderror
             </div>
             <div class="mb-3">
               <label class="col-form-label">Jumlah satuan</label>
-              <input class="form-control" onchange="jumlah()" type="number" name="Jumlah_satuan" id="satuan" required>
+              <input class="form-control @error('Jumlah_satuan') is-invalid @enderror" onchange="jumlah()" type="number" name="Jumlah_satuan" id="satuan" required value={{old('Jumlah_satuan')}}>
+              @error('Jumlah_satuan')
+                  {{$message}}
+              @enderror
             </div>
             <div class="mb-3">
               <label class="col-form-label">harga</label>
-              <input class="form-control" onchange="jumlah()" type="number" name="harga" id="harga" required>
+              <input class="form-control @error('harga') is-invalid @enderror" onchange="jumlah()" type="number" name="harga" id="harga" value={{old('haraga')}} required>
+              @error('harga')
+                  {{$message}}
+              @enderror
             </div>
             <div class="mb-3">
               <label class="col-form-label">Total belanja</label>
-              <input class="form-control"  type="number" name="total_harga" id="total" readonly required>
+              <input class="form-control @error('total_harga') is-invalid @enderror"  type="number" name="total_harga" id="total" readonly value={{old('total_harga')}} required>
+              @error('total_harga')
+                  {{$message}}
+              @enderror
             </div>
             <div class="mb-3">
               <label class="col-form-label">Bukti Belanja</label>
-              <input class="form-control" type="file" name="Bukti_belanja" id="" required>
+              <input class="form-control @error('Bukti_belanja') is-invalid @enderror" type="file" name="Bukti_belanja" id="" value={{old('Bukti_belanja')}} required>
+              @error('Bukti_belanja')
+                  {{$message}}
+              @enderror
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

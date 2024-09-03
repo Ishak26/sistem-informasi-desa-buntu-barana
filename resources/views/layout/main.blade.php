@@ -27,12 +27,8 @@
 </head>
 
 <body>
-{{-- 
-    navbar// warna navbar lama = #8a2be2 --}}
-    {{-- <nav class="navbar navbar-expand-lg fixed-top position-sticky mb-0 encode-sans-condensed-black"> --}}
     <nav class="navbar navbar-expand-lg mb-0 encode-sans-condensed-black "style="z-index: 99; backdrop-filter:blur(20px);">
         <div class="container ms-4">
-            {{-- <img class="m-1" src="/storage/logo web.png"  width="250" alt=""> --}}
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" z-index="-1">
                 <span class="navbar-toggler-icon"></span>

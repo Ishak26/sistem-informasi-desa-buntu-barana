@@ -3,6 +3,12 @@
 {{-- SESSION HANDLING --}}
 @include('Dashboard.partials.sessionhandle')
 {{-- END SESSION HANDLING --}}
+
+@if ($errors->any())
+    <script>
+      loadModal('#pendapatan  ')
+    </script>
+@endif
     <div class="row mt-2 mb-2">
       <div class="col-sm-6">
         <div class="w-75 border border-success rounded m-auto p-2 shadow border-opacity-50 bg-bluedark">
@@ -47,10 +53,20 @@
             <div class="modal-body">
               <label for="" class="form-col-label">Keterangan Pendapatan</label>
               <input type="text" name="Keterangan" class="form-control @error('Keterangan') is-invalid @enderror" value="{{old('Keterangan')}}">
+              @error('Keterangan') 
+                <div class="invalid-feedback">
+                  {{$message}}
+                </div>
+              @enderror
               <div class="row">
                 <div class="col-sm-4 position-relative">
                   <label for="" class="form-col-label">Nominal</label>
                   <input id="nominal" type="number" class="form-control @error('nominal') is-invalid @enderror" value="{{old('nominal')}}" name="nominal" >
+                  @error('nominal') 
+                    <div class="invalid-feedback">
+                      {{$message}}
+                    </div>
+                  @enderror
                 </div>
                 <div class="col-sm-4">
                   <label for="" class="form-col-label">atau</label>
@@ -63,6 +79,11 @@
                         <option {{(old('tahunanggaran')==$year)?'selected':''}} value="{{$year}}"> {{$year}}</option>
                       @endfor;
                    </select>
+                   @error('tahunanggaran') 
+                      <div class="invalid-feedback">
+                        {{$message}}
+                      </div>
+                    @enderror
                 </div>
               </div>
               <label for="" class="form-col-label">Sumber Dana</label>
@@ -73,6 +94,11 @@
                 <option {{(old('sumberdana') == 'DD')?'selected':''}} value="ADD">Alokasi Dana Desa</option>
                 <option {{(old('sumberdana') == 'DD')?'selected':''}} value="LAINNYA">Lain-Nya..</option>
               </select>
+              @error('tahunanggaran') 
+                <div class="invalid-feedback">
+                  {{$message}}
+                </div>
+              @enderror
             </div>
             <div class="modal-footer">
               <button class="btn btn-sm btn-danger" type="button" data-bs-dismiss="modal">tutup</button>
@@ -171,6 +197,7 @@
       rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
       return harga.value='Rp '+rupiah;
     });
+    
 
   </script>
 @endsection

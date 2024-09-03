@@ -7,12 +7,12 @@
 @endif
 
 <div class="container mt-3">
-    <a href="" class="btn btn-sm btn-bluedark" data-bs-toggle="modal" data-bs-target="#tambahbantuan">
+    <a href="" class="btn btn-sm btn-bluedark mb-3" data-bs-toggle="modal" data-bs-target="#tambahbantuan">
         <i class="bi bi-database-fill-add"></i></a>
-    <table class="table ">
+    <table class="table-responsive w-100">
         <thead>
-            <tr class="text-center">
-                <th scope="col">#</th>
+            <tr class="text-center bg-bluedark text-white">
+                <th scope="col">No</th>
                 <th scope="col">bantuan</th>
                 <th scope="col">jenis</th>
                 <th scope="col">sumber</th>
@@ -51,19 +51,34 @@
                         <div class="col">
                             <label for="" class="col-form-label">Keterangan bantuan</label>
                             <input type="text" name="bantuan" class="form-control @error('bantuan') is-invalid @enderror">
+                            @error('bantuan')
+                                <div class="invalid-fedback">
+                                    {{$message}}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col">
                             <label for="" class="col-form-label">jenis Bantuan</label>
                             <select name="jenis" type="text" id="" class="form-select @error('jenis') is-invalid  @enderror">
-                                <option selected>--pilih--</option>
+                                <option value="">--pilih--</option>
                                 <option value="UANG TUNAI">UANG TUNAI</option>
                                 <option value="BARANG">BARANG</option>
                                 <option value="PANGAN">PANGAN</option>
                             </select>
+                            @error('jenis')
+                                <div class="invalid-fedback">
+                                    {{$message}}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col">
                             <label for="" class="col-form-label">Sumber bantuan</label>
                             <input type="text" name="sumber" class="form-control @error('sumber') is-invalid  @enderror">
+                            @error('sumber')
+                                <div class="invalid-fedback">
+                                    {{$message}}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>

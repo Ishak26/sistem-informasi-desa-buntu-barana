@@ -3,6 +3,8 @@
 @php
     $tkasipemerintahan=0;
     $tpendapatan=0;
+    $tkasikesra =0;
+    $tkasikemasyarakatan=0;
 @endphp
 {{-- <img class="position-fixed top-0 w-100 h-100 object-fit" src="/img/bgkeuangan.jpg" alt=""> --}}
 <img class="position-fixed top-0 w-100 h-100 object-fit bg-bluelight" alt="">
@@ -96,6 +98,9 @@
           <td></td>
         </tr>
         @foreach ($pkkesra as $kesra)
+        @php
+        $tkasikesra=$tkasikesra+$kesra->anggaran;
+        @endphp
         <tr>
           <td>{{$kesra->proker}}</td>
           <td>{{"Rp ". number_format($kesra->anggaran,0,',','.')}}</td>
@@ -116,12 +121,20 @@
           </td>
         </tr>
         @endforeach
+        <tr class="">
+          <td>Total:</td>
+          <td>{{"Rp ". number_format($tkasikesra,0,',','.')}}</td>
+          <td></td>
+        </tr>
         <tr class="bg-bluedark">
           <td>KASI KEMASYARAKATAN</td>
           <td></td>
           <td></td>
         </tr>
         @foreach ($pkkemasyarakatan as $kemasyarakatan)
+        @php
+        $tkasikemasyarakatan=$tkasikemasyarakatan+$kesra->anggaran;
+        @endphp
         <tr>
           <td>{{$kemasyarakatan->proker}}</td>
           <td>{{"Rp ". number_format($kemasyarakatan->anggaran,0,',','.')}}</td>
@@ -142,6 +155,11 @@
           </td>
         </tr>
         @endforeach
+        <tr class="">
+          <td>Total:</td>
+          <td>{{"Rp ". number_format($tkasikemasyarakatan,0,',','.')}}</td>
+          <td></td>
+        </tr>
       </table>
     </div>
   </div>

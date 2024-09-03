@@ -3,13 +3,12 @@
   @if(session('suratfail'))
       <script>alert('format surat tidak ada!!')</script>
   @endif
-    <h3 class="encode-sans-condensed-bold text-center text-bluedark shahdow">PENGAJUAN SURAT</h3>
-    <table class="table">
+    <table class="table-responsive w-100 bg-bluedark text-white" >
       <tr>
         <th>No</th>
         <th>Nama</th>
-        <th>Jenis surat pengajuan</th>
-        <th>Tujuan Surat</th>
+        <th>Jenis</th>
+        <th>Tujuan</th>
         <th>status</th>
         <th>Keterangan</th>
       </tr>

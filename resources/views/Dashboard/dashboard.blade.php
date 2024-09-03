@@ -1,19 +1,5 @@
 @extends('Dashboard.layout.main')
 @section('container')
-    <style>
-        html,
-        body,
-        p {
-            margin: 0%;
-            padding: 0;
-        }
-        .body {
-            font-size: 25px;
-            margin: auto;
-            text-align: center;
-            gap: 30px;
-        }
-    </style>
 
 {{-- SESSION HANDLING --}}
     @if (session('edit'))
@@ -23,27 +9,6 @@
     @endif
   
     <div class="container mt-3">
-
-        {{-- <div class="m-auto">
-            <div class="text-center float-start">
-                <img src="img/no-profil.jpg" class="img-fluid me-4" width="300" height="350" alt="">
-                <small class="d-block">dr xyz M.ms</small>
-                <p>Kepala Desa XYZ</p>
-            </div>
-            <p class="fs-5 fw-semi-bold mb-1">Visi</p>
-            <small class="lh-sm text-muted">MEWUJUDKAN DESA CILEUNYI KULON LEBIH MAJU, MANDIRI DAN RELIGIUS MELALUI
-                PEMBANGUNAN PARTISIPATIF DAN TATA KELOLA PEMERINTAHAN YANG BAIK</small>
-            <p class="fs-5 fw-semi-bold mb-1">Misi</p>
-            <ul class="text-muted ms-3">
-                <li> Meningkatkan pembangunan infrastruktur pedesaaan secara partisipatif</li>
-                <li> Meningkatkan akuntabilitas pemerintahan dan optimalisasi pelayanan publik</li>
-                <li> Meningkatkan pengembangan usaha ekonomi produktif masyarakat</li>
-                <li>Meningkatkan kesejahteraan sosial masyarakat</li>
-                <li> Meningkatkan kualitas dan perluasan layanan kesehatan dan pendidikan anak</li>
-                <li> Memelihara nilai-nilai agama, sosial dan budaya masyarakat</li>
-            </ul>
-        </div> --}}
-
     @if (session('sukses'))
         <script>
             alert('{{session('sukses')}}')
@@ -73,12 +38,13 @@
             <a href="" class="btn btn-bluedark m-2" data-bs-toggle="modal" data-bs-target="#Formdata">Update</a>
             @endcan
         </div>
+        <div class="float-end"></div>
 
         {{-- modal tambah data --}}
-        <div class="modal" tabindex="-1" id="Formdata" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal" tabindex="-1" id="Formdata" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header bg-bluedark">
                         <h4 class="modal-title">Edit profil Kepala Desa</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>

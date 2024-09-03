@@ -14,32 +14,33 @@ class KesehatanController extends Controller
             abort(403);
         }
         return view('Dashboard.pemerintahan.datakesehatan',[
-            "data"=>Kesehatan::all()
+            "data"=>Kesehatan::paginate(30)
         ]);
     }
     public function tambah(Request $request){
         $validasi=$request->validate([
-            'penduduk_id'=> 'bail|unique:Kesehatans|numeric',
-            'guladarah'=>'required|numeric|maxdigits:3',
-            'tinggi'=>'required|numeric|maxdigits:3',
-            'tekanan'=>'required|numeric|maxdigits:3',
-            'berat'=>'required|numeric|maxdigits:3',
+            'penduduk_id'=> 'required|numeric|bail|unique:kesehatans|max_digits:3',
+            'guladarah'=>'required|numeric|max_digits:3',
+            'tinggi'=>'required|numeric|max_digits:3',
+            'tekanan'=>'required|numeric|max_digits:3',
+            'berat'=>'required|numeric|max_digits:3',
             'riwayatpenyakit'=>'required|string',
-            'golongandarah'=>'required|string'
+            'golongandarah'=>'required|string|max:2'
 
         ],[
-            'penduduk_id.unique'=>'Data sudah ada, Silahkan update data yang sudah tersedia!!'
+            'penduduk_id.unique'=>'Data sudah ada, Silahkan update data yang sudah tersedia!!',
+            'penduduk_id.required'=>'NIK penduduk tidak di temukan!!'
         ]);
         Kesehatan::create($validasi);
-        return back()->with('noted','Data berhasil ditambahkan!');
+        return back()->with('sukses','Data berhasil ditambahkan!');
     }
 
     public function update(Kesehatan $kesehatan,Request $request){
         $validasi=$request->validate([
-            'guladarah'=>'required|numeric|maxdigits:3',
-            'tinggi'=>'required|numeric|maxdigits:3',
-            'tekanan'=>'required|numeric|maxdigits:3',
-            'berat'=>'required|numeric|maxdigits:3',
+            'guladarah'=>'required|numeric|max_digits:3',
+            'tinggi'=>'required|numeric|max_digits:3',
+            'tekanan'=>'required|numeric|max_digits:3',
+            'berat'=>'required|numeric|max_digits:3',
             'riwayatpenyakit'=>'required|string',
             'golongandarah'=>'required|max:2|string'
         ]);

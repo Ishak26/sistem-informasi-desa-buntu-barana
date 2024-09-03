@@ -4,27 +4,27 @@
     @if(session('status'))
       <script>alert("{{session()->pull('status')}}");</script>  
     @endif
-
-    <h3 class="text-center fw-semibold mt-3">Program Kerja {{(auth()->user()->bidang==null)?'':auth()->user()->bidang}}</h3>
+    @if ($errors->any())
+        <script>loadModal('createdata')</script>
+    @endif
     <button class="btn btn-sm btn-bluedark m-3 bi bi-database-fill-add " data-bs-toggle='modal' data-bs-target='#createdata' >
     </button>   
-    <table class="table">
-      <tr>
-        <th>No</th>
-        <th>Program Kerja</th>
-        <th>Anggaran</th>
-        <th>Sumber dana</th>
-        <th>Verifikasi sekertaris</th>
-        <th>Verifikasi Kepala Desa</th>
-        <th>Proposal</th>
-        <th></th>
+    <table class="table-responsive w-100">
+      <tr class="text-center text-white bg-bluedark">
+        <td rowspan="2">No</td>
+        <td rowspan="2">Program Kerja</td>
+        <td colspan="2" >Verifikasi</td>
+        <td rowspan="2">Proposal</td>
+        <td rowspan="2">-</td>
+      </tr>
+      <tr class="text-center bg-bluedark text-white">
+        <td >Sekdes</td>
+        <td>Kades</td>
       </tr>
       @foreach ($data as $item)
           <tr>
             <td>{{$loop->iteration}}</td>
-            <td>{{$item->proker}}</td>
-            <td>{{$item->anggaran}}</td>
-            <td>{{$item->Sumber_dana}}</td>
+            <td class="lh-1">{{$item->proker}}</td>
             <td class="text-center">
               <div class="{{($item->Verifikasi_sekertaris==0)?'bi-primary bi-x-square-fill':'bi bi-check-square-fill'}}"></div>
             </td>
@@ -105,48 +105,72 @@
       <div class="modal" id='createdata' tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="text-center d-block">Pengajuan Program Kerja</h5>
+            <div class="modal-header bg-bluedark">
+              <h4 class="text-bluelight">Pengajuan Program Kerja</h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div class="row mb-2">
                 <div class="col-md-4"><label for="proker" class="col-form-label">Program Kerja</label></div>
-                <div class="col-md-8"><textarea class="form-control"style="height: 100px" name="proker" id="proker" placeholder="Program kerja yang di rencanakan" required></textarea></div>
+                <div class="col-md-8">
+                  <textarea class="form-control @error('proker') is-invalid @enderror" value="{{old('proker')}}" style="height: 100px" name="proker" id="proker" placeholder="Program kerja yang di rencanakan" required></textarea>
+                  @error('proker')
+                      <div class="invalid-feedback">
+                        {{$message}}
+                      </div>
+                  @enderror
+                </div>
               </div>
-              <input type="text" value="{{auth()->user()->bidang}}" name="bidang" id="bidang" hidden>
+              <input type="hidden" value="{{auth()->user()->bidang}}" name="bidang" id="bidang">
               <div class="row mb-2">
                 <div class="col-md-4"><label for="" class="col-form-label">Anggaran</label></div>
-                <div class="col-md-8"><input type="number" name="anggaran" id="anggaran"  class="form-control" required placeholder="Anggaran yang Dibutuhkan"></div>
+                <div class="col-md-8">
+                  <input type="number" name="anggaran" id="anggaran"  class="form-control  @error('anggaran') is-invalid @enderror" required placeholder="Anggaran yang Dibutuhkan" value="{{old('anggaran')}}">
+                  @error('anggaran')
+                      <div class="invalid-feedback">{{$message}}</div>
+                  @enderror
+                </div>
               </div>
               <div class="row mb-2">
                 <div class="col-md-4"><label for="" class="col-form-label">Terbilang</label></div>
-                <div class="col-md-8"><input type="text" name="terbilang" id="terbilang"  class="form-control" required placeholder="Terbilang sebanyak!!"></div>
+                <div class="col-md-8">
+                  <input type="text" name="terbilang" id="terbilang"  class="form-control  @error('terbilang') is-invalid @enderror" required placeholder="Terbilang sebanyak!!" value="{{old('terbilang')}}" >
+                  @error('terbilang')
+                      {{$message}}
+                  @enderror
+                </div>
               </div>
               <div class="row mb-2">
                 <div class="col-md-4"><label for="" class="col-form-label">Sumber Dana</label></div>
                 <div class="col-md-8">
-                  <select name="Sumber_dana" class="form-select" id="Sumber_dana">
-                    <option>--Pilih--</option>
-                    <option value="DD">Dana Desa</option>
-                    <option value="DBH">Bagi Hasil Pajak</option>
-                    <option value="ADD">Alokasi Dana Desa</option>
-                    <option value="LAINNYA">Lain-Nya..</option>
+                  <select name="Sumber_dana" class="form-select  @error('Sumber_dana') is-invalid @enderror" id="Sumber_dana">
+                    <option value="">--Pilih--</option>
+                    <option value="DD" {{(old('Sumber_dana')=='DD')?'selected':''}}>Dana Desa</option>
+                    <option value="DBH" {{(old('Sumber_dana')=='DBH')?'selected':''}}>Bagi Hasil Pajak</option>
+                    <option value="ADD" {{(old('Sumber_dana')=='ADD')?'selected':''}}>Alokasi Dana Desa</option>
+                    <option value="LAINNYA" {{(old('Sumber_dana')=='LAINNYA')?'selected':''}}>Lain-Nya..</option>
                   </select>
+                  @error('Sumber_dana')
+                      {{$message}}
+                  @enderror
                 </div>
               </div>
               <div class="row mb-2">
                 <div class="col-md-4"><label for="Tanggal_Pengerjaan" class="col-form-label">Waktu pengerjaan</label></div>
-                <div class="col-md-8"><input type="date" name="Tanggal_Pengerjaan" id="Tanggal_Pengerjaan" class="form-control" required></div>
+                <div class="col-md-8">
+                  <input type="date" name="Tanggal_Pengerjaan" id="Tanggal_Pengerjaan" class="form-control  @error('Tanggal_Pengerjaan') is-invalid @enderror" required>
+                </div>
               </div>
               <div class="row mb-2">
                 <div class="col-md-4"><label for="Proposal" class="col-form-label">Proposal</label></div>
-                <div class="col-md-8"><input type="file" class="form-control" name="proposal" id="proposal" required> </div>
+                <div class="col-md-8">
+                  <input type="file" class="form-control  @error('proposal') is-invalid @enderror" name="proposal" id="proposal" required>
+                </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button class="btn btn-primary" type="submit">Save changes</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+              <button class="btn btn-bluedark" type="submit">simpan</button>
             </div>
           </div>
         </div>
@@ -214,7 +238,7 @@
 </form>
 {{-- akhir Form kontrol edit data--}}
 <script>
-  function editData(datas){
+  function editDatap(datas){
     $('#form').attr('action','/dashboard/programkerja/edit/'+datas.id)
     $('#form #proker').val(datas.proker)
     $('#form #anggaran').val(datas.anggaran)

@@ -17,7 +17,7 @@ class PemerintahController extends Controller
             abort(403);
         }
         return view('Dashboard.pemerintahan.pegawai', [
-            "datapegawai" => Pemerintah::all(),
+            "datapegawai" => Pemerintah::paginate(10),
             "fielddata"=>Pemerintah::fieldColomns(),
         ]);
     }
@@ -25,7 +25,7 @@ class PemerintahController extends Controller
     {
         $validasi = $request->validate([
             'foto'=>'required|file',
-            'nip' => 'required|unique:Pemerintahs|max_digits:16',
+            'nip' => 'required|unique:pemerintahs|digits:16',
             'nama' => 'required|max:30|string',
             'jabatan' => 'required|max:30|string',
             'hp' => 'required|numeric',
@@ -62,7 +62,9 @@ class PemerintahController extends Controller
     }
     public function hapus(Pemerintah $Pemerintah)
     {
-        Gate::any(['sekertaris','kasipemerintahan']);
+        if (!Gate::any(['sekertaris','kasipemerintahan'])){
+            abort(403);
+        }
         Storage::delete($Pemerintah->foto);
         Pemerintah::destroy($Pemerintah->id);
         return redirect('/dashboard/pemerintah')->with('hapus', 'Data '.$Pemerintah->nama.' berhasil di hapus');

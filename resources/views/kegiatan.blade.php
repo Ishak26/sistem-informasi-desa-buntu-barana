@@ -2,10 +2,10 @@
 @section('container')
     <div class="container">
       <div class="row">
-        <div class="col-8">
+        <div class="col-sm-8">
           @foreach ($datas as $item)
-          <div class="card" style="width: 18rem;">
-            <img src="{{asset('./storage/'.$item->gambar)}}" class="card-img-top" alt="...">
+          <div class="card" style="width: 16rem; height:16rem">
+            <img src="{{asset('./storage/'.$item->gambar)}}" class="w-100 h-50 object-fit" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{$item->perihal}}</h5>
               <ul class="card-text list-unstyled">
@@ -17,12 +17,12 @@
           </div>
           @endforeach
         </div>
-        <div class="col-4">
+        <div class="col-sm-4">
           <h4 class="fs-4 fw-bold">Kegiatan Terakhir</h4>
           <div class="d-flex flex-column">
             @foreach ($latest as $item)
             <div class="d-flex gap-2 w-100" style="height:100px">
-              <img src="{{asset('./storage/'.$item->gambar)}}" class="w-50 h-100 rounded" alt="...">
+              <img src="{{asset('./storage/'.$item->gambar)}}" class="w-50 h-100 rounded object-fit" alt="...">
               <div class="">
                 <h5 class="">{{$item->perihal}}</h5>
                 <ul class="list-unstyled">

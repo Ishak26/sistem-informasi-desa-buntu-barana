@@ -1,19 +1,19 @@
-@extends('dashboard.layout.main')
+@extends('Dashboard.layout.main')
 @section('container')
 @include('dashboard.partials.sessionHandle')
     <div class="container">
-      <h3 class="fs-4 text-bold text-center">Kegiatan</h3>
-      <a class="bi bi-database-fill btn btn-sm btn-bluedark" data-bs-toggle="modal" data-bs-target="#modalPengumuman"></a>
+      <a class="bi bi-database-fill btn btn-sm btn-bluedark mb-3" data-bs-toggle="modal" data-bs-target="#modalPengumuman"></a>
     </div>
 
-    <table class="table">
-      <tr>
-        <th scope="col">No</th>
+    <table class="table-responsive w-100">
+      <tr class="bg-bluedark text-white">
+        <td scope="col">No</td>
         @foreach ($fieldTable as $item)
-          <th scope="col">{{$item}}</th>
+          <td scope="col">{{$item}}</td>
         @endforeach
         <th scope="col">-</th>
       </tr>
+
       @foreach ($datas as $item)
           <tr>
             <td>{{$loop->iteration}}</td>
@@ -28,13 +28,17 @@
               <form action="/dashboard/hapuskegiatan/{{$item->id}}" method="post">
                 @csrf
                 @method('delete')
-                <button type="submit"><i class="bi bi-trash-fill"></i></button>
+                <button class="bi bi-trash-fill btn btn-danger btn-sm" type="submit"></button>
               </form>
             </td>
           </tr>
       @endforeach
     </table>
-
+    @if ($datas->all() ==null)
+        <div class="w-100 h-50 position-relative">
+          <p class="position-absolute  start-50 top-50 translate-middle">BELUM ADA DATA</p>
+        </div>
+    @endif
     {{-- membuat modal kegiatan --}}
     <div class="modal" id="modalPengumuman">
       <div class="modal-dialog">

@@ -2,7 +2,6 @@
 @section('container')
 @include('Dashboard.partials.sessionhandle')
     <div class="container">
-        <h3 class="m-auto text-center p-2 encode-sans-condensed-extrabold w-50 text-bluedark">ALBUM KERJA PEMERINTAH DESA BUNTU BARANA</h1>
         <div class="border p-3 mb-2 shadow">
             <p class="text-center fw-bold m-0">Tambah foto</p>
             <form action="/dashboard/album" method="post" enctype="multipart/form-data">
@@ -18,7 +17,7 @@
 
         <div class="row">
             @foreach ($album as $albums)
-            <div class="col-sm-4 border px-0">
+            <div class="col-sm-4 border px-0" style="height: 300px">
                     <form action="/dashboard/album/delete/{{$albums->id}}" method="post">
                         @csrf
                         @method('delete')
