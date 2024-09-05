@@ -5,15 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
-     <link rel="stylesheet" href="/css/main.min.css">  
+    @vite('resources/js/app.js')
     <link href="css/login.css" rel="stylesheet">
-    <style>
-        .btn-ungu{
-            background-color: #0E5E6F;
-        }
-    </style>
-
-
 </head>
 
 <body>

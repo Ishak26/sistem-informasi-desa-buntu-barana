@@ -1,6 +1,9 @@
 @extends('Dashboard.layout.main')
 @section('container')
 @include('Dashboard.partials.sessionhandle')
+    @if ($errors->any())
+         <script>loadModal('#Formdata')</script>
+    @endif
     <div class="container">
         <a href="" class="btn btn-bluedark m-2" data-bs-toggle="modal" data-bs-target="#Formdata"><i class="bi bi-database-fill-add "></i></a>
         <div class="table-responsive-sm">
@@ -62,7 +65,7 @@
                                 <label for="foto" class="col-sm-4 col-form-label">Foto Profil</label>
                                 <div class="col-sm-8">
                                     <img id="fotoPegawai" class="object-fit mb-3">
-                                    <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" id="foto" onchange="previewImage('fotoPegawai','#foto')">
+                                    <input type="file" class="form-control @error('foto') is-invalid @enderror" value="{{old('foto')}}" name="foto" id="foto" onchange="previewImage('fotoPegawai','#foto')">
                                     @error('foto')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -73,7 +76,7 @@
                             <div class="mb-3 row">
                                 <label for="nip" class="col-sm-4 col-form-label">Nip</label>
                                 <div class="col-sm-8">
-                                    <input type="number" class="form-control @error('nip') is-invalid @enderror" name="nip" id="nip">
+                                    <input type="number" class="form-control @error('nip') is-invalid @enderror" value="{{old('nip')}}" name="nip" id="nip">
                                     @error('nip')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -84,7 +87,7 @@
                             <div class="mb-3 row">
                                 <label for="nama" class="col-sm-4 col-form-label">Nama</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control @error('nama') is-invalid @enderror"name="nama" id="nama">
+                                    <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{old('nama')}}" id="nama">
                                     @error('nama')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -95,7 +98,7 @@
                             <div class="mb-3 row">
                                 <label for="jabatan" class="col-sm-4 col-form-label">Jabatan</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control @error('jabatan') is-invalid @enderror" name="jabatan">
+                                    <input type="text" class="form-control @error('jabatan') is-invalid @enderror" value="{{old('jabatan')}}" name="jabatan">
                                     @error('jabatan')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -106,7 +109,7 @@
                             <div class="mb-3 row">
                                 <label for="hp" class="col-sm-4 col-form-label">Nomor Hanphone</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control @error('hp') is-invalid @enderror" name="hp" id="hp">
+                                    <input type="text" class="form-control @error('hp') is-invalid @enderror" value="{{old('hp')}}" name="hp" id="hp">
                                     @error('hp')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -117,7 +120,7 @@
                             <div class="mb-3 row">
                                 <label for="alamat" class="col-sm-4 col-form-label">Alamat</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat">
+                                    <input type="text" class="form-control @error('alamat') is-invalid @enderror" value="{{old('alamat')}}" id="alamat" name="alamat">
                                     @error('alamat')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -128,7 +131,7 @@
                             <div class="mb-3 row">
                                 <label for="taggallahir" class="col-sm-4 col-form-label">Tanggal Lahir</label>
                                 <div class="col-sm-8">
-                                    <input type="date" class="form-control @error('tanggallahir') is-invalid @enderror" id="taggallahir" name="tanggallahir">
+                                    <input type="date" class="form-control @error('tanggallahir') is-invalid @enderror" value="{{old('tanggallahir')}}" id="taggallahir" name="tanggallahir">
                                     @error('tanggallahir')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -140,12 +143,12 @@
                                 <label for="jk" class="col-sm-4 col-form-label">Jenis Kelamin</label>
                                 <div class="col-sm-8">
                                     <input class="form-check-input" type="radio" name="jeniskelamin"
-                                        value="laki-laki">
+                                        value="laki-laki" {{(old('jeniskelamin')==='laki-laki')?'check  ed':'';}}>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Laki-laki
                                     </label>
                                     <input class="form-check-input" type="radio" name="jeniskelamin"
-                                        value="perempuan">
+                                        value="perempuan" {{(old('jeniskelamin')==='laki-laki')?'checked':'';}}>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Perempuan
                                     </label>

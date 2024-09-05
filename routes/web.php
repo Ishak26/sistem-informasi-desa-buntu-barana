@@ -1,11 +1,9 @@
 <?php
 use App\Http\Controllers\KesehatanController;
-use App\Models\Kesehatan;
 use App\Models\Kades;
 use App\Models\berita;
 use App\Models\Penduduk;
 use App\Models\Pemerintah;
-use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\BelanjaController;
@@ -22,10 +20,7 @@ use App\Http\Controllers\SuratController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\ProgramKerjaController;
 use App\Http\Controllers\KritikSaranController;
-use App\Models\Jabatan;
-use App\Models\Kegiatan;
-use App\Models\KritikSaran;
-use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +34,11 @@ use Illuminate\Http\Request;
 */
 
 // login
+Route::get('storage-link', function(){
+    $targetFolder = storage_path('app/public');
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
+    symlink($targetFolder,$linkFolder);
+});
 
 Route::get('/login', function () {
     return view('login.login',);
@@ -130,12 +130,15 @@ Route::get('/dashboard/datapenduduk/{Penduduk:nik}/updatependuduk', [PendudukCon
 Route::put('/dashboard/updatependuduk/{Penduduk:nik}', [PendudukController::class, 'update'])->middleware('auth');
 Route::post('/dashboard/datapenduduk', [PendudukController::class, 'create'])->middleware('auth');
 Route::delete('/dashboard/datapenduduk/{Penduduk:nik}', [PendudukController::class, 'hapus'])->middleware('auth');
+Route::get('/dashboard/caripenduduk', [PendudukController::class, 'cariPenerimaBantuan'])->middleware('auth');
 
 // bagian data bantuan
 Route::get('/dashboard/databantuan',[BantuanController::class, 'index'])->middleware('auth');
 Route::post('/dashboard/databantuan',[BantuanController::class, 'tambah'])->middleware('auth');
 Route::get('/dashboard/databantuan/{bantuan:id}/penerima',[BantuanController::class, 'penerima'])->middleware('auth');
 Route::post('/dashboard/bantuan/penerima/filterpenduduk', [BantuanController::class, 'filter'])->middleware('auth');
+Route::post('/dashboard/bantuan/penerima/tambah', [BantuanController::class, 'penerimaBantuan'])->middleware('auth');
+Route::put('/dashboard/bantuan/penerima/update/{penerimaBantuan}', [BantuanController::class, 'updatepenerimaBantuan'])->middleware('auth');
 
 // bagian data pegawai pemerintah
 Route::middleware('auth')->group(function(){

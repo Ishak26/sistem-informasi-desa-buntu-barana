@@ -7,7 +7,7 @@
           <div class="card" style="width: 16rem; height:16rem">
             <img src="{{asset('./storage/'.$item->gambar)}}" class="w-100 h-50 object-fit" alt="...">
             <div class="card-body">
-              <h5 class="card-title">{{$item->perihal}}</h5>
+              <p class="p-0 m-0 fw-semibold">{{$item->perihal}}</p>
               <ul class="card-text list-unstyled">
                 <li><i class="bi bi-calendar-event me-3"></i>{{date('D,d-M-Y',strtotime($item->tanggal))}}</li>
                 <li><i class="bi bi-clock-fill me-3"></i>{{date('h:i A',strtotime($item->jam))}}</li>
@@ -18,7 +18,7 @@
           @endforeach
         </div>
         <div class="col-sm-4">
-          <h4 class="fs-4 fw-bold">Kegiatan Terakhir</h4>
+          <p class="fs-5 fw-semibold">KEGIATAN TERAKHIR :</p>
           <div class="d-flex flex-column">
             @foreach ($latest as $item)
             <div class="d-flex gap-2 w-100" style="height:100px">

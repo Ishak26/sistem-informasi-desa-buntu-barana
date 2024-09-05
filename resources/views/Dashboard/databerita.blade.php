@@ -52,9 +52,13 @@
                             </td>
                         </tr>
                     @endforeach
-
                 </tbody>
             </table>
+            @if ($data->isEmpty())
+                <div class="w-100 d-flex justify-content-center align-items-center">
+                    <p class="fs-4">DATA IS NOT FOUND</p>
+                </div>
+            @endif
 
             <div class="d-flex justify-content-center">
                 {{ $data->links() }}

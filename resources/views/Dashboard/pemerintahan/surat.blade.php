@@ -3,8 +3,8 @@
   @if(session('suratfail'))
       <script>alert('format surat tidak ada!!')</script>
   @endif
-    <table class="table-responsive w-100 bg-bluedark text-white" >
-      <tr>
+    <table class="table-responsive w-100" >
+      <tr class="bg-bluedark text-white">
         <th>No</th>
         <th>Nama</th>
         <th>Jenis</th>
@@ -25,8 +25,8 @@
           {{-- @dd(gettype($item->verifikasi)) --}}
           {{-- @dd($item->verifikasi) --}}
           @if($item->verifikasi == 0)
-            <a href="/dashboard/surat/{{$item->id}}/verifikasi" onclick="confirm('Konfirmasi Pengajuan surat ?')" class="btn btn-sm fs-6 btn-bluedark text-success">
-              <i class="bi bi-patch-check-fill"></i> verifikasi
+            <a href="/dashboard/surat/{{$item->id}}/verifikasi" onclick="confirm('Konfirmasi Pengajuan surat ?')" class="btn btn-sm btn-bluedark text-success">
+              <i class="bi bi-patch-check-fill"></i>
             </a>
           @else
             <a class="btn btn-sm btn-bluedark" href="{{asset('/storage/file-surat/'.$item->filesurat)}}"><i class="bi bi-filetype-pdf me-1 align-middle"></i>Cetak</a>

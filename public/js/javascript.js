@@ -1,4 +1,4 @@
-   function previewImage(img,fileimg) {
+function previewImage(img,fileimg) {
       const file = document.querySelector(fileimg);
       const gambar = document.getElementById(img);
         gambar.style.height='200px'; 
@@ -8,12 +8,11 @@
                 gambar.src = e.target.result;
             }
       }
-
-    function loadModal(modalId){
-        window.onload = function() {
-                var myModal = new bootstrap.Modal(modalId);
-                myModal.show();
-        };      
+      function loadModal(modalId){
+          window.onload = function() {
+                  var myModal = new bootstrap.Modal(modalId);
+                  myModal.show();
+          };      
       }
 
     // fungsi verifikasi tombol hapus

@@ -18,11 +18,11 @@
         <td class="lh-1" scope="col">No</td>
         <td class="lh-1" scope="col">Nama</td>
         <td class="lh-1" scope="col">Riwayat Penyakit</td>
-        <td class="lh-1 d-none d-lg-table-cell" scope="col">Tekanan</td>
-        <td class="lh-1 d-none d-lg-table-cell" scope="col">Tinggi</td>
-        <td class="lh-1 d-none d-lg-table-cell" scope="col">Berat Badan</td>
-        <td class="lh-1 d-none d-lg-table-cell" scope="col">Gula darah</td>
-        <td class="lh-1 d-none d-lg-table-cell" scope="col">Golongan Darah</td>
+        <td class="lh-1 d-none d-md-table-cell" scope="col">Tekanan</td>
+        <td class="lh-1 d-none d-md-table-cell" scope="col">Tinggi</td>
+        <td class="lh-1 d-none d-md-table-cell" scope="col">Berat Badan</td>
+        <td class="lh-1 d-none d-md-table-cell" scope="col">Gula darah</td>
+        <td class="lh-1 d-none d-md-table-cell" scope="col">Golongan Darah</td>
         <td class="" scope="col">-</td>
       </tr>
       @foreach ($data as $item)     
@@ -30,11 +30,11 @@
         <td>{{$loop->iteration}}</td>
         <td class="text-start">{{$item->Penduduk->nama}}</td>
         <td>{{$item->riwayatpenyakit}}</td>
-        <td class="d-none d-lg-table-cell">{{$item->tekanan}}</td>
-        <td class="d-none d-lg-table-cell">{{$item->tinggi}}</td>
-        <td class="d-none d-lg-table-cell">{{$item->berat}}</td>
-        <td class="d-none d-lg-table-cell">{{$item->guladarah}}</td>
-        <td class="d-none d-lg-table-cell">{{$item->golongandarah}}</td>
+        <td class="d-none d-md-table-cell">{{$item->tekanan}}</td>
+        <td class="d-none d-md-table-cell">{{$item->tinggi}}</td>
+        <td class="d-none d-md-table-cell">{{$item->berat}}</td>
+        <td class="d-none d-md-table-cell">{{$item->guladarah}}</td>
+        <td class="d-none d-md-table-cell">{{$item->golongandarah}}</td>
         <td>
           <button class="btn btn-bluedark btn-sm bi bi-info" data-bs-target="#viewDataKesehatan" data-bs-toggle="modal" onclick="viewDataKesehatan({{$item}})"></button>
           <button onclick="editKesehatan({{$item}})" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editKesehatan"> <span class="bi bi-pencil-square"></span></button>

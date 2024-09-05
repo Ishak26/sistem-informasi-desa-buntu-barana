@@ -9,7 +9,7 @@
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">Masukkan gambar</label>
                     <img class="text-center mb-2 text-center d-block m-auto" width="" src="" id="Gambar">
-                    <input class="form-control gambar" type="file" id="formFileMultiple" multiple name="gambar" onchange="previewImage()" required>
+                    <input class="form-control gambar" type="file" id="formFileMultiple" multiple name="gambar" onchange="previewImage('Gambar','.gambar')" required>
                 </div>
                 <button class="btn btn-bluedark text-center">Tambahkan</button>
             </form>
@@ -29,5 +29,4 @@
             @endforeach
         </div>
     </div>
-    <script src="/js/javascript.js"></script>
 @endsection

@@ -11,6 +11,6 @@ class Bantuan extends Model
     use HasFactory;
     protected $guarded=['id'];
     public function penerimabantuan(){
-        return $this->belongsToMany(Penduduk::class,penerimaBantuan::class)->select('nama','nik')->withPivot(['status','buktiterima']);
+        return $this->belongsToMany(Penduduk::class,penerimaBantuan::class)->select('nama','nik')->withPivot(['id','status','buktiterima']);
     }
 }

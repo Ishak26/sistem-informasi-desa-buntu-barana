@@ -69,7 +69,32 @@ class BantuanController extends Controller
         return back()->with('sukses','data berhasil di  tambahkan!');
     }
 
-    public function tambahPenerima(){
+    public function penerimaBantuan(Request $request){
+        $validasi = $request->validate([
+            'bantuan_id' => 'required|numeric',
+            'penduduk_id' => 'required|numeric',
+        ]);
+        $cekData = penerimabantuan::where('bantuan_id',$request->bantuan_id)->where('penduduk_id',$request->penduduk_id)->exists();
+        if($cekData === true){
+            return back()->with('edit','Penduduk telah terdaftar silahkan cek kembali data yang ada');
+        }else{
+            penerimaBantuan::create($validasi);
+            return back()->with('sukses','Penerima berhasil di tambahkan!!');
+        }
         
     }
+
+    public function updatePenerimabantuan(penerimaBantuan $penerimaBantuan,Request $request){
+        $validasi = $request->validate([
+            'status' => 'numeric|boolean',
+            'buktiterima'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+        if(isset($validasi['buktiterima'])){
+            $validasi['buktiterima'] = $request->file('buktiterima')->store('img-terima-bantuan');
+        }
+
+        $penerimaBantuan->update($validasi);
+        return back()->with('sukses','Data penerima berhasil di perbaharui!!');
+    }
+
 }

@@ -5,7 +5,7 @@
       <script>alert("{{session()->pull('status')}}");</script>  
     @endif
     @if ($errors->any())
-        <script>loadModal('createdata')</script>
+        <script>loadModal('#createdata')</script>
     @endif
     <button class="btn btn-sm btn-bluedark m-3 bi bi-database-fill-add " data-bs-toggle='modal' data-bs-target='#createdata' >
     </button>   
@@ -22,7 +22,7 @@
         <td>Kades</td>
       </tr>
       @foreach ($data as $item)
-          <tr>
+          <tr class="fw-light lh-sm">
             <td>{{$loop->iteration}}</td>
             <td class="lh-1">{{$item->proker}}</td>
             <td class="text-center">
@@ -47,7 +47,7 @@
               </form>
 
               @if ($item->Verifikasi_KepalaDesa && $item->Verifikasi_sekertaris==1)
-                <a href="/dashboard/programkerja/belanja/{{$item->id}}" class="btn btn-sm btn-warning ms-1"><i class="bi bi-cart-plus-fill"></i></a>
+                <a href="/dashboard/programkerja/belanja/{{$item->id}}" class="btn btn-sm btn-warning"><i class="bi bi-cart-plus-fill"></i></a>
               @else
                 @canany(['sekertaris','kepaladesa'])
                   <button class="btn btn-sm btn-success ms-1" data-bs-toggle="modal" data-bs-target="#verifikasi{{$item->id}}"><i class="bi bi-patch-check"></i></button>
@@ -113,10 +113,10 @@
               <div class="row mb-2">
                 <div class="col-md-4"><label for="proker" class="col-form-label">Program Kerja</label></div>
                 <div class="col-md-8">
-                  <textarea class="form-control @error('proker') is-invalid @enderror" value="{{old('proker')}}" style="height: 100px" name="proker" id="proker" placeholder="Program kerja yang di rencanakan" required></textarea>
+                  <textarea class="form-control @error('proker') is-invalid @enderror" style="height: 100px" name="proker" id="proker" placeholder="Program kerja yang di rencanakan">{{old('proker')}}</textarea>
                   @error('proker')
                       <div class="invalid-feedback">
-                        {{$message}}
+                        {{$message}}  
                       </div>
                   @enderror
                 </div>
@@ -127,7 +127,9 @@
                 <div class="col-md-8">
                   <input type="number" name="anggaran" id="anggaran"  class="form-control  @error('anggaran') is-invalid @enderror" required placeholder="Anggaran yang Dibutuhkan" value="{{old('anggaran')}}">
                   @error('anggaran')
-                      <div class="invalid-feedback">{{$message}}</div>
+                      <div class="invalid-feedback">
+                        {{$message}}
+                      </div>
                   @enderror
                 </div>
               </div>
@@ -136,7 +138,9 @@
                 <div class="col-md-8">
                   <input type="text" name="terbilang" id="terbilang"  class="form-control  @error('terbilang') is-invalid @enderror" required placeholder="Terbilang sebanyak!!" value="{{old('terbilang')}}" >
                   @error('terbilang')
-                      {{$message}}
+                      <div class="invalid-feedback">
+                        {{$message}}
+                      </div>
                   @enderror
                 </div>
               </div>
@@ -151,20 +155,27 @@
                     <option value="LAINNYA" {{(old('Sumber_dana')=='LAINNYA')?'selected':''}}>Lain-Nya..</option>
                   </select>
                   @error('Sumber_dana')
+                     <div class="invalid-feedback">
                       {{$message}}
+                     </div>
                   @enderror
                 </div>
               </div>
               <div class="row mb-2">
                 <div class="col-md-4"><label for="Tanggal_Pengerjaan" class="col-form-label">Waktu pengerjaan</label></div>
                 <div class="col-md-8">
-                  <input type="date" name="Tanggal_Pengerjaan" id="Tanggal_Pengerjaan" class="form-control  @error('Tanggal_Pengerjaan') is-invalid @enderror" required>
+                  <input type="date" name="Tanggal_Pengerjaan" value="{{old('Tanggal_Pengerjaan')}}" id="Tanggal_Pengerjaan" class="form-control  @error('Tanggal_Pengerjaan') is-invalid @enderror">
                 </div>
               </div>
               <div class="row mb-2">
                 <div class="col-md-4"><label for="Proposal" class="col-form-label">Proposal</label></div>
                 <div class="col-md-8">
-                  <input type="file" class="form-control  @error('proposal') is-invalid @enderror" name="proposal" id="proposal" required>
+                  <input type="file" class="form-control  @error('proposal') is-invalid @enderror" name="proposal" id="proposal">
+                  @error('proposal')
+                    <div class="invalid-feedback">
+                      {{$message}}
+                    </div>
+                  @enderror
                 </div>
               </div>
             </div>
@@ -191,37 +202,72 @@
         <div class="modal-body">
           <div class="row mb-2">
             <div class="col-md-4"><label for="proker" class="col-form-label">Program Kerja</label></div>
-            <div class="col-md-8"><textarea class="form-control"style="height: 100px" name="proker" id="proker" placeholder="Program kerja yang di rencanakan" required></textarea></div>
+            <div class="col-md-8"><textarea class="form-control @error('proker') is-invalid @enderror" style="height: 100px" name="proker" id="proker" placeholder="Program kerja yang di rencanakan"></textarea>
+              @error('proker')
+                <div class="invalid-feedback">
+                  {{$message}}
+                </div>
+             @enderror
+            </div>
           </div>
           <input type="text" value="{{auth()->user()->bidang}}" name="bidang" id="bidang" hidden>
           <div class="row mb-2">
             <div class="col-md-4"><label for="" class="col-form-label">Anggaran</label></div>
-            <div class="col-md-8"><input type="number" name="anggaran" id="anggaran"  class="form-control" required placeholder="Anggaran yang Dibutuhkan"></div>
+            <div class="col-md-8">
+              <input type="number" name="anggaran" id="anggaran"  class="form-control @error('anggaran') is-invalid @enderror"" placeholder="Anggaran yang Dibutuhkan">
+              @error('anggaran')
+                <div class="invalid-feedback">
+                  {{$message}}
+                </div>
+              @enderror
+            </div>
           </div>
           <div class="row mb-2">
             <div class="col-md-4"><label for="" class="col-form-label">Terbilang</label></div>
-            <div class="col-md-8"><input type="text" name="terbilang" id="terbilang"  class="form-control" required placeholder="Terbilang sebanyak!!"></div>
+            <div class="col-md-8"><input type="text" name="terbilang" id="terbilang"  class="form-control @error('terbilang') is-invalid @enderror" placeholder="Terbilang sebanyak!!">
+              @error('terbilang')
+                <div class="invalid-feedback">
+                  {{$message}}
+                </div>
+             @enderror
+            </div>
           </div>
           <div class="row mb-2">
             <div class="col-md-4"><label for="" class="col-form-label">Sumber Dana</label></div>
             <div class="col-md-8">
-              <select name="Sumber_dana" class="form-select" id="Sumber_dana">
+              <select name="Sumber_dana" class="form-select @error('Sumber_dana') is-invalid @enderror" id="Sumber_dana">
                 <option>--Pilih--</option>
                 <option value="DD">Dana Desa</option>
                 <option value="DBH">Bagi Hasil Pajak</option>
                 <option value="ADD">Alokasi Dana Desa</option>
                 <option value="LAINNYA">Lain-Nya..</option>
               </select>
+              @error('Sumber_dana')
+                <div class="invalid-feedback">
+                  {{$message}}
+                </div>
+              @enderror
             </div>
           </div>
           <div class="row mb-2">
             <div class="col-md-4"><label for="Tanggal_Pengerjaan" class="col-form-label">Waktu pengerjaan</label></div>
-            <div class="col-md-8"><input type="date" name="Tanggal_Pengerjaan" id="Tanggal_Pengerjaan" class="form-control" required></div>
+            <div class="col-md-8"><input type="date" name="Tanggal_Pengerjaan" id="Tanggal_Pengerjaan" class="form-control @error('Tanggal_Pengerjaan') is-invalid @enderror">
+              @error('Tanggal_Pengerjaan')
+                <div class="invalid-feedback">
+                  {{$message}}
+                </div>
+             @enderror
+            </div>
           </div>
           <div class="row mb-2">
             <div class="col-md-4"><label for="Proposal" class="col-form-label">Proposal</label></div>
             <div class="col-md-8">
-              <input type="file" class="form-control" onchange="updateFile()" name="proposal" id="proposal">
+              <input type="file" class="form-control @error('proposal') is-invalid @enderror" onchange="updateFile()" name="proposal" id="proposal">
+              @error('proposal')
+                  <div class="invalid-feedback">
+                    {{$message}}
+                  </div>
+              @enderror
               <a id="fileProposal" class="btn btn-sm btn-outline-danger p-3 m-auto d-block">
                 <i class="bi bi-filetype-pdf"></i>
              </a>
@@ -238,7 +284,7 @@
 </form>
 {{-- akhir Form kontrol edit data--}}
 <script>
-  function editDatap(datas){
+  function editData(datas){
     $('#form').attr('action','/dashboard/programkerja/edit/'+datas.id)
     $('#form #proker').val(datas.proker)
     $('#form #anggaran').val(datas.anggaran)

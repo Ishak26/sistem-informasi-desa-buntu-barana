@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{-- <meta name="generator" content="Hugo 0.104.2"> --}}
     <title>Dashboard</title>
-    <link rel="stylesheet" href="/css/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     {{-- trix editor --}}
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
-    <script src="/js/javascript.js"></script>
+    <script src="{{asset('js/javascript.js')}}"></script>
+    @vite('resources/js/app.js')
 </head>
 
 <body>
@@ -53,7 +53,7 @@
                             </a>
                         </li>
                         {{-- authorize sekertaris --}}
-                        @can('sekertaris','kasipemerintahan')
+                        @can('sekertaris')
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('dashboard/pendapatan') ? 'active' : '' }} link-dark" aria-current="page"
                                 href="/dashboard/pendapatan">
@@ -173,7 +173,7 @@
                             <li class="nav-item">
                                 <a class="nav-link  {{ Request::is('dashboard/databantuan') ? 'active' : '' }} link-dark"
                                     href="/dashboard/databantuan">
-                                    <span class="me-2 bi bi-universal-arccess">
+                                    <span class="me-2 bi  bi-universal-access">
                                     </span>
                                      Bantuan
                                 </a>
@@ -235,10 +235,10 @@
                
                 @yield('container')
 
+                
                 <footer class="footer my-5 text-muted text-center w-100 text-small position-relative bottom-0">
-                    <p class="mb-1 text-center">&copy; Pemerintah Desa Buntu Barana</p>
+                    <p class="d-block text-center">&copy; Pemerintah Desa Buntu Barana</p>
                 </footer>
-
             </main>
         </div>
 
@@ -321,16 +321,14 @@
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
             {{-- Akhir modal --}}
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-    </script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>   
 </body>
 </html>

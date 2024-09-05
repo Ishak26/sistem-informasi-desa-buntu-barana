@@ -18,14 +18,14 @@ class PendudukFactory extends Factory
     {
         return [
             'nama' => fake()->name(),
-            'nik' => fake()->unique()->randomNumber(8, true),
+            'nik' => fake()->unique()->randomNumber(null, false),
             'alamat' => fake()->address(),
             'tempatlahir' => fake()->city(),
             'tanggallahir' => fake()->dateTime(),
             'email' => fake()->email(),
             'hp' => fake()->randomNumber(9, true),
             'agama' => fake()->randomElement(['islam', 'kristen', 'hindu']),
-            'dusun' => fake()->randomElement(['dusun1', 'dusun2', 'dusun3']),
+            'dusun' => fake()->randomElement(['BUNTU KALOSI','RANTE LIMBONG', 'BALABATU']),
             'jk' => fake()->randomElement(['laki-laki', 'perempuan']),
             'status' => fake()->randomElement(['kawin', 'Belum kawin']),
             'pendidikan' => fake()->randomElement(['SD', 'SMP', 'SMA', 'S1', 'S2', 'S3']),

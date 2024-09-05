@@ -48,8 +48,7 @@ class BeritaController extends Controller
 
     public function store()
     {   
-        // $this->authorize('sekertaris');
-        if(!gate::any(['sekertaris','kasipemerintahan'])){
+        if(!gate::any(['sekertaris','kasikemasyarakatan'])){
             abort(404);
         };
         $berita = berita::latest();

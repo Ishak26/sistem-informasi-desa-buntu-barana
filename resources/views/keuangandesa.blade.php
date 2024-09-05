@@ -5,6 +5,7 @@
     $tpendapatan=0;
     $tkasikesra =0;
     $tkasikemasyarakatan=0;
+    $tsekertariat=0;
 @endphp
 {{-- <img class="position-fixed top-0 w-100 h-100 object-fit" src="/img/bgkeuangan.jpg" alt=""> --}}
 <img class="position-fixed top-0 w-100 h-100 object-fit bg-bluelight" alt="">
@@ -42,6 +43,9 @@
               @case('ADD')
                   {{'ALOKASI DANA DESA'}}
                   @break
+              @case('LAINNYA')
+                  {{'HASIL USAHA'}}
+                  @break
               @default
                   
           @endswitch
@@ -57,6 +61,40 @@
           <td style="width:10%">BELANJA</td>
           <td>ANGGARAN</td>
           <td>SUMBER DANA</td>
+        </tr>
+        <tr class="bg-bluedark">
+          <td class="text-uppercase">kesekretariatan</td>
+          <td></td>
+          <td></td>
+        </tr>
+        @foreach ($kesektariatan as $items)
+        @php
+        $tsekertariat=$tsekertariat+$items->anggaran;
+        @endphp
+        <tr>
+          <td>{{$items->proker}}</td>
+          <td>{{"Rp ". number_format($items->anggaran,0,',','.')}}</td>
+          <td>
+          @switch($items->Sumber_dana)
+              @case('DD')
+                  {{'DANA DESA'}}
+                  @break
+              @case('BHP')
+                  {{'BAGI HASIL PAJAK'}}
+                  @break
+              @case('ADD')
+                  {{'ALOKASI DANA DESA'}}
+                  @break
+              @default
+                  
+          @endswitch
+          </td>
+        </tr>
+        @endforeach
+        <tr class="">
+          <td>Total:</td>
+          <td>{{"Rp ". number_format($tsekertariat,0,',','.')}}</td>
+          <td></td>
         </tr>
         <tr class="bg-bluedark">
           <td>KASI PEMERINTAHAN</td>

@@ -37,13 +37,13 @@
                         <div class="d-flex h-100 border rounded flex-columns flex-sm-rows mb-4 shadow-sm" onclick="bacaBerita('berita{{$Dberita->id}}','baca{{$Dberita->id}}')" style="cursor: pointer">
                             <div class="col p-2 ms-2 d-flex flex-column position-relative">
                                 <strong class="d-inline-block mb-2"> 
-                                    <a class="text-decoration-none"
-                                        href="/category/{{ $Dberita->category->id }}">{{ $Dberita->category->category }}
+                                    <p class="text-decoration-none"
+                                        ">{{ $Dberita->category->category }}
                                     </a>
                                 </strong>
                                 <p class="mb-0 encode-sans-condensed-semibold lh-2 fs-5 text-bluedark">{{ str::limit($Dberita['judul'], 75, ' . . .') }}</p>
                                 <small class="mt-2 text-muted">{{ date_format($Dberita->created_at,'d-M-Y') }}</small>
-                                <a href="berita/{{ $Dberita->slug }}" id="baca{{$Dberita->id}}" class="d-none"></a>
+                                <a href="berita/{{ $Dberita->slug }}" id="baca{{$Dberita->id}}" class="d-none"></p>
                             </div>
                             <div class="col">
                                     <img class=" border-start rounded object-fit" height="100%" height="100%" src="storage/{{$Dberita->gambar}}" alt="">

@@ -45,7 +45,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header bg-bluedark">
-                        <h4 class="modal-title">Edit profil Kepala Desa</h4>
+                        <h4 class="modal-title text-white">Edit profil Kepala Desa</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -53,10 +53,11 @@
                             enctype="multipart/form-data">
                             @csrf
                             @method('put')
+                            <img id="fotoKades" class="object-fit text-center" alt="">
                             <div class="mb-3 row">
                                 <label for="formFile" class="col-sm-4 form-label">foto</label>
                                 <div class="col-sm-8">
-                                    <input name="foto" class="form-control" type="file" id="formFile">
+                                    <input onchange="previewImage('fotoKades','#formFile')" name="foto" class="form-control" type="file" id="formFile">
                                 </div>
                             </div>
 
@@ -85,14 +86,15 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                                <button type="submit" class="btn btn-bluedark">Simpan</button>
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
+        </div>
+    </div>
             {{-- Akhir modal --}}
         </div>
     @endsection

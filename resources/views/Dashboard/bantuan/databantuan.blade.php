@@ -1,11 +1,5 @@
 @extends('Dashboard.layout.main')
 @section('container')
-@if(session('sukses'))
-    <script>
-        alert("{{ session('sukses') }}");
-    </script>
-@endif
-
 <div class="container mt-3">
     <a href="" class="btn btn-sm btn-bluedark mb-3" data-bs-toggle="modal" data-bs-target="#tambahbantuan">
         <i class="bi bi-database-fill-add"></i></a>
@@ -29,7 +23,7 @@
                 <td>{{ $item->jenis }}</td>
                 <td>{{ $item->sumber }}</td>
                 <td class="d-flex">
-                    <a class="btn btn-sm btn-bluedark" href="/dashboard/databantuan/{{$item->id}}/penerima"><i class="bi bi-info"></i></a>
+                    <a class="btn btn-sm btn-bluedark" href="/dashboard/databantuan/{{$item->id}}/penerima"><i class="bi bi-person-add"></i></a>
                 </td>
             </tr>
         @endforeach  
@@ -52,7 +46,7 @@
                             <label for="" class="col-form-label">Keterangan bantuan</label>
                             <input type="text" name="bantuan" class="form-control @error('bantuan') is-invalid @enderror">
                             @error('bantuan')
-                                <div class="invalid-fedback">
+                                <div class="invalid-feedback">
                                     {{$message}}
                                 </div>
                             @enderror
@@ -66,7 +60,7 @@
                                 <option value="PANGAN">PANGAN</option>
                             </select>
                             @error('jenis')
-                                <div class="invalid-fedback">
+                                <div class="invalid-feedback">
                                     {{$message}}
                                 </div>
                             @enderror
@@ -75,7 +69,7 @@
                             <label for="" class="col-form-label">Sumber bantuan</label>
                             <input type="text" name="sumber" class="form-control @error('sumber') is-invalid  @enderror">
                             @error('sumber')
-                                <div class="invalid-fedback">
+                                <div class="invalid-feedback">
                                     {{$message}}
                                 </div>
                             @enderror

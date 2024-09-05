@@ -12,12 +12,14 @@ class KeuanganController extends Controller
         $pkPemerintahan=Program_Kerja::where('bidang','=','KASI PEMERINTAHAN')->get();
         $pkkesra=Program_Kerja::where('bidang','=','KASI KESEJAHTERAAN MASYARAKAT')->get();
         $pkkemasyarakatan=Program_Kerja::where('bidang','=','KASI KEMASYARAKATAN')->get();
+        $sekertariat=Program_Kerja::where('bidang','=','SEKERTARIS')->get();
         return view('keuangandesa',[
             'title'=> 'DESA BUNTU BARANA | KEUANGAN',
             'pendapatan'=>$pendapatan,
             'pkpemerintahan'=>$pkPemerintahan,
             'pkkesra'=>$pkkesra,
             'pkkemasyarakatan'=>$pkkemasyarakatan,
+            'kesektariatan' => $sekertariat
         ]);
     }
 }

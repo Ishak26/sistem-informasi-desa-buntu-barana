@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('penerima_bantuans', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Bantuan::class);
-            $table->foreignIdFor(Penduduk::class)->unique();
+            $table->foreignIdFor(Penduduk::class);
             $table->boolean('status')->nullable()->default(0);
             $table->string('buktiterima')->nullable();
             $table->timestamps();

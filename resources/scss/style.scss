@@ -1,0 +1,15 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+$custom-theme-colors:(
+  "bluelight" :#98c5e9,
+  "bluedark":#001838,
+  );
+$theme-colors:map-merge($theme-colors,$custom-theme-colors);
+$font-size-root:14px;
+@import "~bootstrap/scss/maps";
+@import '~bootstrap/scss/mixins';
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/type";
+@import "bootstrap/scss/utilities";
+
+@import "~bootstrap/scss/bootstrap";

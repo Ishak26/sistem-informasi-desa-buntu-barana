@@ -28,9 +28,9 @@ class ProgramKerjaController extends Controller
     public function tambah(Request $request){
       $validasi=$request->validate(
         [
-            'proker' => 'required|max:400|string',
+            'proker' => 'required|min:20|max:400|string',
             'bidang' =>'required|string|min:6',
-            'anggaran'=>'required|numeric|max_digits:15',
+            'anggaran'=>'required|numeric|digits_between:7,15',
             'terbilang'=>'required|max:100|string',
             'Sumber_dana'=>'required',
             'Tanggal_Pengerjaan'=>'required|date',
@@ -58,10 +58,10 @@ class ProgramKerjaController extends Controller
     public function edit($id,Request $request){
       $validasi=$request->validate(
         [
-            'proker' => 'required|max:400',
+            'proker' => 'required|min:20|max:400',
             'bidang' =>'required|string',
-            'anggaran'=>'required|numeric|max_digits:15',
-            'terbilang'=>'required|max:200',
+            'anggaran'=>'required|numeric|digits_between:7,15',
+            'terbilang'=>'required|min:20|max:200',
             'Sumber_dana'=>'required',
             'Tanggal_Pengerjaan'=>'required|date',
             'proposal'=>'file|mimes:pdf'
@@ -79,9 +79,12 @@ class ProgramKerjaController extends Controller
     }
 
     public function hapus(Program_Kerja $program_Kerja){
+      if (Storage::exists($program_Kerja->proposal)) {
+        Storage::delete($program_Kerja->proposal);
+      } 
       $program_Kerja->delete();
 
-      return back()->with('sukses','data Berhasil di Hapus !!');
+      return back()->with('hapus','data Berhasil di Hapus !!');
     }
 
 

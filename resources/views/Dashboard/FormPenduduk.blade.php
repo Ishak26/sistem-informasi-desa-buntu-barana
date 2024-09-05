@@ -64,7 +64,7 @@
                     <div class="col-sm-auto mb-1">
                         <label for="validationDefault04" class="form-label">Dusun</label>
                         <select class="form-select @error('dusun') is-invalid  @enderror" name="dusun" id="validationDefault04">
-                            <option>--Pilih--</option>
+                            <option value="">--Pilih--</option>
                             <option {{ old('dusun') == 'DUSUN BUNTUN KALOSI' ? 'selected' : '' }} value="DUSUN BUNTU KALOSI">DUSUN BUNTUN KALOSI</option>
                             <option {{ old('dusun') == 'DUSUN RANTE LIMBONG' ? 'selected' : '' }} value="DUSUN RANTE LIMBONG">DUSUN RANTE LIMBONG</option>
                             <option {{ old('dusun') == 'DUSUN BALABATU' ? 'selected' : '' }} value="DUSUN BALABATU ">DUSUN BALABATU </option>
@@ -80,8 +80,8 @@
                     <div class="row">
                         <div class="col-sm-6 mb-1">
                             <label for="validationDefault05" class="form-label">Agama</label>
-                            <select name="agama" class="form-select @error('agama') is-invalid  @enderror" aria-label="Default select example">
-                                <option>--Pilih--</option>
+                            <select name="agama" class="form-select @error('agama') is-invalid @enderror" aria-label="Default select example">
+                                <option value="">--Pilih--</option>
                                 <option {{ old('agama') == 'islam' ? 'selected' : '' }} value="islam">Islam</option>
                                 <option {{ old('agama') == 'kristen' ? 'selected' : '' }} value="kristen">Kristen</option>
                                 <option {{ old('agama') == 'hindu' ? 'selected' : '' }} value="hindu">HIndu</option>
@@ -127,7 +127,7 @@
                         <label for="validationDefault05" class="form-label">Jenis Kelamin</label>
                         <div class="d-flex flex-row">
                             <div class="form-check mx-3">
-                                <input class="form-check-input @error('nik') is-invalid  @enderror" type="radio" name="jk" value="laki-laki"
+                                <input class="form-check-input @error('jk') is-invalid  @enderror" type="radio" name="jk" value="laki-laki"
                                     id="flexRadioDefault1" {{ old('jk') == 'laki-laki' ? 'checked' : '' }} />
                                 <label class="form-check-label" for="flexRadioDefault1">Laki-Laki</label>
                             </div>

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 class PendudukController extends Controller
 {
     public function index()
@@ -33,7 +34,7 @@ class PendudukController extends Controller
             "dusun" => 'required|max:30|string',
             "agama" => 'required|max:30|string',
             "status" => 'required|Max:30|string',
-            "hp" => 'required|numeric|max_digits:12',
+            "hp" => 'required|numeric|digits:12',
             "umur" => 'required|numeric|max_digits:3',
             "jk" => 'required|max:30|string',
             "tempatlahir" => 'required|max:30|string',
@@ -68,7 +69,7 @@ class PendudukController extends Controller
             ]);
         } else {
             $validate = $request->validate([
-                "nik" => 'required|numeric|unique',
+                "nik" => 'required|numeric',
                 "nama" => 'required|max:30',
                 "email" => 'required|email:dns',
                 "alamat" => 'required|max:100',
@@ -130,4 +131,12 @@ class PendudukController extends Controller
         ]);
         
     }
+
+    public function cariPenerimaBantuan( Request $request){
+        $data =Penduduk::where('nik',$request->data)->first();
+        $dataArray =$data->toArray();
+        $result = Arr::only($dataArray,['id','nama']) ;
+        return response()->json($result);
+    }
+
 }

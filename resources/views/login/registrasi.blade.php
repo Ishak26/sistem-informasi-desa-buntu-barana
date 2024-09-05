@@ -5,12 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registrasi</title>
-
-    <link rel="stylesheet" href="/css/main.min.css">  
+    @vite('resources/js/app.js')
     <link href="css/registras.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-
 </head>
 
 <body class="bg-body">
