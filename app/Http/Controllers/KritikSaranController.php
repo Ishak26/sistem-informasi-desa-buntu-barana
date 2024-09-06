@@ -15,4 +15,9 @@ class KritikSaranController extends Controller
       KritikSaran::create($validasi);
       return back()->with('pesanTerkirim','Kritik dan saran anda berhasil dikirim!!');
     }
+    public function view(){
+      return view('Dashboard.pengaduan',[
+        'dataPengaduan'=>KritikSaran::paginate(20)
+      ]);
+    }
 }

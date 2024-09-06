@@ -203,6 +203,14 @@
                                  Kegiatan
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('dashboard/pengaduan') ? 'active' : '' }} link-dark"
+                                href="/dashboard/pengaduan">
+                                <span class="me-2 bi bi-calendar-event">
+                                </span>
+                                 Pengaduan
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>

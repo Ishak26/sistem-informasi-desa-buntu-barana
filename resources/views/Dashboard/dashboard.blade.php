@@ -7,39 +7,39 @@
             alert('{{ session('edit') }}');
         </script>
     @endif
-  
     <div class="container mt-3">
-    @if (session('sukses'))
-        <script>
-            alert('{{session('sukses')}}')
-        </script>
-    
-    @endif
-        <div class="m-auto">
-            <div class="text-center float-start">
-                {{-- <img src="img/{{ $kades->foto }}" class="img-fluid me-4" width="300" height="350" alt=""> --}}
-                <img src="{{ asset('storage/' . $kades->foto) }}" class="img-fluid me-4" width="300" height="350"
+        @if (session('sukses'))
+            <script>
+                alert('{{session('sukses')}}')
+            </script>
+        @endif
+
+        <div class="row justify-content-center">
+            <div class=" col-md-5 text-center">
+                <img src="{{ asset('storage/' . $kades->foto) }}" class="img-fluid me-4 object-fit" width="300" height="350"
                     alt="">
                 <small class="d-block">{{ $kades->nama }}</small>
                 <p>Kepala Desa Buntu Barana </p>
             </div>
-            <p class="fs-5 fw-semi-bold mb-1">Visi</p>
-            <small class="lh-sm text-muted">{{ $kades->visi }}</small>
-            <p class="fs-5 fw-semi-bold mb-1">Misi</p>
-            <ul class="text-muted ms-3">
+            <div class="col-md-5">
+                <p class="fs-5 fw-semi-bold mb-1">Visi</p>
+                <small class="lh-sm text-muted">{{ $kades->visi }}</small>
+                <p class="fs-5 fw-semi-bold mb-1">Misi</p>
+                <ul class="text-muted ms-0">
                 @php
                     $visi = explode(',', $kades->misi);
-                    foreach ($visi as $key) {
-                        echo "<li> $key </li>";
-                    }
                 @endphp
+                    @foreach($visi as $key) 
+                        <li class=""> {{$key}} </li>
+                    @endforeach
+             
             </ul>
             @can('sekertaris')
-            <a href="" class="btn btn-bluedark m-2" data-bs-toggle="modal" data-bs-target="#Formdata">Update</a>
+            <a href="" class="btn btn-sm btn-bluedark m-2" data-bs-toggle="modal" data-bs-target="#Formdata">Update</a>
             @endcan
+            </div>
         </div>
-        <div class="float-end"></div>
-
+        <div class=""></div>
         {{-- modal tambah data --}}
         <div class="modal" tabindex="-1" id="Formdata" aria-hidden="true">
             <div class="modal-dialog">
@@ -94,7 +94,25 @@
                 </div>
             </div>
         </div>
-    </div>
-            {{-- Akhir modal --}}
-        </div>
+         {{-- Akhir modal --}}
+    </div>  
+        <p class=" fs-4 text-bold text-center fw-semibold text-bluelight mt-5">Data Pengaduan Masyarakat</p>
+        <table class="table-responsive w-100">
+          <tr class="text-center">
+            <th>No</th>
+            <th>Kritik</th>
+            <th >saran</th>
+          </tr>
+          @foreach ($dataPengaduan as $item)
+          <tr class="text-center">
+            <td >{{$loop->iteration}}</td>
+            <td>{{$item->kritik}}</td>
+            <td>{{$item->saran}}</td>
+          </tr>
+          @endforeach
+        </table>
+    
+        <div class="d-flex justify-content-center">
+          {{ $dataPengaduan->links() }}
+      </div>
     @endsection

@@ -4,6 +4,7 @@ use App\Models\Kades;
 use App\Models\berita;
 use App\Models\Penduduk;
 use App\Models\Pemerintah;
+use App\Models\KritikSaran;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\BelanjaController;
@@ -94,6 +95,7 @@ Route::get('/dashboard', function () {
         "lakilaki" => Penduduk::where('jk', 'laki-laki')->get(),
         "berita" => berita::all(),
         'kades' => Kades::first(),
+        'dataPengaduan'=> KritikSaran::paginate(20)
     ]);
 })->middleware('auth');
 
